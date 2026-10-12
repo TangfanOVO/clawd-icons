@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cr cr-coordinated mx-icecream" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="cr-scene">
+<!-- Clawd reference: clawd-tank. See THIRD_PARTY.md. -->
+<g class="cr-body pose-look-right gesture-still" stroke="none"><g class="cr-original" transform="translate(4.5 11)">
+<g fill="#DE886D"><g class="cr-feet">
+<path class="cr-foot-1" d="M3 7h1v2H3Z"/><path class="cr-foot-2" d="M5 7h1v2H5Z"/>
+<path class="cr-foot-3" d="M9 7h1v2H9Z"/><path class="cr-foot-4" d="M11 7h1v2h-1Z"/></g>
+<path class="cr-hand-left" d="M0 3h2v2H0Z"/><path class="cr-hand-right" d="M13 3h2v2h-2Z"/>
+<path class="cr-torso" d="M2 0h11v7H2Z"/></g>
+<g class="cr-gaze" fill="#141414"><g class="cr-eye-open"><path d="M4 2h1v2H4Zm6 0h1v2h-1Z"/></g>
+<g class="cr-eye-sleep" opacity="0"><path d="M3.5 3h2v1h-2Zm6 0h2v1h-2Z"/></g>
+</g>
+
+
+
+</g></g><g class="v6-ice-held" style="transform-origin:18px 14.3px" ><path d="M15.4 8.8h4.9l-1.8 5.1q-.5.9-1 0Z" fill="#FAF8F4" stroke="#343840"/><path d="m16.3 10.1 2.3 2.3m.8-2.3-2 2" stroke="#343840"/><path d="M14.2 8.3c0-1.9 1.5-3.4 3.5-3.4 2.1 0 3.7 1.5 3.7 3.4 0 .8-1 1.2-1.6.6-.5.9-1.7.9-2.3.1-.6.7-1.7.5-2-.1-.6.5-1.3.1-1.3-.6Z" fill="#FAF8F4" stroke="#343840"/></g>
+</g></svg>

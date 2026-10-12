@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cr cr-coordinated mx-settings" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="cr-scene">
+<!-- Clawd body reference: marciogranzotto/clawd-tank. See THIRD_PARTY.md. -->
+<g class="cr-prop cr-gear"><path d="M19.82 4.33L19.98 4.83L20.79 4.84L20.79 6.16L19.98 6.17L19.82 6.67L19.82 6.67L19.58 7.13L20.15 7.71L19.21 8.65L18.63 8.08L18.17 8.32L18.17 8.32L17.67 8.48L17.66 9.29L16.34 9.29L16.33 8.48L15.83 8.32L15.83 8.32L15.37 8.08L14.79 8.65L13.85 7.71L14.42 7.13L14.18 6.67L14.18 6.67L14.02 6.17L13.21 6.16L13.21 4.84L14.02 4.83L14.18 4.33L14.18 4.33L14.42 3.87L13.85 3.29L14.79 2.35L15.37 2.92L15.83 2.68L15.83 2.68L16.33 2.52L16.34 1.71L17.66 1.71L17.67 2.52L18.17 2.68L18.17 2.68L18.63 2.92L19.21 2.35L20.15 3.29L19.58 3.87L19.82 4.33Z"/><circle cx="17" cy="5.5" r="1.3"/></g><g class="cr-body" stroke="none"><g class="cr-original" transform="translate(4.5 11)">
+<g fill="#DE886D"><g class="cr-feet">
+<path class="cr-foot-1" d="M3 7h1v2H3Z"/><path class="cr-foot-2" d="M5 7h1v2H5Z"/>
+<path class="cr-foot-3" d="M9 7h1v2H9Z"/><path class="cr-foot-4" d="M11 7h1v2h-1Z"/></g>
+<path class="cr-hand-left" d="M0 3h2v2H0Z"/><path class="cr-hand-right" d="M13 3h2v2h-2Z"/>
+<path class="cr-torso" d="M2 0h11v7H2Z"/></g>
+<g class="cr-gaze" fill="#141414"><g class="cr-eye-open"><path d="M4 2h1v2H4Zm6 0h1v2h-1Z"/></g>
+<g class="cr-eye-sleep" opacity="0"><path d="M3.5 3h2v1h-2Zm6 0h2v1h-2Z"/></g>
+</g>
+
+
+
+</g></g>
+</g></svg>

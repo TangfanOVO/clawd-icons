@@ -1,0 +1,509 @@
+/* Pixel Clawd + smooth 0.7-unit functional lines. */
+.cr{--cr-duration:1.65s;--cr-ease:cubic-bezier(.77,0,.175,1);overflow:visible}
+.cr g,.cr path{transform-box:view-box}
+.cr-body,.cr-actor{transform-origin:12px 20px}
+.cr-eye-open{transform-box:fill-box!important;transform-origin:center}
+.cr.is-asleep .cr-eye-open{opacity:0}
+.cr.is-asleep .cr-eye-sleep{opacity:1}
+.cr.is-playing [class]{animation-duration:calc(var(--cr-duration) * var(--cr-speed,1));animation-timing-function:var(--cr-ease);animation-fill-mode:both}
+.cr.is-playing[data-motion=blink] .cr-eye-open{animation-name:cr-blink}
+.cr.is-playing[data-motion=happy] .cr-body{animation-name:cr-happy-hop}
+.cr.is-playing[data-motion=happy] .cr-eye-open,.mx-home.is-playing[data-motion=trick] .cr-eye-open,.mx-heart.is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-joy-eyes}
+.mx-home.is-playing[data-motion=trick] .cr-actor{animation-name:cr-home-hop}
+.mx-home.is-playing[data-motion=trick] .cr-roof{animation-name:cr-roof-hop}
+.mx-home.is-playing[data-motion=trick] .cr-gaze{animation-name:cr-look-up}
+.mx-search.is-playing[data-motion=trick] .cr-actor{animation-name:cr-search-lean}
+.mx-search.is-playing[data-motion=trick] .cr-glass{animation-name:cr-scan;transform-origin:18.5px 14.5px}
+.mx-search.is-playing[data-motion=trick] .cr-gaze{animation-name:cr-search-eyes}
+.mx-chat.is-playing[data-motion=trick] .cr-body{animation-name:cr-chat-body}
+.mx-chat.is-playing[data-motion=trick] .cr-bubble{animation-name:cr-message;transform-origin:13px 10px}
+.mx-chat.is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-blink}
+.mx-folder.is-playing[data-motion=trick] .cr-body{animation-name:cr-peek}
+.mx-folder.is-playing[data-motion=trick] .cr-gaze{animation-name:cr-folder-eyes}
+.mx-folder.is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-blink}
+.mx-heart.is-playing[data-motion=trick] .cr-actor{animation-name:cr-happy-hop}
+.mx-heart.is-playing[data-motion=trick] .cr-heart{animation-name:cr-heartbeat;transform-origin:12px 5px}
+.mx-bell.is-playing[data-motion=trick] .cr-bell{animation-name:cr-bell-ring;transform-origin:12px 2.7px}
+.mx-bell.is-playing[data-motion=trick] .cr-body{animation-name:cr-startle}
+.mx-bell.is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-wide-eyes}
+.mx-settings.is-playing[data-motion=trick] .cr-gear{animation-name:cr-turn;transform-origin:17px 5.5px}
+.mx-settings.is-playing[data-motion=trick] .cr-body{animation-name:cr-curious}
+.mx-settings.is-playing[data-motion=trick] .cr-gaze{animation-name:cr-look-right-up}
+.mx-camera.is-playing[data-motion=trick] .cr-body{animation-name:cr-camera-nod}
+.mx-camera.is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-shutter-blink}
+.mx-camera.is-playing[data-motion=trick] .cr-lens{animation-name:cr-focus;transform-origin:12px 19px}
+.mx-camera.is-playing[data-motion=trick] .cr-shutter{animation-name:cr-press}
+.mx-camera.is-playing[data-motion=trick] .cr-flash{animation-name:cr-flash}
+@keyframes cr-blink{0%,23%,38%,100%{transform:scaleY(1)}29%,32%{transform:scaleY(.12)}}
+@keyframes cr-home-hop{0%,15%,100%{transform:translateY(0)}39%{transform:translateY(-1.28px)}65%{transform:translateY(0.24px)}80%{transform:translateY(0)}}
+@keyframes cr-roof-hop{0%,15%,100%{transform:translateY(0)}39%{transform:translateY(-1.12px)}65%{transform:translateY(0.16px)}}
+@keyframes cr-look-up{0%,15%,90%,100%{transform:translateY(0)}35%,70%{transform:translateY(-0.6125px)}}
+@keyframes cr-search-lean{0%,100%{transform:rotate(0)}26%{transform:rotate(-3.1deg)}60%{transform:rotate(3.1deg)}}
+@keyframes cr-scan{0%,100%{transform:rotate(0)}26%{transform:rotate(-10.85deg)}60%{transform:rotate(7.75deg)}}
+@keyframes cr-search-eyes{0%,100%{transform:translateX(0)}26%{transform:translateX(-1.05px)}60%{transform:translateX(1.137px)}}
+@keyframes cr-chat-body{0%,100%{transform:rotate(0) translateY(0)}28%{transform:rotate(-3.1deg) translateY(-0.525px)}55%{transform:rotate(3.1deg) translateY(-0.525px)}78%{transform:rotate(-1.55deg)}}
+@keyframes cr-message{0%,100%{transform:translateY(0) scale(1);opacity:1}15%{transform:translateY(0.875px) scale(.95);opacity:.35}42%,65%{transform:translateY(-1.05px) scale(1);opacity:1}}
+@keyframes cr-peek{0%,100%{transform:translateY(0)}35%,70%{transform:translateY(-2.625px)}}
+@keyframes cr-folder-eyes{0%,20%,100%{transform:translate(0,0)}42%{transform:translate(-0.6125px,0.525px)}65%{transform:translate(0.7px,0.525px)}}
+@keyframes cr-happy-hop{0%,100%{transform:translateY(0)}32%{transform:translateY(-1.75px)}48%{transform:translateY(0)}63%{transform:translateY(-0.9625px)}82%{transform:translateY(0)}}
+@keyframes cr-heartbeat{0%,15%,50%,83%,100%{transform:scale(1)}32%{transform:scale(1.16)}65%{transform:scale(1.112)}}
+@keyframes cr-bell-ring{0%,12%,100%{transform:rotate(0)}26%{transform:rotate(15.5deg)}42%{transform:rotate(-12.4deg)}57%{transform:rotate(9.3deg)}72%{transform:rotate(-4.65deg)}86%{transform:rotate(1.55deg)}}
+@keyframes cr-startle{0%,12%,100%{transform:translateY(0) rotate(0)}28%{transform:translateY(0.525px) rotate(-4.65deg)}43%{transform:translateY(0) rotate(4.65deg)}60%{transform:rotate(-1.55deg)}78%{transform:rotate(0)}}
+@keyframes cr-wide-eyes{0%,15%,85%,100%{transform:scaleY(1)}35%,55%{transform:scaleY(1.17)}}
+@keyframes cr-turn{0%,12%{transform:rotate(0)}85%,100%{transform:rotate(360deg)}}
+@keyframes cr-curious{0%,100%{transform:rotate(0)}35%,68%{transform:rotate(4.65deg)}}
+@keyframes cr-look-right-up{0%,100%{transform:translate(0,0)}35%,68%{transform:translate(1.137px,-0.7875px)}}
+@keyframes cr-camera-nod{0%,22%,100%{transform:translateY(0)}45%,60%{transform:translateY(0.7875px)}}
+@keyframes cr-shutter-blink{0%,35%,66%,100%{transform:scaleY(1)}47%,54%{transform:scaleY(.12)}}
+@keyframes cr-focus{0%,18%,72%,100%{transform:scale(1)}35%{transform:scale(.9)}50%{transform:scale(1.064)}}
+@keyframes cr-press{0%,32%,75%,100%{transform:translateY(0)}46%,57%{transform:translateY(0.875px)}}
+@keyframes cr-flash{0%,43%,69%,100%{opacity:0}51%,57%{opacity:.8}}
+.cr.is-idle:not(.is-asleep):not(.is-playing) .cr-body{animation:cr-breathe 3.2s var(--cr-ease) infinite}
+.cr.is-idle:not(.is-asleep):not(.is-playing) .cr-eye-open{animation:cr-idle-blink 5s linear infinite}
+.cr.is-waking .cr-eye-open{animation:cr-wake .6s cubic-bezier(.23,1,.32,1) both}
+@keyframes cr-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-0.4375px)}}
+@keyframes cr-idle-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.12)}}
+@keyframes cr-wake{from{opacity:0}to{opacity:1}}
+
+/* Limbs are the original filled rectangles. Their width and height never animate. */
+.cr-hand-left{transform-origin:2px 4px}.cr-hand-right{transform-origin:13px 4px}
+.cr-foot-1{transform-origin:3.5px 7px}.cr-foot-2{transform-origin:5.5px 7px}.cr-foot-3{transform-origin:9.5px 7px}.cr-foot-4{transform-origin:11.5px 7px}
+.cr.is-playing[data-motion=happy] .cr-hand-left,.mx-heart.is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-wave-left}
+.cr.is-playing[data-motion=happy] .cr-hand-right,.mx-heart.is-playing[data-motion=trick] .cr-hand-right,.mx-chat.is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-wave-right}
+.cr.is-playing[data-motion=happy] .cr-foot-1,.cr.is-playing[data-motion=happy] .cr-foot-3,.mx-heart.is-playing[data-motion=trick] .cr-foot-1,.mx-heart.is-playing[data-motion=trick] .cr-foot-3,.mx-chat.is-playing[data-motion=trick] .cr-foot-1,.mx-chat.is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-step-a}
+.cr.is-playing[data-motion=happy] .cr-foot-2,.cr.is-playing[data-motion=happy] .cr-foot-4,.mx-heart.is-playing[data-motion=trick] .cr-foot-2,.mx-heart.is-playing[data-motion=trick] .cr-foot-4,.mx-chat.is-playing[data-motion=trick] .cr-foot-2,.mx-chat.is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-step-b}
+.mx-home.is-playing[data-motion=trick] .cr-hand-left,.mx-folder.is-playing[data-motion=trick] .cr-hand-left,.mx-bell.is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-lift-left}
+.mx-home.is-playing[data-motion=trick] .cr-hand-right,.mx-folder.is-playing[data-motion=trick] .cr-hand-right,.mx-bell.is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-lift-right}
+.mx-home.is-playing[data-motion=trick] .cr-foot-1,.mx-home.is-playing[data-motion=trick] .cr-foot-2{animation-name:cr-kick-left}
+.mx-home.is-playing[data-motion=trick] .cr-foot-3,.mx-home.is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-kick-right}
+.mx-search.is-playing[data-motion=trick] .cr-hand-left,.mx-settings.is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-curious-hand}
+.mx-search.is-playing[data-motion=trick] .cr-foot-1,.mx-search.is-playing[data-motion=trick] .cr-foot-3,.mx-settings.is-playing[data-motion=trick] .cr-foot-1,.mx-settings.is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-step-a}
+.mx-search.is-playing[data-motion=trick] .cr-foot-2,.mx-search.is-playing[data-motion=trick] .cr-foot-4,.mx-settings.is-playing[data-motion=trick] .cr-foot-2,.mx-settings.is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-step-b}
+.mx-camera.is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-hand-press}
+@keyframes cr-joy-eyes{0%,12%,90%,100%{transform:scaleY(1)}28%,70%{transform:scaleY(.5)}43%,48%{transform:scaleY(.12)}}
+@keyframes cr-wave-left{0%,12%,100%{transform:rotate(0)}28%{transform:rotate(43.4deg)}44%{transform:rotate(15.5deg)}60%{transform:rotate(46.5deg)}76%{transform:rotate(18.6deg)}}
+@keyframes cr-wave-right{0%,12%,100%{transform:rotate(0)}28%{transform:rotate(-43.4deg)}44%{transform:rotate(-15.5deg)}60%{transform:rotate(-46.5deg)}76%{transform:rotate(-18.6deg)}}
+@keyframes cr-lift-left{0%,12%,100%{transform:rotate(0)}35%,60%{transform:rotate(31deg)}}
+@keyframes cr-lift-right{0%,12%,100%{transform:rotate(0)}35%,60%{transform:rotate(-31deg)}}
+@keyframes cr-step-a{0%,12%,100%{transform:rotate(0)}30%{transform:rotate(-24.8deg)}52%{transform:rotate(18.6deg)}72%{transform:rotate(-13.95deg)}}
+@keyframes cr-step-b{0%,12%,100%{transform:rotate(0)}30%{transform:rotate(24.8deg)}52%{transform:rotate(-18.6deg)}72%{transform:rotate(13.95deg)}}
+@keyframes cr-kick-left{0%,15%,100%{transform:rotate(0)}35%,48%{transform:rotate(27.9deg)}72%{transform:rotate(-7.75deg)}}
+@keyframes cr-kick-right{0%,15%,100%{transform:rotate(0)}35%,48%{transform:rotate(-27.9deg)}72%{transform:rotate(7.75deg)}}
+@keyframes cr-curious-hand{0%,12%,100%{transform:translateY(0)}35%,65%{transform:translateY(-0.7875px)}}
+@keyframes cr-hand-press{0%,32%,75%,100%{transform:translateY(0)}46%,57%{transform:translateY(0.7px)}}
+
+@media(prefers-reduced-motion:reduce){.cr *,.cr.is-playing [class]{animation:none!important}}
+
+/* Every gesture is opt-in; static SVGs contain no executable code. */
+.cr.is-playing[data-motion=trick] .pose-curious{animation-name:cr-curious}
+.cr.is-playing[data-motion=trick] .pose-look .cr-gaze{animation-name:cr-search-eyes}
+.cr.is-playing[data-motion=trick] .pose-look-right .cr-gaze{animation-name:cr-look-right-up}
+.cr.is-playing[data-motion=trick] .pose-up .cr-gaze{animation-name:cr-look-up}
+.cr.is-playing[data-motion=trick] .pose-up{animation-name:cr-nod-up}
+.cr.is-playing[data-motion=trick] .pose-joy .cr-eye-open{animation-name:cr-joy-eyes}
+.cr.is-playing[data-motion=trick] .pose-blink .cr-eye-open{animation-name:cr-blink}
+.cr.is-playing[data-motion=trick] .pose-sleepy .cr-eye-open{animation-name:cr-sleepy-eyes}
+.cr.is-playing[data-motion=trick] .pose-sleepy{animation-name:cr-breathe}
+.cr.is-playing[data-motion=trick] .pose-sway{animation-name:cr-chat-body}
+.cr.is-playing[data-motion=trick] .pose-peek{animation-name:cr-peek}
+.cr.is-playing[data-motion=trick] .pose-nod{animation-name:cr-camera-nod}
+.cr.is-playing[data-motion=trick] .pose-brace{animation-name:cr-brace-body}
+.cr.is-playing[data-motion=trick] .pose-startle{animation-name:cr-startle}
+.cr.is-playing[data-motion=trick] .gesture-wave .cr-hand-left{animation-name:cr-wave-left}
+.cr.is-playing[data-motion=trick] .gesture-wave .cr-hand-right{animation-name:cr-wave-right}
+.cr.is-playing[data-motion=trick] .gesture-right .cr-hand-right{animation-name:cr-wave-right}
+.cr.is-playing[data-motion=trick] .gesture-lift .cr-hand-left{animation-name:cr-lift-left}
+.cr.is-playing[data-motion=trick] .gesture-lift .cr-hand-right{animation-name:cr-lift-right}
+.cr.is-playing[data-motion=trick] .gesture-steps .cr-foot-1,.cr.is-playing[data-motion=trick] .gesture-steps .cr-foot-3{animation-name:cr-step-a}
+.cr.is-playing[data-motion=trick] .gesture-steps .cr-foot-2,.cr.is-playing[data-motion=trick] .gesture-steps .cr-foot-4{animation-name:cr-step-b}
+@keyframes cr-nod-up{0%,100%{transform:translateY(0)}35%,65%{transform:translateY(-0.6125px)}}
+@keyframes cr-brace-body{0%,100%{transform:translateY(0)}35%,65%{transform:translateY(0.6125px)}}
+@keyframes cr-sleepy-eyes{0%,100%{transform:scaleY(1)}40%,70%{transform:scaleY(.12)}}
+
+.cr.is-playing[data-motion=trick] .m-turn{animation-name:cr-turn}
+.cr.is-playing[data-motion=trick] .m-envelope-low{animation-name:cr-prop-envelope-low}
+@keyframes cr-prop-envelope-low{0%,100%{transform:scaleY(1)}35%,65%{transform:scaleY(.15)}}
+.cr.is-playing[data-motion=trick] .m-drop{animation-name:cr-prop-drop}
+@keyframes cr-prop-drop{0%,100%{transform:translateY(0)}18%{transform:translateY(-1.15px)}45%{transform:translateY(0.525px)}65%{transform:translateY(0)}}
+.cr.is-playing[data-motion=trick] .m-drift{animation-name:cr-prop-drift}
+@keyframes cr-prop-drift{0%,100%{transform:translateX(0)}28%{transform:translateX(-1.4px)}65%{transform:translateX(1.4px)}}
+.cr.is-playing[data-motion=trick] .m-glow{animation-name:cr-prop-glow}
+@keyframes cr-prop-glow{0%,100%{opacity:1}25%{opacity:.35}42%,65%{opacity:1}80%{opacity:.6}}
+.cr.is-playing[data-motion=trick] .m-brace{animation-name:cr-prop-brace}
+@keyframes cr-prop-brace{0%,100%{transform:rotate(0)}35%{transform:rotate(-7.75deg)}65%{transform:rotate(6.2deg)}}
+.cr.is-playing[data-motion=trick] .m-confirm{animation-name:cr-prop-confirm}
+@keyframes cr-prop-confirm{0%,100%{opacity:1}20%{opacity:.2}48%,65%{opacity:1}78%{opacity:.4}}
+.cr.is-playing[data-motion=trick] .m-scan{animation-name:cr-prop-scan}
+@keyframes cr-prop-scan{0%,100%{transform:translateY(0);opacity:0}15%{transform:translateY(0);opacity:.8}72%{transform:translateY(13px);opacity:.8}85%{transform:translateY(13px);opacity:0}}
+.cr.is-playing[data-motion=trick] .m-envelope{animation-name:cr-prop-envelope}
+@keyframes cr-prop-envelope{0%,100%{transform:scaleY(1)}35%,65%{transform:scaleY(-.55)}}
+.cr.is-playing[data-motion=trick] .m-letter-lift{animation-name:cr-prop-letter-lift}
+@keyframes cr-prop-letter-lift{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-1.05px)}}
+.cr.is-playing[data-motion=trick] .m-page{animation-name:cr-prop-page}
+@keyframes cr-prop-page{0%,100%{transform:scaleX(1);opacity:1}40%{transform:scaleX(.15);opacity:.3}70%{transform:scaleX(1);opacity:1}}
+.cr.is-playing[data-motion=trick] .m-handle{animation-name:cr-prop-handle}
+@keyframes cr-prop-handle{0%,100%{transform:translateY(0)}35%,65%{transform:translateY(-0.875px)}}
+.cr.is-playing[data-motion=trick] .m-wallet{animation-name:cr-prop-wallet}
+@keyframes cr-prop-wallet{0%,100%{transform:scaleX(1)}38%,66%{transform:scaleX(-.6)}}
+.cr.is-playing[data-motion=trick] .m-pan{animation-name:cr-prop-pan}
+@keyframes cr-prop-pan{0%,100%{transform:translateX(0)}35%{transform:translateX(0.875px)}65%{transform:translateX(-0.875px)}}
+.cr.is-playing[data-motion=trick] .m-play{animation-name:cr-prop-play}
+@keyframes cr-prop-play{0%,100%{transform:scale(1);opacity:1}28%{transform:scale(.9);opacity:.45}50%{transform:scale(1);opacity:1}}
+.cr.is-playing[data-motion=trick] .m-map{animation-name:cr-prop-map}
+@keyframes cr-prop-map{0%,100%{transform:scaleX(1)}25%{transform:scaleX(.9)}60%{transform:scaleX(1.03)}}
+.cr.is-playing[data-motion=trick] .m-key{animation-name:cr-prop-key}
+@keyframes cr-prop-key{0%,100%{transform:rotate(0)}38%{transform:rotate(18.6deg)}65%{transform:rotate(-10.85deg)}}
+.cr.is-playing[data-motion=trick] .m-tape{animation-name:cr-prop-tape}
+@keyframes cr-prop-tape{0%,100%{transform:rotate(0)}40%,70%{transform:rotate(-23.25deg)}}
+.cr.is-playing[data-motion=trick] .m-wheel{animation-name:cr-prop-wheel}
+@keyframes cr-prop-wheel{0%,100%{transform:rotate(0)}65%,85%{transform:rotate(180deg)}}
+.cr.is-playing[data-motion=trick] .m-roll{animation-name:cr-prop-roll}
+@keyframes cr-prop-roll{0%,100%{transform:translateX(0)}30%{transform:translateX(-0.7px)}65%{transform:translateX(1.225px)}}
+.cr.is-playing[data-motion=trick] .m-bookmark{animation-name:cr-prop-bookmark}
+@keyframes cr-prop-bookmark{0%,100%{transform:translateY(0)}30%{transform:translateY(-1.4px)}65%{transform:translateY(0.7px)}}
+.cr.is-playing[data-motion=trick] .m-file{animation-name:cr-prop-file}
+@keyframes cr-prop-file{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-0.7px)}}
+.cr.is-playing[data-motion=trick] .m-lines{animation-name:cr-prop-lines}
+@keyframes cr-prop-lines{0%,100%{opacity:1}20%{opacity:.15}45%{opacity:.6}70%{opacity:1}}
+.cr.is-playing[data-motion=trick] .m-swing{animation-name:cr-prop-swing}
+@keyframes cr-prop-swing{0%,100%{transform:rotate(0)}28%{transform:rotate(13.95deg)}55%{transform:rotate(-10.85deg)}78%{transform:rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-heart{animation-name:cr-prop-heart}
+@keyframes cr-prop-heart{0%,100%{transform:scale(1)}30%{transform:scale(1.128)}47%{transform:scale(1)}64%{transform:scale(1.08)}}
+.cr.is-playing[data-motion=trick] .m-star{animation-name:cr-prop-star}
+@keyframes cr-prop-star{0%,100%{transform:rotate(0)}35%{transform:rotate(21.7deg)}65%{transform:rotate(-12.4deg)}}
+.cr.is-playing[data-motion=trick] .m-flash-soft{animation-name:cr-prop-flash-soft}
+@keyframes cr-prop-flash-soft{0%,100%{opacity:1}25%{opacity:.15}42%{opacity:1}65%{opacity:.3}80%{opacity:1}}
+.cr.is-playing[data-motion=trick] .m-award{animation-name:cr-prop-award}
+@keyframes cr-prop-award{0%,100%{transform:translateY(0)}38%,65%{transform:translateY(-0.875px)}}
+.cr.is-playing[data-motion=trick] .m-flame{animation-name:cr-prop-flame}
+@keyframes cr-prop-flame{0%,100%{transform:rotate(0) scaleX(1)}30%{transform:rotate(-9.3deg) scaleX(.94)}55%{transform:rotate(7.75deg) scaleX(1.04)}75%{transform:rotate(-4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-lid{animation-name:cr-prop-lid}
+@keyframes cr-prop-lid{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-1.4px)}}
+.cr.is-playing[data-motion=trick] .m-flip{animation-name:cr-prop-flip}
+@keyframes cr-prop-flip{0%,100%{transform:scaleX(1)}45%{transform:scaleX(.15)}75%{transform:scaleX(1)}}
+.cr.is-playing[data-motion=trick] .m-press{animation-name:cr-prop-press}
+@keyframes cr-prop-press{0%,100%{transform:translateY(0)}35%,55%{transform:translateY(0.6125px)}}
+.cr.is-playing[data-motion=trick] .m-crown{animation-name:cr-prop-crown}
+@keyframes cr-prop-crown{0%,100%{transform:rotate(0)}35%{transform:rotate(-10.85deg)}65%{transform:rotate(6.2deg)}}
+.cr.is-playing[data-motion=trick] .m-notes{animation-name:cr-prop-notes}
+@keyframes cr-prop-notes{0%,100%{transform:translateY(0)}30%{transform:translateY(-0.875px)}58%{transform:translateY(0.525px)}78%{transform:translateY(-0.35px)}}
+.cr.is-playing[data-motion=trick] .m-cake{animation-name:cr-prop-cake}
+@keyframes cr-prop-cake{0%,100%{transform:translateY(0)}45%{transform:translateY(-0.7px)}}
+.cr.is-playing[data-motion=trick] .m-listen{animation-name:cr-prop-listen}
+@keyframes cr-prop-listen{0%,100%{transform:rotate(0)}35%,65%{transform:rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-hand-hour{animation-name:cr-prop-hand-hour}
+@keyframes cr-prop-hand-hour{0%,100%{transform:rotate(0)}60%,80%{transform:rotate(23.25deg)}}
+.cr.is-playing[data-motion=trick] .m-hand-minute{animation-name:cr-prop-hand-minute}
+@keyframes cr-prop-hand-minute{0%,100%{transform:rotate(0)}60%,80%{transform:rotate(93deg)}}
+.cr.is-playing[data-motion=trick] .m-globe{animation-name:cr-prop-globe}
+@keyframes cr-prop-globe{0%,100%{transform:rotate(0)}35%{transform:rotate(-13.95deg)}65%{transform:rotate(13.95deg)}}
+.cr.is-playing[data-motion=trick] .m-moon{animation-name:cr-prop-moon}
+@keyframes cr-prop-moon{0%,100%{transform:rotate(0)}40%,60%{transform:rotate(-15.5deg)}}
+.cr.is-playing[data-motion=trick] .m-twinkle{animation-name:cr-prop-twinkle}
+@keyframes cr-prop-twinkle{0%,100%{opacity:1}20%{opacity:.2}45%{opacity:1}65%{opacity:.4}85%{opacity:1}}
+.cr.is-playing[data-motion=trick] .m-bars{animation-name:cr-prop-bars}
+@keyframes cr-prop-bars{0%,100%{transform:scaleY(1)}20%{transform:scaleY(.5)}65%{transform:scaleY(1)}}
+.cr.is-playing[data-motion=trick] .m-ring{animation-name:cr-prop-ring}
+@keyframes cr-prop-ring{0%,100%{transform:rotate(0)}24%{transform:rotate(-10.85deg)}40%{transform:rotate(10.85deg)}57%{transform:rotate(-7.75deg)}72%{transform:rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-mic{animation-name:cr-prop-mic}
+@keyframes cr-prop-mic{0%,100%{transform:translateY(0)}40%{transform:translateY(-0.6125px)}}
+.cr.is-playing[data-motion=trick] .m-sound{animation-name:cr-prop-sound}
+@keyframes cr-prop-sound{0%,100%{opacity:1}20%{opacity:.25}40%{opacity:1}60%{opacity:.35}80%{opacity:1}}
+.cr.is-playing[data-motion=trick] .m-watch-hand{animation-name:cr-prop-watch-hand}
+@keyframes cr-prop-watch-hand{0%,100%{transform:rotate(0)}65%,80%{transform:rotate(93deg)}}
+.cr.is-playing[data-motion=trick] .m-phone-vibrate{animation-name:cr-prop-phone-vibrate}
+@keyframes cr-prop-phone-vibrate{0%,100%{transform:translateX(0)}25%{transform:translateX(-0.7875px)}38%{transform:translateX(0.7875px)}50%{transform:translateX(-0.6125px)}63%{transform:translateX(0.4375px)}}
+.cr.is-playing[data-motion=trick] .m-alarm{animation-name:cr-prop-alarm}
+@keyframes cr-prop-alarm{0%,100%{transform:rotate(0)}25%{transform:rotate(-13.95deg)}40%{transform:rotate(13.95deg)}57%{transform:rotate(-9.3deg)}75%{transform:rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-puzzle{animation-name:cr-prop-puzzle}
+@keyframes cr-prop-puzzle{0%,100%{transform:translate(0,0)}25%{transform:translate(1.75px,-0.525px)}60%{transform:translate(0,0)}}
+.cr.is-playing[data-motion=trick] .m-awning{animation-name:cr-prop-awning}
+@keyframes cr-prop-awning{0%,100%{transform:rotate(0)}32%{transform:rotate(-3.1deg)}60%{transform:rotate(3.1deg)}}
+.cr.is-playing[data-motion=trick] .m-sticker{animation-name:cr-prop-sticker}
+@keyframes cr-prop-sticker{0%,100%{transform:rotate(0)}35%,60%{transform:rotate(-8.5deg)}}
+.cr.is-playing[data-motion=trick] .m-fish{animation-name:cr-prop-fish}
+@keyframes cr-prop-fish{0%,100%{transform:translateX(0)}30%{transform:translateX(-1.75px)}65%{transform:translateX(1.75px)}}
+.cr.is-playing[data-motion=trick] .m-bubbles{animation-name:cr-prop-bubbles}
+@keyframes cr-prop-bubbles{0%,100%{transform:translateY(0);opacity:1}65%{transform:translateY(-2.625px);opacity:.1}80%{transform:translateY(0);opacity:.1}}
+.cr.is-playing[data-motion=trick] .m-lift{animation-name:cr-prop-lift}
+@keyframes cr-prop-lift{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-1.225px)}}
+.cr.is-playing[data-motion=trick] .m-write{animation-name:cr-prop-write}
+@keyframes cr-prop-write{0%,100%{transform:translate(0,0) rotate(0)}30%{transform:translate(-1.225px,0.175px) rotate(-4.65deg)}65%{transform:translate(1.225px,-0.175px) rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-down{animation-name:cr-prop-down}
+@keyframes cr-prop-down{0%,100%{transform:translateY(0)}45%,65%{transform:translateY(2.1px)}}
+.cr.is-playing[data-motion=trick] .m-qr{animation-name:cr-prop-qr}
+@keyframes cr-prop-qr{0%,100%{opacity:1}25%{opacity:.25}50%{opacity:1}72%{opacity:.5}}
+.cr.is-playing[data-motion=trick] .m-news{animation-name:cr-prop-news}
+@keyframes cr-prop-news{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-0.7px)}}
+.cr.is-playing[data-motion=trick] .m-temperature{animation-name:cr-prop-temperature}
+@keyframes cr-prop-temperature{0%,100%{transform:scaleY(1)}25%{transform:scaleY(.6)}60%{transform:scaleY(1)}}
+.cr.is-playing[data-motion=trick] .m-lock{animation-name:cr-prop-lock}
+@keyframes cr-prop-lock{0%,100%{transform:translateY(0)}30%{transform:translateY(-0.525px)}55%{transform:translateY(0.35px)}}
+.cr.is-playing[data-motion=trick] .m-wand{animation-name:cr-prop-wand}
+@keyframes cr-prop-wand{0%,100%{transform:rotate(0)}30%{transform:rotate(-12.4deg)}55%{transform:rotate(12.4deg)}75%{transform:rotate(0)}}
+.cr.is-playing[data-motion=trick] .m-receipt{animation-name:cr-prop-receipt}
+@keyframes cr-prop-receipt{0%,100%{transform:translateY(0)}30%{transform:translateY(-1.05px)}65%{transform:translateY(0.35px)}}
+.cr.is-playing[data-motion=trick] .m-ice{animation-name:cr-prop-ice}
+@keyframes cr-prop-ice{0%,100%{transform:rotate(0)}35%{transform:rotate(-9.3deg)}65%{transform:rotate(7.75deg)}}
+.cr.is-playing[data-motion=trick] .m-balance{animation-name:cr-prop-balance}
+@keyframes cr-prop-balance{0%,100%{transform:rotate(0)}25%{transform:rotate(-10.85deg)}50%{transform:rotate(9.3deg)}73%{transform:rotate(-4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-umbrella{animation-name:cr-prop-umbrella}
+@keyframes cr-prop-umbrella{0%,100%{transform:rotate(0)}35%{transform:rotate(-4.65deg)}65%{transform:rotate(4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-rain{animation-name:cr-prop-rain}
+@keyframes cr-prop-rain{0%,100%{transform:translateY(0);opacity:1}55%{transform:translateY(2.975px);opacity:.9}70%{transform:translateY(2.975px);opacity:0}85%{transform:translateY(0);opacity:0}}
+.cr.is-playing[data-motion=trick] .m-ball{animation-name:cr-prop-ball}
+@keyframes cr-prop-ball{0%,100%{transform:rotate(0)}65%,85%{transform:rotate(180deg)}}
+.cr.is-playing[data-motion=trick] .m-gem{animation-name:cr-prop-gem}
+@keyframes cr-prop-gem{0%,100%{transform:rotate(0)}35%{transform:rotate(-7.75deg)}65%{transform:rotate(7.75deg)}}
+.cr.is-playing[data-motion=trick] .m-dice{animation-name:cr-prop-dice}
+@keyframes cr-prop-dice{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-18.6deg) translateY(-0.7px)}55%{transform:rotate(18.6deg) translateY(-0.7px)}78%{transform:rotate(-6.2deg)}}
+.cr.is-playing[data-motion=trick] .m-steam{animation-name:cr-prop-steam}
+@keyframes cr-prop-steam{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(-0.6125px);opacity:.2}80%{transform:translateY(0);opacity:.2}}
+.cr.is-playing[data-motion=trick] .m-pearls{animation-name:cr-prop-pearls}
+@keyframes cr-prop-pearls{0%,100%{transform:translateY(0)}30%{transform:translateY(-0.6125px)}55%{transform:translateY(0.4375px)}75%{transform:translateY(-0.2625px)}}
+.cr.is-playing[data-motion=trick] .m-medal{animation-name:cr-prop-medal}
+@keyframes cr-prop-medal{0%,100%{transform:rotate(0)}30%{transform:rotate(-15.5deg)}60%{transform:rotate(12.4deg)}80%{transform:rotate(-4.65deg)}}
+.cr.is-playing[data-motion=trick] .m-pill{animation-name:cr-prop-pill}
+@keyframes cr-prop-pill{0%,100%{transform:rotate(0)}35%{transform:rotate(12.4deg)}65%{transform:rotate(-12.4deg)}}
+.cr.is-playing[data-motion=trick] .m-notebook{animation-name:cr-prop-notebook}
+@keyframes cr-prop-notebook{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-0.525px)}}
+.cr.is-playing[data-motion=trick] .m-palette{animation-name:cr-prop-palette}
+@keyframes cr-prop-palette{0%,100%{transform:rotate(0)}35%{transform:rotate(-10.85deg)}65%{transform:rotate(9.3deg)}}
+.cr.is-playing[data-motion=trick] .m-popcorn{animation-name:cr-prop-popcorn}
+@keyframes cr-prop-popcorn{0%,100%{transform:translateY(0)}35%{transform:translateY(-0.7px)}60%{transform:translateY(0.2625px)}75%{transform:translateY(-0.4375px)}}
+.cr.is-playing[data-motion=trick] .m-zzz{animation-name:cr-prop-zzz}
+@keyframes cr-prop-zzz{0%,100%{transform:translateY(0);opacity:1}60%{transform:translateY(-1.75px);opacity:.2}80%{transform:translateY(0);opacity:.2}}
+.cr.is-playing[data-motion=trick] .m-leaf-left{animation-name:cr-prop-leaf-left}
+@keyframes cr-prop-leaf-left{0%,100%{transform:rotate(0)}25%{transform:rotate(13.5deg)}65%{transform:rotate(-7.75deg)}}
+.cr.is-playing[data-motion=trick] .m-leaf-right{animation-name:cr-prop-leaf-right}
+@keyframes cr-prop-leaf-right{0%,100%{transform:rotate(0)}25%{transform:rotate(-13.5deg)}65%{transform:rotate(7.75deg)}}
+.cr.is-playing[data-motion=trick] .m-bandage{animation-name:cr-prop-bandage}
+@keyframes cr-prop-bandage{0%,100%{transform:translateY(0)}25%{transform:translateY(-1.05px)}60%{transform:translateY(0.35px)}}
+.cr.is-playing[data-motion=trick] .m-grad{animation-name:cr-prop-grad}
+@keyframes cr-prop-grad{0%,100%{transform:rotate(0)}35%{transform:rotate(-7.75deg)}65%{transform:rotate(6.2deg)}}
+.cr.is-playing[data-motion=trick] .m-robot{animation-name:cr-prop-robot}
+@keyframes cr-prop-robot{0%,100%{opacity:1}25%{opacity:.5}50%{opacity:1}70%{opacity:.65}}
+.cr.is-playing[data-motion=trick] .m-glasses{animation-name:cr-prop-glasses}
+@keyframes cr-prop-glasses{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(-1.05px)}}
+.cr.is-playing[data-motion=trick] .m-spark{animation-name:cr-prop-spark}
+@keyframes cr-prop-spark{0%,100%{transform:scale(1);opacity:1}25%{transform:scale(.9);opacity:.3}50%{transform:scale(1.16);opacity:1}75%{transform:scale(1);opacity:.6}}
+.cr.is-playing[data-motion=trick] .m-flower{animation-name:cr-prop-flower}
+@keyframes cr-prop-flower{0%,100%{transform:rotate(0)}35%{transform:rotate(18.6deg)}65%{transform:rotate(-9.3deg)}}
+.cr.is-playing[data-motion=trick] .m-balloon{animation-name:cr-prop-balloon}
+@keyframes cr-prop-balloon{0%,100%{transform:translate(0,0)}35%{transform:translate(-0.7px,-1.05px)}65%{transform:translate(0.7px,-0.7px)}}
+.cr.is-playing[data-motion=trick] .m-snow{animation-name:cr-prop-snow}
+@keyframes cr-prop-snow{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(31deg) translateY(0.525px)}65%{transform:rotate(-15.5deg) translateY(1.05px)}}
+.cr.is-playing[data-motion=trick] .m-compass{animation-name:cr-prop-compass}
+@keyframes cr-prop-compass{0%,100%{transform:rotate(0)}30%{transform:rotate(-62deg)}58%{transform:rotate(38.75deg)}78%{transform:rotate(-12.4deg)}}
+.cr.is-playing[data-motion=trick] .m-rocket{animation-name:cr-prop-rocket}
+@keyframes cr-prop-rocket{0%,100%{transform:translateY(0)}22%{transform:translateY(0.6125px)}65%{transform:translateY(-0.6125px)}}
+.cr.is-playing[data-motion=trick] .m-exhaust{animation-name:cr-prop-exhaust}
+@keyframes cr-prop-exhaust{0%,100%{opacity:0}25%{opacity:.9}40%{opacity:.4}55%{opacity:1}75%{opacity:0}}
+.cr.is-playing[data-motion=trick] .m-piggy{animation-name:cr-prop-piggy}
+@keyframes cr-prop-piggy{0%,100%{transform:translateY(0)}50%{transform:translateY(0.525px)}70%{transform:translateY(0)}}
+.cr.is-playing[data-motion=trick] .m-coin-drop{animation-name:cr-prop-coin-drop}
+@keyframes cr-prop-coin-drop{0%,100%{transform:translateY(0);opacity:1}45%{transform:translateY(2.1px);opacity:1}60%{transform:translateY(2.1px);opacity:0}80%{transform:translateY(0);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){.cr *,.cr.is-playing [class]{animation:none!important}}
+@keyframes cr-heart-hop{0%,100%{transform:translateY(0)}32%{transform:translateY(-1.1px)}48%{transform:translateY(0)}63%{transform:translateY(-.85px)}82%{transform:translateY(0)}}
+.mx-heart.is-playing[data-motion=trick] .cr-actor{animation-name:cr-heart-hop}
+.cr.is-playing[data-motion=trick] .v6-box-left{animation-name:cr-v6-box-left;transform-origin:7.5px 6px}
+@keyframes cr-v6-box-left{0%,14%,100%{transform:rotate(0)}40%,68%{transform:rotate(-108deg)}}
+.cr.is-playing[data-motion=trick] .v6-box-right{animation-name:cr-v6-box-right;transform-origin:16.5px 6px}
+@keyframes cr-v6-box-right{0%,20%,100%{transform:rotate(0)}46%,68%{transform:rotate(108deg)}}
+.cr.is-playing[data-motion=trick] .v6-candle{animation-name:cr-v6-candle;transform-origin:12px 3.3px}
+@keyframes cr-v6-candle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}48%{transform:rotate(10deg)}72%{transform:rotate(-7deg)}}
+.cr.is-playing[data-motion=trick] .v6-plus{animation-name:cr-v6-plus;transform-origin:18.35px 5.25px}
+@keyframes cr-v6-plus{0%,100%{transform:scale(1)}22%{transform:scale(.88)}48%{transform:scale(1.16)}75%{transform:scale(1)}}
+.cr.is-playing[data-motion=trick] .v6-bar-a{animation-name:cr-v6-bar-a;transform-origin:7.15px 10px}
+@keyframes cr-v6-bar-a{0%,100%{transform:scaleY(1)}22%{transform:scaleY(.35)}52%,76%{transform:scaleY(1)}}
+.cr.is-playing[data-motion=trick] .v6-bar-b{animation-name:cr-v6-bar-b;transform-origin:12px 10px}
+@keyframes cr-v6-bar-b{0%,100%{transform:scaleY(1)}30%{transform:scaleY(.3)}63%,82%{transform:scaleY(1)}}
+.cr.is-playing[data-motion=trick] .v6-bar-c{animation-name:cr-v6-bar-c;transform-origin:16.85px 10px}
+@keyframes cr-v6-bar-c{0%,100%{transform:scaleY(1)}38%{transform:scaleY(.3)}74%,88%{transform:scaleY(1)}}
+.cr.is-playing[data-motion=trick] .v6-mic-waves{animation-name:cr-v6-mic-waves;transform-origin:12px 6px}
+@keyframes cr-v6-mic-waves{0%,100%{transform:scaleX(1);opacity:1}25%{transform:scaleX(.87);opacity:.25}47%{transform:scaleX(1.08);opacity:1}70%{transform:scaleX(.9);opacity:.35}85%{transform:scaleX(1);opacity:1}}
+.cr.is-playing[data-motion=trick] .v6-incoming{animation-name:cr-v6-incoming;transform-origin:12px 8px}
+@keyframes cr-v6-incoming{0%,100%{transform:translateY(0)}28%{transform:translateY(-.8px)}60%,72%{transform:translateY(1.5px)}}
+.cr.is-playing[data-motion=trick] .v6-wand{animation-name:cr-v6-wand;transform-origin:7px 10px}
+@keyframes cr-v6-wand{0%,100%{transform:rotate(0)}30%{transform:rotate(-4deg)}57%{transform:rotate(9deg)}78%{transform:rotate(-2deg)}}
+.cr.is-playing[data-motion=trick] .v6-ice-held{animation-name:cr-v6-ice-held;transform-origin:18px 14.3px}
+@keyframes cr-v6-ice-held{0%,100%{transform:rotate(0)}32%{transform:rotate(-4deg)}60%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}
+.cr.is-playing[data-motion=trick] .v6-ice-top{animation-name:cr-v6-ice-top;transform-origin:12px 10.3px}
+@keyframes cr-v6-ice-top{0%,100%{transform:rotate(0)}28%{transform:rotate(-8deg)}56%{transform:rotate(8deg)}78%{transform:rotate(-4deg)}}
+.cr.is-playing[data-motion=trick] .v6-umbrella{animation-name:cr-v6-umbrella;transform-origin:12px 10.2px}
+@keyframes cr-v6-umbrella{0%,100%{transform:rotate(0)}30%{transform:rotate(-6deg)}60%{transform:rotate(6deg)}80%{transform:rotate(-3deg)}}
+.cr.is-playing[data-motion=trick] .v6-rain{animation-name:cr-v6-rain;transform-origin:12px 10px}
+@keyframes cr-v6-rain{0%,100%{transform:translateY(0);opacity:1}55%{transform:translateY(2.4px);opacity:.8}70%{transform:translateY(2.4px);opacity:0}85%{transform:translateY(0);opacity:0}}
+.cr.is-playing[data-motion=trick] .v6-antenna{animation-name:cr-v6-antenna;transform-origin:12px 5.2px}
+@keyframes cr-v6-antenna{0%,100%{transform:scale(1);opacity:1}26%{transform:scale(.85);opacity:.3}52%{transform:scale(1.16);opacity:1}76%{transform:scale(1);opacity:.5}}
+.cr.is-playing[data-motion=trick] .v6-glasses{animation-name:cr-v6-glasses;transform-origin:12px 14px}
+@keyframes cr-v6-glasses{0%,100%{transform:translateY(0)}36%,62%{transform:translateY(-.4px)}}
+.cr.is-playing[data-motion=trick] .v6-snow{animation-name:cr-v6-snow;transform-origin:12px 5.8px}
+@keyframes cr-v6-snow{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(25deg) translateY(.25px)}65%{transform:rotate(-15deg) translateY(.5px)}}
+.cr.is-playing[data-motion=trick] .v6-saving-coin{animation-name:cr-v6-saving-coin;transform-origin:11.6px 1.4px}
+@keyframes cr-v6-saving-coin{0%,100%{transform:translateY(0);opacity:1}45%{transform:translateY(2.5px);opacity:1}58%{transform:translateY(2.5px);opacity:0}80%{transform:translateY(0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.cr *,.cr.is-playing [class]{animation:none!important}}
+
+/* Coordinated reactions: anticipate, act, recover. Static outlines are unchanged. */
+.cr-scene{transform-origin:12px 15px}
+.cr-coordinated.is-playing[data-motion=trick] :is(.cr-body,.cr-actor,.cr-gaze,.cr-eye-open,.cr-hand-left,.cr-hand-right,.cr-foot-1,.cr-foot-2,.cr-foot-3,.cr-foot-4){animation-name:none}
+@keyframes cr-i-greet{0%,100%{transform:translateY(0)}16%{transform:translateY(.4px)}36%,52%{transform:translateY(-.85px)}70%{transform:translateY(.2px)}86%{transform:translateY(0)}}
+@keyframes cr-i-walk{0%,100%{transform:translate(0,0)}26%{transform:translate(-.85px,-.3px)}57%{transform:translate(.85px,-.4px)}82%{transform:translate(0,.15px)}}
+@keyframes cr-i-peek{0%,100%{transform:translateY(0)}16%{transform:translateY(.25px)}38%,64%{transform:translateY(-2.7px)}80%{transform:translateY(.15px)}}
+@keyframes cr-i-search{0%,100%{transform:translateX(0) rotate(0)}24%{transform:translateX(-.4px) rotate(-3deg)}56%{transform:translateX(.5px) rotate(3deg)}78%{transform:translateX(.2px) rotate(1deg)}}
+@keyframes cr-i-talk{0%,100%{transform:translateY(0) rotate(0)}24%{transform:translateY(-.65px) rotate(-2deg)}44%{transform:translateY(.2px) rotate(0)}65%{transform:translateY(-.45px) rotate(2deg)}82%{transform:translateY(0) rotate(0)}}
+@keyframes cr-i-listen{0%,100%{transform:rotate(0)}20%{transform:rotate(-1deg)}40%,63%{transform:rotate(4deg)}82%{transform:rotate(1deg)}}
+@keyframes cr-i-startle{0%,100%{transform:translateY(0)}14%{transform:translateY(.4px)}29%{transform:translateY(-1.1px)}45%{transform:translateY(.35px)}62%{transform:translateY(-.3px)}80%{transform:translateY(0)}}
+@keyframes cr-i-scan{0%,100%{transform:translateY(0)}25%,65%{transform:translateY(-.35px)}80%{transform:translateY(.2px)}}
+@keyframes cr-i-open{0%,100%{transform:translateY(0)}16%{transform:translateY(.3px)}40%,65%{transform:translateY(-.55px)}80%{transform:translateY(.15px)}}
+@keyframes cr-i-read{0%,100%{transform:translateY(0)}24%{transform:translateY(.2px)}45%,65%{transform:translateY(-.3px)}80%{transform:translateY(.2px)}}
+@keyframes cr-i-nod{0%,100%{transform:translateY(0)}26%{transform:translateY(-.2px)}47%,58%{transform:translateY(.6px)}78%{transform:translateY(-.1px)}}
+@keyframes cr-i-lift{0%,100%{transform:translateY(0)}20%{transform:translateY(.5px)}44%,65%{transform:translateY(-.7px)}83%{transform:translateY(.2px)}}
+@keyframes cr-i-cheer{0%,100%{transform:translateY(0)}16%{transform:translateY(.35px)}34%{transform:translateY(-1.05px)}50%{transform:translateY(.15px)}66%{transform:translateY(-.65px)}84%{transform:translateY(0)}}
+@keyframes cr-i-watch{0%,100%{transform:translateY(0)}20%{transform:translateY(.15px)}42%,68%{transform:translateY(-.65px)}85%{transform:translateY(0)}}
+@keyframes cr-i-balance{0%,100%{transform:translateX(0)}28%{transform:translateX(-.65px)}56%{transform:translateX(.65px)}78%{transform:translateX(-.3px)}}
+@keyframes cr-i-hold{0%,100%{transform:translateX(0)}30%{transform:translateX(-.35px)}60%{transform:translateX(.45px)}80%{transform:translateX(.1px)}}
+@keyframes cr-i-warm{0%,100%{transform:translateY(0)}40%,65%{transform:translateY(.45px)}85%{transform:translateY(.1px)}}
+@keyframes cr-i-shelter{0%,100%{transform:translateY(0)}28%{transform:translateY(-.25px)}55%,72%{transform:translateY(.5px)}}
+@keyframes cr-i-shiver{0%,25%,80%,100%{transform:translateX(0)}34%,54%{transform:translateX(-.5px)}44%,64%{transform:translateX(.5px)}}
+@keyframes cr-i-drive{0%,100%{transform:translate(0,0)}22%{transform:translate(-.6px,.15px)}48%{transform:translate(.85px,-.25px)}70%{transform:translate(.85px,0)}85%{transform:translate(.2px,.1px)}}
+@keyframes cr-i-dance{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-.65px) rotate(-4deg)}46%{transform:translateY(.2px) rotate(0)}66%{transform:translateY(-.65px) rotate(4deg)}84%{transform:translateY(0) rotate(0)}}
+@keyframes cr-i-type{0%,100%{transform:translateY(0)}28%,54%{transform:translateY(.4px)}40%,67%{transform:translateY(-.15px)}}
+@keyframes cr-i-magic{0%,100%{transform:translateY(0) rotate(0)}27%{transform:translateY(.3px) rotate(-3deg)}56%{transform:translateY(-.7px) rotate(3deg)}77%{transform:translateY(0) rotate(0)}}
+@keyframes cr-i-launch{0%,100%{transform:translateY(0)}22%{transform:translateY(.65px)}55%,67%{transform:translateY(-1.2px)}85%{transform:translateY(.2px)}}
+@keyframes cr-i-eye-forward{0%,100%{transform:translateY(0)}24%,70%{transform:translateY(-.3px)}}
+@keyframes cr-i-eye-travel{0%,100%{transform:translateX(0)}18%,40%{transform:translateX(-.7px)}53%,76%{transform:translateX(.85px)}}
+@keyframes cr-i-eye-track{0%,100%{transform:translate(0,0)}18%,32%{transform:translate(-.85px,-.25px)}50%,70%{transform:translate(.95px,-.25px)}}
+@keyframes cr-i-eye-right{0%,100%{transform:translate(0,0)}23%,70%{transform:translate(.9px,-.45px)}}
+@keyframes cr-i-eye-up{0%,100%{transform:translateY(0)}18%,70%{transform:translateY(-.75px)}}
+@keyframes cr-i-eye-scan{0%,100%{transform:translateY(0)}18%{transform:translateY(-.75px)}68%{transform:translateY(.55px)}}
+@keyframes cr-i-eye-read{0%,100%{transform:translate(0,0)}20%{transform:translate(-.85px,-.45px)}44%{transform:translate(.85px,-.45px)}53%{transform:translate(-.55px,-.15px)}74%{transform:translate(.55px,-.15px)}}
+@keyframes cr-i-eye-down{0%,100%{transform:translateY(0)}24%,70%{transform:translateY(.45px)}}
+@keyframes cr-i-eye-balance{0%,100%{transform:translate(0,0)}24%,36%{transform:translate(-.75px,-.7px)}52%,65%{transform:translate(.75px,-.7px)}78%{transform:translate(-.3px,-.4px)}}
+@keyframes cr-i-eyes-focus{0%,100%{transform:scaleY(1)}25%,65%{transform:scaleY(.8)}78%,82%{transform:scaleY(.12)}}
+@keyframes cr-i-hand-left{0%,100%{transform:rotate(0)}25%{transform:rotate(58deg)}42%{transform:rotate(20deg)}60%{transform:rotate(64deg)}78%{transform:rotate(28deg)}}
+@keyframes cr-i-hand-right{0%,100%{transform:rotate(0)}25%{transform:rotate(-58deg)}42%{transform:rotate(-20deg)}60%{transform:rotate(-64deg)}78%{transform:rotate(-28deg)}}
+@keyframes cr-i-lift-left{0%,100%{transform:rotate(0)}18%{transform:rotate(-12deg)}40%,66%{transform:rotate(58deg)}83%{transform:rotate(15deg)}}
+@keyframes cr-i-lift-right{0%,100%{transform:rotate(0)}18%{transform:rotate(12deg)}40%,66%{transform:rotate(-58deg)}83%{transform:rotate(-15deg)}}
+@keyframes cr-i-open-left{0%,100%{transform:rotate(0)}18%{transform:rotate(-10deg)}39%,64%{transform:rotate(48deg)}80%{transform:rotate(16deg)}}
+@keyframes cr-i-open-right{0%,100%{transform:rotate(0)}22%{transform:rotate(10deg)}46%,68%{transform:rotate(-48deg)}83%{transform:rotate(-16deg)}}
+@keyframes cr-i-press-left{0%,100%{transform:rotate(0)}28%{transform:rotate(24deg)}47%,58%{transform:rotate(-28deg)}76%{transform:rotate(8deg)}}
+@keyframes cr-i-press-right{0%,100%{transform:rotate(0)}28%{transform:rotate(-24deg)}47%,58%{transform:rotate(28deg)}76%{transform:rotate(-8deg)}}
+@keyframes cr-i-balance-left{0%,100%{transform:rotate(0)}28%{transform:rotate(58deg)}56%{transform:rotate(12deg)}78%{transform:rotate(42deg)}}
+@keyframes cr-i-balance-right{0%,100%{transform:rotate(0)}28%{transform:rotate(-12deg)}56%{transform:rotate(-58deg)}78%{transform:rotate(-20deg)}}
+@keyframes cr-i-brace-left{0%,100%{transform:rotate(0)}30%,70%{transform:rotate(24deg)}}
+@keyframes cr-i-brace-right{0%,100%{transform:rotate(0)}30%,70%{transform:rotate(-24deg)}}
+@keyframes cr-i-rest-left{0%,100%{transform:rotate(0)}40%,70%{transform:rotate(-16deg)}}
+@keyframes cr-i-rest-right{0%,100%{transform:rotate(0)}40%,70%{transform:rotate(16deg)}}
+@keyframes cr-i-foot-a{0%,100%{transform:rotate(0)}26%{transform:rotate(-36deg)}50%{transform:rotate(30deg)}72%{transform:rotate(-24deg)}}
+@keyframes cr-i-foot-b{0%,100%{transform:rotate(0)}26%{transform:rotate(36deg)}50%{transform:rotate(-30deg)}72%{transform:rotate(24deg)}}
+@keyframes cr-i-foot-in-left{0%,100%{transform:rotate(0)}16%{transform:rotate(-14deg)}36%,62%{transform:rotate(37deg)}81%{transform:rotate(-9deg)}}
+@keyframes cr-i-foot-in-right{0%,100%{transform:rotate(0)}16%{transform:rotate(14deg)}36%,62%{transform:rotate(-37deg)}81%{transform:rotate(9deg)}}
+@keyframes cr-i-foot-set-left{0%,100%{transform:rotate(0)}32%,65%{transform:rotate(-13deg)}80%{transform:rotate(7deg)}}
+@keyframes cr-i-foot-set-right{0%,100%{transform:rotate(0)}32%,65%{transform:rotate(13deg)}80%{transform:rotate(-7deg)}}
+@keyframes cr-i-foot-brace-left{0%,100%{transform:rotate(0)}23%,70%{transform:rotate(-27deg)}}
+@keyframes cr-i-foot-brace-right{0%,100%{transform:rotate(0)}23%,70%{transform:rotate(27deg)}}
+@keyframes cr-i-coupled-happy{0%,100%{transform:translateY(0)}16%{transform:translateY(.25px)}37%{transform:translateY(-.3px)}52%{transform:translateY(.15px)}68%{transform:translateY(-.2px)}}
+@keyframes cr-i-coupled-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-.15px)}}
+.cr-coordinated:is(.mx-face,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-user-add).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-greet}
+.cr-coordinated:is(.mx-face,.mx-chat,.mx-chat-tilt,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-user-add,.mx-mic,.mx-live,.mx-robot,.mx-glasses).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-forward}
+.cr-coordinated:is(.mx-face,.mx-ticket,.mx-video,.mx-redpacket,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-game,.mx-home,.mx-music,.mx-cake,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-user-add,.mx-puzzle,.mx-card,.mx-checkin,.mx-wand,.mx-ball,.mx-gem,.mx-dice,.mx-medal,.mx-pill,.mx-popcorn,.mx-bandage,.mx-sparkles).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-joy-eyes}
+.cr-coordinated:is(.mx-face,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-home,.mx-cake,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-user-add,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-hand-left}
+.cr-coordinated:is(.mx-face,.mx-chat,.mx-chat-tilt,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-game,.mx-home,.mx-music,.mx-cake,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-user-add,.mx-mic,.mx-live,.mx-ball,.mx-gem,.mx-dice,.mx-medal,.mx-popcorn,.mx-sparkles).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-hand-right}
+.cr-coordinated:is(.mx-face,.mx-face-whole,.mx-search,.mx-search-tilt,.mx-chat,.mx-chat-tilt,.mx-image,.mx-map,.mx-cart,.mx-game,.mx-crown,.mx-music,.mx-globe,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-users-whole,.mx-user-add,.mx-mic,.mx-live,.mx-fish,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-ball,.mx-dice,.mx-grad,.mx-compass).is-playing[data-motion=trick] .cr-foot-1{animation-name:cr-i-foot-a}
+.cr-coordinated:is(.mx-face,.mx-face-whole,.mx-search,.mx-search-tilt,.mx-chat,.mx-chat-tilt,.mx-image,.mx-map,.mx-cart,.mx-game,.mx-crown,.mx-music,.mx-globe,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-users-whole,.mx-user-add,.mx-mic,.mx-live,.mx-fish,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-ball,.mx-dice,.mx-grad,.mx-compass).is-playing[data-motion=trick] .cr-foot-2{animation-name:cr-i-foot-b}
+.cr-coordinated:is(.mx-face,.mx-face-whole,.mx-search,.mx-search-tilt,.mx-chat,.mx-chat-tilt,.mx-image,.mx-map,.mx-cart,.mx-game,.mx-crown,.mx-music,.mx-globe,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-users-whole,.mx-user-add,.mx-mic,.mx-live,.mx-fish,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-ball,.mx-dice,.mx-grad,.mx-compass).is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-i-foot-a}
+.cr-coordinated:is(.mx-face,.mx-face-whole,.mx-search,.mx-search-tilt,.mx-chat,.mx-chat-tilt,.mx-image,.mx-map,.mx-cart,.mx-game,.mx-crown,.mx-music,.mx-globe,.mx-me,.mx-me-whole,.mx-users,.mx-users-small,.mx-users-whole,.mx-user-add,.mx-mic,.mx-live,.mx-fish,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-ball,.mx-dice,.mx-grad,.mx-compass).is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-i-foot-b}
+.cr-coordinated:is(.mx-face-whole,.mx-users-whole).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-walk}
+.cr-coordinated:is(.mx-face-whole,.mx-cart,.mx-users-whole,.mx-car,.mx-bus,.mx-suitcase).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-travel}
+.cr-coordinated:is(.mx-face-whole,.mx-chat,.mx-chat-tilt,.mx-location,.mx-cloud,.mx-sun,.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-key,.mx-package,.mx-cart,.mx-folder,.mx-bookmark,.mx-file,.mx-tag,.mx-bulb,.mx-gift,.mx-book,.mx-headset,.mx-settings,.mx-clock,.mx-users-whole,.mx-phone,.mx-mic,.mx-tv,.mx-watch,.mx-store,.mx-live,.mx-sticker,.mx-pencil,.mx-laptop,.mx-inbox,.mx-news,.mx-thermometer,.mx-briefcase,.mx-suitcase,.mx-receipt,.mx-icecream,.mx-umbrella,.mx-bubbletea,.mx-notebook,.mx-palette,.mx-sprout,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-snow,.mx-piggy).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-blink}
+.cr-coordinated:is(.mx-face-whole,.mx-cart,.mx-crown,.mx-users-whole,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-grad).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-balance-left}
+.cr-coordinated:is(.mx-face-whole,.mx-cart,.mx-crown,.mx-users-whole,.mx-suitcase,.mx-icecream-top,.mx-umbrella-top,.mx-grad).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-balance-right}
+.cr-coordinated:is(.mx-search,.mx-search-tilt,.mx-image).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-search}
+.cr-coordinated:is(.mx-search,.mx-search-tilt,.mx-image,.mx-map,.mx-game,.mx-music,.mx-globe,.mx-fish,.mx-ball,.mx-dice,.mx-compass).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-track}
+.cr-coordinated:is(.mx-search,.mx-search-tilt,.mx-shield,.mx-scan,.mx-bag,.mx-image,.mx-map,.mx-trophy,.mx-coin,.mx-crown,.mx-globe,.mx-chart,.mx-car,.mx-bus,.mx-fish,.mx-dumbbell,.mx-qr,.mx-icecream-top,.mx-umbrella-top,.mx-grad,.mx-compass).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-i-eyes-focus}
+.cr-coordinated:is(.mx-search,.mx-search-tilt,.mx-chat,.mx-chat-tilt,.mx-location,.mx-cloud,.mx-sun,.mx-scan,.mx-calendar,.mx-image,.mx-map,.mx-bookmark,.mx-file,.mx-bulb,.mx-book,.mx-game,.mx-music,.mx-settings,.mx-clock,.mx-globe,.mx-mic,.mx-watch,.mx-car,.mx-bus,.mx-live,.mx-fish,.mx-qr,.mx-news,.mx-thermometer,.mx-wand,.mx-receipt,.mx-ball,.mx-dice,.mx-notebook,.mx-sprout,.mx-flower,.mx-balloon,.mx-snow,.mx-compass,.mx-piggy).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-brace-left}
+.cr-coordinated:is(.mx-search,.mx-search-tilt,.mx-bell,.mx-location,.mx-cloud,.mx-sun,.mx-shield,.mx-bag,.mx-image,.mx-map,.mx-folder,.mx-bulb,.mx-trophy,.mx-coin,.mx-headset,.mx-settings,.mx-clock,.mx-globe,.mx-chart,.mx-phone,.mx-watch,.mx-mobile,.mx-alarm,.mx-fish,.mx-dumbbell,.mx-thermometer,.mx-umbrella,.mx-sprout,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-compass,.mx-rocket,.mx-piggy).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-lift-right}
+.cr-coordinated:is(.mx-chat,.mx-chat-tilt).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-talk}
+.cr-coordinated:is(.mx-bell,.mx-mobile,.mx-alarm).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-startle}
+.cr-coordinated:is(.mx-bell,.mx-location,.mx-cloud,.mx-sun,.mx-shield,.mx-mail,.mx-mail-hug,.mx-bag,.mx-wallet,.mx-package,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-bulb,.mx-trophy,.mx-fire,.mx-gift,.mx-coin,.mx-home,.mx-cake,.mx-settings,.mx-clock,.mx-chart,.mx-watch,.mx-mobile,.mx-alarm,.mx-store,.mx-dumbbell,.mx-inbox,.mx-thermometer,.mx-briefcase,.mx-wand,.mx-umbrella,.mx-gem,.mx-medal,.mx-popcorn,.mx-sprout,.mx-sparkles,.mx-flower,.mx-balloon,.mx-snow,.mx-rocket,.mx-piggy).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-up}
+.cr-coordinated:is(.mx-bell,.mx-mobile,.mx-alarm,.mx-rocket).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-wide-eyes}
+.cr-coordinated:is(.mx-bell,.mx-shield,.mx-bag,.mx-folder,.mx-trophy,.mx-coin,.mx-chart,.mx-mobile,.mx-alarm,.mx-dumbbell,.mx-umbrella,.mx-rocket).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-lift-left}
+.cr-coordinated:is(.mx-bell,.mx-folder,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-home,.mx-cake,.mx-mobile,.mx-alarm,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles,.mx-rocket).is-playing[data-motion=trick] .cr-foot-1{animation-name:cr-i-foot-in-left}
+.cr-coordinated:is(.mx-bell,.mx-folder,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-home,.mx-cake,.mx-mobile,.mx-alarm,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles,.mx-rocket).is-playing[data-motion=trick] .cr-foot-2{animation-name:cr-i-foot-in-left}
+.cr-coordinated:is(.mx-bell,.mx-folder,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-home,.mx-cake,.mx-mobile,.mx-alarm,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles,.mx-rocket).is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-i-foot-in-right}
+.cr-coordinated:is(.mx-bell,.mx-folder,.mx-heart,.mx-heart-chin,.mx-heart-side,.mx-star,.mx-fire,.mx-home,.mx-cake,.mx-mobile,.mx-alarm,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles,.mx-rocket).is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-i-foot-in-right}
+.cr-coordinated:is(.mx-camera,.mx-ticket,.mx-video,.mx-redpacket,.mx-card,.mx-robot,.mx-glasses).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-nod}
+.cr-coordinated:is(.mx-camera,.mx-ticket,.mx-video,.mx-redpacket,.mx-moon,.mx-tv,.mx-puzzle,.mx-bath,.mx-laptop,.mx-card,.mx-checkin,.mx-coffee,.mx-pill,.mx-sleep,.mx-bandage).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-down}
+.cr-coordinated:is(.mx-camera).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-shutter-blink}
+.cr-coordinated:is(.mx-camera,.mx-ticket,.mx-video,.mx-redpacket,.mx-tv,.mx-puzzle,.mx-laptop,.mx-card,.mx-checkin,.mx-pill,.mx-bandage).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-press-left}
+.cr-coordinated:is(.mx-camera,.mx-ticket,.mx-video,.mx-redpacket,.mx-tv,.mx-puzzle,.mx-laptop,.mx-card,.mx-checkin,.mx-pill,.mx-bandage).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-press-right}
+.cr-coordinated:is(.mx-camera,.mx-location,.mx-cloud,.mx-sun,.mx-scan,.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-ticket,.mx-video,.mx-key,.mx-redpacket,.mx-package,.mx-bookmark,.mx-file,.mx-tag,.mx-bulb,.mx-gift,.mx-book,.mx-headset,.mx-settings,.mx-clock,.mx-phone,.mx-tv,.mx-watch,.mx-puzzle,.mx-store,.mx-sticker,.mx-pencil,.mx-laptop,.mx-card,.mx-inbox,.mx-qr,.mx-checkin,.mx-news,.mx-thermometer,.mx-briefcase,.mx-receipt,.mx-icecream,.mx-umbrella,.mx-bubbletea,.mx-pill,.mx-notebook,.mx-palette,.mx-sprout,.mx-bandage,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-piggy).is-playing[data-motion=trick] .cr-foot-1{animation-name:cr-i-foot-set-left}
+.cr-coordinated:is(.mx-camera,.mx-location,.mx-cloud,.mx-sun,.mx-scan,.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-ticket,.mx-video,.mx-key,.mx-redpacket,.mx-package,.mx-bookmark,.mx-file,.mx-tag,.mx-bulb,.mx-gift,.mx-book,.mx-headset,.mx-settings,.mx-clock,.mx-phone,.mx-tv,.mx-watch,.mx-puzzle,.mx-store,.mx-sticker,.mx-pencil,.mx-laptop,.mx-card,.mx-inbox,.mx-qr,.mx-checkin,.mx-news,.mx-thermometer,.mx-briefcase,.mx-receipt,.mx-icecream,.mx-umbrella,.mx-bubbletea,.mx-pill,.mx-notebook,.mx-palette,.mx-sprout,.mx-bandage,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-piggy).is-playing[data-motion=trick] .cr-foot-2{animation-name:cr-i-foot-set-left}
+.cr-coordinated:is(.mx-camera,.mx-location,.mx-cloud,.mx-sun,.mx-scan,.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-ticket,.mx-video,.mx-key,.mx-redpacket,.mx-package,.mx-bookmark,.mx-file,.mx-tag,.mx-bulb,.mx-gift,.mx-book,.mx-headset,.mx-settings,.mx-clock,.mx-phone,.mx-tv,.mx-watch,.mx-puzzle,.mx-store,.mx-sticker,.mx-pencil,.mx-laptop,.mx-card,.mx-inbox,.mx-qr,.mx-checkin,.mx-news,.mx-thermometer,.mx-briefcase,.mx-receipt,.mx-icecream,.mx-umbrella,.mx-bubbletea,.mx-pill,.mx-notebook,.mx-palette,.mx-sprout,.mx-bandage,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-piggy).is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-i-foot-set-right}
+.cr-coordinated:is(.mx-camera,.mx-location,.mx-cloud,.mx-sun,.mx-scan,.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-ticket,.mx-video,.mx-key,.mx-redpacket,.mx-package,.mx-bookmark,.mx-file,.mx-tag,.mx-bulb,.mx-gift,.mx-book,.mx-headset,.mx-settings,.mx-clock,.mx-phone,.mx-tv,.mx-watch,.mx-puzzle,.mx-store,.mx-sticker,.mx-pencil,.mx-laptop,.mx-card,.mx-inbox,.mx-qr,.mx-checkin,.mx-news,.mx-thermometer,.mx-briefcase,.mx-receipt,.mx-icecream,.mx-umbrella,.mx-bubbletea,.mx-pill,.mx-notebook,.mx-palette,.mx-sprout,.mx-bandage,.mx-robot,.mx-glasses,.mx-flower,.mx-balloon,.mx-piggy).is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-i-foot-set-right}
+.cr-coordinated:is(.mx-location,.mx-cloud,.mx-sun,.mx-bulb,.mx-settings,.mx-clock,.mx-thermometer,.mx-sprout,.mx-flower,.mx-balloon,.mx-piggy).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-watch}
+.cr-coordinated:is(.mx-shield,.mx-trophy,.mx-coin,.mx-chart,.mx-dumbbell).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-lift}
+.cr-coordinated:is(.mx-shield,.mx-bag,.mx-trophy,.mx-coin,.mx-chart,.mx-dumbbell,.mx-wand,.mx-snow).is-playing[data-motion=trick] .cr-foot-1{animation-name:cr-i-foot-brace-left}
+.cr-coordinated:is(.mx-shield,.mx-bag,.mx-trophy,.mx-coin,.mx-chart,.mx-dumbbell,.mx-wand,.mx-snow).is-playing[data-motion=trick] .cr-foot-2{animation-name:cr-i-foot-brace-left}
+.cr-coordinated:is(.mx-shield,.mx-bag,.mx-trophy,.mx-coin,.mx-chart,.mx-dumbbell,.mx-wand,.mx-snow).is-playing[data-motion=trick] .cr-foot-3{animation-name:cr-i-foot-brace-right}
+.cr-coordinated:is(.mx-shield,.mx-bag,.mx-trophy,.mx-coin,.mx-chart,.mx-dumbbell,.mx-wand,.mx-snow).is-playing[data-motion=trick] .cr-foot-4{animation-name:cr-i-foot-brace-right}
+.cr-coordinated:is(.mx-scan,.mx-qr).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-scan}
+.cr-coordinated:is(.mx-scan,.mx-qr).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-scan}
+.cr-coordinated:is(.mx-scan,.mx-key,.mx-tag,.mx-car,.mx-bus,.mx-sticker,.mx-pencil,.mx-qr,.mx-icecream,.mx-bubbletea,.mx-palette,.mx-snow).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-brace-right}
+.cr-coordinated:is(.mx-mail,.mx-mail-hug,.mx-wallet,.mx-store,.mx-briefcase).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-open}
+.cr-coordinated:is(.mx-mail,.mx-mail-hug,.mx-wallet,.mx-package,.mx-gift,.mx-store,.mx-inbox,.mx-briefcase).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-open-left}
+.cr-coordinated:is(.mx-mail,.mx-mail-hug,.mx-calendar,.mx-wallet,.mx-package,.mx-bookmark,.mx-file,.mx-gift,.mx-book,.mx-store,.mx-inbox,.mx-news,.mx-briefcase,.mx-wand,.mx-receipt,.mx-notebook).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-open-right}
+.cr-coordinated:is(.mx-calendar).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-read}
+.cr-coordinated:is(.mx-calendar,.mx-folder,.mx-bookmark,.mx-file,.mx-book,.mx-news,.mx-receipt,.mx-notebook).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-read}
+.cr-coordinated:is(.mx-bag).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-lift}
+.cr-coordinated:is(.mx-map,.mx-globe,.mx-fish,.mx-compass).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-search}
+.cr-coordinated:is(.mx-key,.mx-tag,.mx-sticker,.mx-pencil,.mx-palette).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-hold}
+.cr-coordinated:is(.mx-key,.mx-tag,.mx-headset,.mx-phone,.mx-sticker,.mx-pencil,.mx-icecream,.mx-bubbletea,.mx-palette).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-right}
+.cr-coordinated:is(.mx-key,.mx-tag,.mx-headset,.mx-moon,.mx-phone,.mx-sticker,.mx-bath,.mx-pencil,.mx-icecream,.mx-coffee,.mx-bubbletea,.mx-palette,.mx-sleep,.mx-robot,.mx-glasses).is-playing[data-motion=trick] .cr-hand-left{animation-name:cr-i-rest-left}
+.cr-coordinated:is(.mx-package,.mx-gift,.mx-inbox).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-open}
+.cr-coordinated:is(.mx-cart,.mx-suitcase).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-walk}
+.cr-coordinated:is(.mx-folder).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-peek}
+.cr-coordinated:is(.mx-bookmark,.mx-file,.mx-book,.mx-news,.mx-receipt,.mx-notebook).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-read}
+.cr-coordinated:is(.mx-heart,.mx-heart-side,.mx-star,.mx-fire,.mx-cake,.mx-gem,.mx-medal,.mx-popcorn,.mx-sparkles).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-cheer}
+.cr-coordinated:is(.mx-heart-chin).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-cheer}
+.cr-coordinated:is(.mx-game).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-dance}
+.cr-coordinated:is(.mx-home).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-coupled-happy}
+.cr-coordinated:is(.mx-crown,.mx-icecream-top,.mx-umbrella-top,.mx-grad).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-balance}
+.cr-coordinated:is(.mx-crown,.mx-icecream-top,.mx-umbrella-top,.mx-grad).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-balance}
+.cr-coordinated:is(.mx-music,.mx-ball,.mx-dice).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-dance}
+.cr-coordinated:is(.mx-headset).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-listen}
+.cr-coordinated:is(.mx-moon,.mx-bath).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-warm}
+.cr-coordinated:is(.mx-moon,.mx-bath,.mx-coffee,.mx-sleep).is-playing[data-motion=trick] .cr-eye-open{animation-name:cr-sleepy-eyes}
+.cr-coordinated:is(.mx-moon,.mx-bath,.mx-coffee,.mx-sleep).is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-rest-right}
+.cr-coordinated:is(.mx-phone).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-listen}
+.cr-coordinated:is(.mx-mic,.mx-live).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-talk}
+.cr-coordinated:is(.mx-tv).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-type}
+.cr-coordinated:is(.mx-watch).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-watch}
+.cr-coordinated:is(.mx-puzzle,.mx-checkin,.mx-pill,.mx-bandage).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-nod}
+.cr-coordinated:is(.mx-car,.mx-bus).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-drive}
+.cr-coordinated:is(.mx-laptop).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-type}
+.cr-coordinated:is(.mx-wand).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-magic}
+.cr-coordinated:is(.mx-icecream,.mx-bubbletea).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-hold}
+.cr-coordinated:is(.mx-umbrella).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-shelter}
+.cr-coordinated:is(.mx-coffee,.mx-sleep).is-playing[data-motion=trick] .cr-scene{animation-name:cr-i-warm}
+.cr-coordinated:is(.mx-snow).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-shiver}
+.cr-coordinated:is(.mx-rocket).is-playing[data-motion=trick] .cr-body{animation-name:cr-i-launch}
+.cr-coordinated:is(.mx-car,.mx-bus,.mx-cart,.mx-suitcase).is-playing[data-motion=trick] .m-roll{animation-name:none}
+.cr-coordinated:is(.mx-headset).is-playing[data-motion=trick] .m-listen{animation-name:none}
+.cr-coordinated.mx-icecream.is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-v6-ice-held;transform-origin:13.5px 3.3px}
+@keyframes cr-i-peer{0%,100%{transform:translateX(0)}35%,66%{transform:translateX(-.8px)}}
+@keyframes cr-i-eye-peer{0%,100%{transform:translateX(0)}20%,70%{transform:translateX(-.9px)}}
+.cr-coordinated:is(.mx-users,.mx-users-small,.mx-users-whole).is-playing[data-motion=trick] .cr-body.cr-peer-back{animation-name:cr-i-peer}
+.cr-coordinated:is(.mx-users,.mx-users-small,.mx-users-whole).is-playing[data-motion=trick] .cr-peer-back .cr-gaze{animation-name:cr-i-eye-peer}
+.cr-coordinated:is(.mx-users,.mx-users-small,.mx-users-whole).is-playing[data-motion=trick] .cr-gaze{animation-name:cr-i-eye-right}
+@keyframes cr-i-type-right{0%,100%{transform:rotate(0)}28%{transform:rotate(26deg)}42%{transform:rotate(-26deg)}55%{transform:rotate(26deg)}70%{transform:rotate(-18deg)}84%{transform:rotate(0)}}
+.cr-coordinated.mx-laptop.is-playing[data-motion=trick] .cr-hand-right{animation-name:cr-i-type-right}
+@keyframes cr-i-envelope{0%,100%{transform:scaleY(1)}35%,65%{transform:scaleY(-.32)}}
+.cr-coordinated.mx-mail-hug.is-playing[data-motion=trick] .m-envelope{animation-name:cr-i-envelope}
+.cr-coordinated:is(.mx-bag,.mx-briefcase,.mx-bubbletea,.mx-bus,.mx-calendar,.mx-camera,.mx-car,.mx-card,.mx-cart,.mx-chat,.mx-chat-tilt,.mx-coffee,.mx-crown,.mx-game,.mx-glasses,.mx-grad,.mx-headset,.mx-heart-chin,.mx-home,.mx-icecream,.mx-icecream-top,.mx-image,.mx-laptop,.mx-mail,.mx-mail-hug,.mx-redpacket,.mx-robot,.mx-search,.mx-search-tilt,.mx-sleep,.mx-store,.mx-suitcase,.mx-ticket,.mx-umbrella-top,.mx-video,.mx-wallet,.mx-watch).is-playing[data-motion=happy] .cr-body{animation-name:none}
+.cr-coordinated:is(.mx-bag,.mx-briefcase,.mx-bubbletea,.mx-bus,.mx-calendar,.mx-camera,.mx-car,.mx-card,.mx-cart,.mx-chat,.mx-chat-tilt,.mx-coffee,.mx-crown,.mx-game,.mx-glasses,.mx-grad,.mx-headset,.mx-heart-chin,.mx-home,.mx-icecream,.mx-icecream-top,.mx-image,.mx-laptop,.mx-mail,.mx-mail-hug,.mx-redpacket,.mx-robot,.mx-search,.mx-search-tilt,.mx-sleep,.mx-store,.mx-suitcase,.mx-ticket,.mx-umbrella-top,.mx-video,.mx-wallet,.mx-watch).is-playing[data-motion=happy] .cr-scene{animation-name:cr-i-coupled-happy}
+.cr-coordinated:is(.mx-bag,.mx-briefcase,.mx-bubbletea,.mx-bus,.mx-calendar,.mx-camera,.mx-car,.mx-card,.mx-cart,.mx-chat,.mx-chat-tilt,.mx-coffee,.mx-crown,.mx-game,.mx-glasses,.mx-grad,.mx-headset,.mx-heart-chin,.mx-home,.mx-icecream,.mx-icecream-top,.mx-image,.mx-laptop,.mx-mail,.mx-mail-hug,.mx-redpacket,.mx-robot,.mx-search,.mx-search-tilt,.mx-sleep,.mx-store,.mx-suitcase,.mx-ticket,.mx-umbrella-top,.mx-video,.mx-wallet,.mx-watch).is-idle:not(.is-asleep):not(.is-playing) .cr-body{animation:none}
+.cr-coordinated:is(.mx-bag,.mx-briefcase,.mx-bubbletea,.mx-bus,.mx-calendar,.mx-camera,.mx-car,.mx-card,.mx-cart,.mx-chat,.mx-chat-tilt,.mx-coffee,.mx-crown,.mx-game,.mx-glasses,.mx-grad,.mx-headset,.mx-heart-chin,.mx-home,.mx-icecream,.mx-icecream-top,.mx-image,.mx-laptop,.mx-mail,.mx-mail-hug,.mx-redpacket,.mx-robot,.mx-search,.mx-search-tilt,.mx-sleep,.mx-store,.mx-suitcase,.mx-ticket,.mx-umbrella-top,.mx-video,.mx-wallet,.mx-watch).is-idle:not(.is-asleep):not(.is-playing) .cr-scene{animation:cr-i-coupled-breathe 3.2s var(--cr-ease) infinite}
+@media(prefers-reduced-motion:reduce){.cr-coordinated *{animation:none!important}}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cr cr-coordinated mx-video" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="cr-scene">
+<!-- Clawd reference: clawd-tank. See THIRD_PARTY.md. -->
+<g class="cr-placement"><g class="cr-body pose-blink gesture-still" stroke="none"><g class="cr-original" transform="translate(4.5 11)">
+<g fill="#DE886D"><g class="cr-feet">
+<path class="cr-foot-1" d="M3 7h1v2H3Z"/><path class="cr-foot-2" d="M5 7h1v2H5Z"/>
+<path class="cr-foot-3" d="M9 7h1v2H9Z"/><path class="cr-foot-4" d="M11 7h1v2h-1Z"/></g>
+<path class="cr-hand-left" d="M0 3h2v2H0Z"/><path class="cr-hand-right" d="M13 3h2v2h-2Z"/>
+<path class="cr-torso" d="M2 0h11v7H2Z"/></g>
+<g class="cr-gaze" fill="#141414"><g class="cr-eye-open"><path d="M4 2h1v2H4Zm6 0h1v2h-1Z"/></g>
+<g class="cr-eye-sleep" opacity="0"><path d="M3.5 3h2v1h-2Zm6 0h2v1h-2Z"/></g>
+</g>
+
+
+
+</g></g></g><path d="M4.5 16h15v6h-15Z" fill="#FAF8F4"/><g stroke="#343840"><g class="m-play" style="transform-origin:12px 19px"><path d="m11 17.5 3 1.5-3 1.5Z"/></g></g>
+</g></svg>
