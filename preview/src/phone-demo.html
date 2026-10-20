@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clawd Icons 手机演示</title>
+<!--
+  假手机演示：底栏四只小螃蟹＋中间一颗按钮，一根手指依次点过去。
+  ../phone-demo.gif 就是从这一页逐帧截出来的（node preview/src/render.mjs）。
+  图标在打开时从 ../../motion/svg/ 读进来，所以要走 http 打开（GitHub Pages 或本机静态服务器），直接双击文件读不到。
+  ?t=3.9 停在第 3.9 秒；PD.render(t) 把整页摆到第 t 秒，截图脚本就靠它一帧一帧拍。
+-->
+<link rel="stylesheet" href="../../motion/clawd-motion.css">
+<style>
+:root{--paper:#faf8f4;--screen:#f4f2ee;--card:#fff;--ink:#343840;--soft:#827c76;--muted:#9a948e;--line:#ece7e0;--accent:#ab674e}
+*{box-sizing:border-box;margin:0;padding:0;transition:none!important}
+html,body{background:var(--paper)}
+body{min-height:100vh;display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.pd-stage{position:relative;width:400px;height:736px;overflow:hidden}
+.pd-phone{position:absolute;left:41px;top:34px;width:318px;height:668px;border-radius:54px;background:#1d1d1f;box-shadow:inset 0 0 0 1px #3a3a3c,0 22px 44px rgba(70,50,30,.15),0 4px 10px rgba(70,50,30,.07)}
+.pd-btn{position:absolute;width:3px;background:#2c2c2e;border-radius:2px}
+.pd-screen{position:absolute;left:9px;top:9px;width:300px;height:650px;border-radius:45px;overflow:hidden;background:var(--screen)}
+
+.pd-status{position:absolute;left:0;top:0;width:300px;height:44px;z-index:20}
+.pd-time{position:absolute;left:34px;top:14px;font-size:14px;line-height:18px;font-weight:600}
+.pd-sys{position:absolute;right:24px;top:17px;width:62px;height:11px}
+
+.pd-island{position:absolute;top:10px;left:102px;width:96px;height:28px;border-radius:14px;background:#000;z-index:40;overflow:hidden}
+.pd-isl-in{position:absolute;top:0;left:0;width:276px;height:62px;opacity:0}
+.pd-isl-crab{position:absolute;left:24px;top:12px;width:50px;height:38px}
+.pd-isl-crab svg{display:block;width:50px;height:38px}
+.pd-isl-txt{position:absolute;left:94px;top:11px}
+.pd-isl-txt b{display:block;color:#fff;font-size:15px;line-height:21px;font-weight:600}
+.pd-isl-txt span{display:block;color:#8e8e93;font-size:12px;line-height:18px}
+
+.pd-pages{position:absolute;left:0;top:44px;width:300px;height:606px}
+.pd-page{position:absolute;left:0;top:0;width:300px;height:606px;padding:10px 18px 0;opacity:0;visibility:hidden}
+.pd-cap{font-size:12px;line-height:16px;color:var(--soft)}
+.pd-page h1{font-size:28px;line-height:36px;font-weight:700;margin:0 0 14px}
+.pd-card{background:var(--card);border-radius:18px;box-shadow:0 1px 2px rgba(60,40,20,.04)}
+.pd-sec{font-size:12px;line-height:16px;color:var(--soft);margin:16px 4px 8px}
+
+.pd-todo{padding:6px 14px 6px}
+.pd-todo-h{display:flex;justify-content:space-between;align-items:center;height:34px;font-size:15px;line-height:20px}
+.pd-todo-h span{font-size:12px;color:var(--muted)}
+.pd-check{display:flex;align-items:center;gap:10px;height:38px;font-size:14px;line-height:20px}
+.pd-check i{width:18px;height:18px;border-radius:50%;border:1.5px solid #cfc8bf;flex:none}
+.pd-check.pd-done{color:var(--muted);text-decoration:line-through}
+.pd-check.pd-done i{border-color:var(--accent);background:var(--accent);position:relative}
+.pd-check.pd-done i::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.pd-two{display:flex;gap:12px;margin-top:12px}
+.pd-stat{flex:1;height:72px;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between}
+.pd-stat span{font-size:12px;line-height:16px;color:var(--soft)}
+.pd-stat b{font-size:24px;line-height:28px;font-weight:600}
+.pd-notes{margin-top:12px;padding:4px 14px}
+.pd-note{height:46px;display:flex;flex-direction:column;justify-content:center}
+.pd-note+.pd-note{border-top:1px solid var(--line)}
+.pd-note b{font-size:14px;line-height:19px;font-weight:500}
+.pd-note span{font-size:12px;line-height:16px;color:var(--muted)}
+
+.pd-field{height:38px;border-radius:12px;background:#e8e4de;display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--muted);font-size:14px;line-height:20px}
+.pd-field svg{width:16px;height:16px;flex:none}
+.pd-list .pd-row{display:flex;align-items:center;gap:12px;height:46px;padding:0 14px;position:relative;border-radius:0;font-size:14px;line-height:20px}
+.pd-list .pd-row+.pd-row::before{content:"";position:absolute;left:14px;right:0;top:0;height:1px;background:var(--line)}
+.pd-list .pd-row:first-child{border-radius:18px 18px 0 0}
+.pd-list .pd-row:last-child{border-radius:0 0 18px 18px}
+.pd-row .pd-hist{width:16px;height:16px;flex:none;color:var(--muted)}
+.pd-row .pd-grow{flex:1}
+.pd-chev{width:7px;height:12px;flex:none}
+
+.pd-msgs .pd-row{height:64px}
+.pd-msgs .pd-row+.pd-row::before{left:62px}
+.pd-av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:14px;line-height:20px;font-weight:600;color:#5d564f}
+.pd-who{flex:1;min-width:0}
+.pd-who b{display:block;font-size:14px;line-height:20px;font-weight:600}
+.pd-who span{display:block;font-size:12px;line-height:17px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pd-when{align-self:flex-start;margin-top:14px;font-size:11px;line-height:14px;color:var(--muted);text-align:right}
+.pd-when i{display:block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin:6px 0 0 auto}
+
+.pd-me{display:flex;align-items:center;gap:12px;height:64px;padding:0 14px}
+.pd-me .pd-av{width:40px;height:40px;background:#ebe1d6}
+.pd-me div{flex:1}
+.pd-me b{display:block;font-size:15px;line-height:20px;font-weight:600}
+.pd-me span{display:block;font-size:12px;line-height:16px;color:var(--muted)}
+.pd-set{margin-top:12px}
+.pd-set .pd-row+.pd-row::before{left:50px}
+.pd-ic{display:block;width:24px;height:24px;flex:none}
+.pd-ic svg{display:block;width:24px;height:24px;overflow:visible}
+.pd-set .pd-ic{color:#4a4e56}
+.pd-val{font-size:13px;line-height:18px;color:var(--muted)}
+.pd-tog{width:38px;height:22px;border-radius:11px;background:#e3dfd9;position:relative;flex:none}
+.pd-tog i{position:absolute;left:2px;top:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+
+.pd-tabbar{position:absolute;left:12px;top:564px;width:276px;height:60px;border-radius:20px;background:var(--card);box-shadow:0 6px 20px rgba(70,50,30,.10),0 0 0 1px rgba(70,50,30,.03);display:flex;z-index:10}
+.pd-tab{width:54px;height:60px;padding-top:10px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted)}
+.pd-tab .pd-lb{font-size:10px;line-height:13px}
+.pd-mid{width:60px;height:60px;position:relative}
+.pd-plus{position:absolute;left:5px;top:-14px;width:50px;height:50px;border-radius:50%;background:var(--ink);box-shadow:0 6px 14px rgba(52,56,64,.22);display:grid;place-items:center}
+.pd-plus svg{width:22px;height:22px}
+.pd-homebar{position:absolute;left:96px;top:637px;width:108px;height:4px;border-radius:2px;background:#1d1d1f;z-index:10}
+
+.pd-zoom{position:absolute;width:92px;height:104px;border-radius:22px;background:#fff;box-shadow:0 10px 26px rgba(70,50,30,.16),0 0 0 1px rgba(70,50,30,.04);z-index:45;opacity:0;visibility:hidden}
+.pd-zoom-crab{position:absolute;left:10px;top:6px;width:72px;height:72px}
+.pd-zoom-crab svg{display:block;width:72px;height:72px;overflow:visible}
+.pd-zoom span{position:absolute;left:0;right:0;top:80px;text-align:center;font-size:11px;line-height:14px;color:var(--soft)}
+.pd-zoom-tail{position:absolute;bottom:-5px;width:12px;height:12px;background:#fff;transform:rotate(45deg);border-radius:2px;z-index:-1}
+.pd-finger,.pd-ripple{position:absolute;left:0;top:0;border-radius:50%;pointer-events:none;z-index:60;opacity:0}
+.pd-finger{width:34px;height:34px;background:rgba(52,56,64,.2);border:2px solid rgba(255,255,255,.85);box-shadow:0 1px 4px rgba(0,0,0,.14)}
+.pd-ripple{width:60px;height:60px;border:2px solid rgba(171,103,78,.6)}
+</style>
+</head>
+<body>
+<div class="pd-stage">
+  <div class="pd-phone">
+    <i class="pd-btn" style="left:-2px;top:112px;height:26px"></i>
+    <i class="pd-btn" style="left:-2px;top:158px;height:46px"></i>
+    <i class="pd-btn" style="left:-2px;top:214px;height:46px"></i>
+    <i class="pd-btn" style="right:-2px;top:176px;height:72px"></i>
+    <div class="pd-screen">
+      <div class="pd-status">
+        <span class="pd-time">9:41</span>
+        <svg class="pd-sys" viewBox="0 0 62 11" aria-hidden="true">
+          <g fill="#343840"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4.5" y="5" width="3" height="6" rx=".8"/><rect x="9" y="2.5" width="3" height="8.5" rx=".8"/><rect x="13.5" y="0" width="3" height="11" rx=".8"/></g>
+          <g fill="none" stroke="#343840" stroke-width="1.7" stroke-linecap="round"><path d="M21.3 4.2a8.6 8.6 0 0 1 11.4 0"/><path d="M23.4 6.6a5.6 5.6 0 0 1 7.2 0"/></g>
+          <circle cx="27" cy="9.4" r="1.4" fill="#343840"/>
+          <rect x="37.5" y=".5" width="21" height="10" rx="3" fill="none" stroke="#343840" stroke-opacity=".4"/>
+          <rect x="39" y="2" width="16" height="7" rx="1.6" fill="#343840"/>
+          <rect x="59.4" y="3.6" width="1.6" height="3.8" rx=".8" fill="#343840" fill-opacity=".4"/>
+        </svg>
+      </div>
+
+      <div class="pd-island">
+        <div class="pd-isl-in">
+          <div class="pd-isl-crab" id="pd-fish"></div>
+          <div class="pd-isl-txt"><b>在钓鱼</b><span>在湖边等鱼上钩</span></div>
+        </div>
+      </div>
+
+      <main class="pd-pages">
+        <section class="pd-page" data-page="home">
+          <p class="pd-cap">星期二</p>
+          <h1>今天</h1>
+          <div class="pd-card pd-todo">
+            <div class="pd-todo-h"><b>待办</b><span>3 项</span></div>
+            <div class="pd-check"><i></i>整理会议记录</div>
+            <div class="pd-check"><i></i>回复两封邮件</div>
+            <div class="pd-check pd-done"><i></i>下午去取快递</div>
+          </div>
+          <div class="pd-two">
+            <div class="pd-card pd-stat"><span>笔记</span><b>12</b></div>
+            <div class="pd-card pd-stat"><span>收藏</span><b>5</b></div>
+          </div>
+          <div class="pd-card pd-notes">
+            <div class="pd-note"><b>读书笔记</b><span>第七章 · 昨天</span></div>
+            <div class="pd-note"><b>旅行清单</b><span>还差两样 · 周一</span></div>
+          </div>
+        </section>
+
+        <section class="pd-page" data-page="search">
+          <p class="pd-cap">笔记和待办</p>
+          <h1>搜索</h1>
+          <div class="pd-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg><span>搜索关键词</span></div>
+          <p class="pd-sec">最近搜索</p>
+          <div class="pd-card pd-list">
+            <div class="pd-row"><svg class="pd-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="pd-grow">周报</span></div>
+            <div class="pd-row"><svg class="pd-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="pd-grow">旅行清单</span></div>
+            <div class="pd-row"><svg class="pd-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="pd-grow">读书笔记</span></div>
+            <div class="pd-row"><svg class="pd-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="pd-grow">会议纪要</span></div>
+          </div>
+        </section>
+
+        <section class="pd-page" data-page="chat">
+          <p class="pd-cap">2 条未读</p>
+          <h1>消息</h1>
+          <div class="pd-card pd-list pd-msgs">
+            <div class="pd-row"><span class="pd-av" style="background:#ebe1d6">林</span><div class="pd-who"><b>小林</b><span>明天的会改到下午三点</span></div><div class="pd-when">09:12<i></i></div></div>
+            <div class="pd-row"><span class="pd-av" style="background:#dfe6e0">杰</span><div class="pd-who"><b>阿杰</b><span>照片发你了，挑几张</span></div><div class="pd-when">昨天<i></i></div></div>
+            <div class="pd-row"><span class="pd-av" style="background:#e4e1ea">读</span><div class="pd-who"><b>读书会</b><span>这周读到第七章</span></div><div class="pd-when">周一</div></div>
+          </div>
+        </section>
+
+        <section class="pd-page" data-page="me">
+          <p class="pd-cap">账户与设置</p>
+          <h1>我的</h1>
+          <div class="pd-card pd-me"><span class="pd-av">访</span><div><b>访客</b><span>编辑资料</span></div><svg class="pd-chev" viewBox="0 0 7 12" fill="none" stroke="#c4beb7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 5 5-5 5"/></svg></div>
+          <div class="pd-card pd-list pd-set">
+            <div class="pd-row" id="pd-row-bell"><span class="pd-ic" data-icon="bell"></span><span class="pd-grow">通知</span><span class="pd-tog" id="pd-tog"><i></i></span></div>
+            <div class="pd-row"><span class="pd-ic" data-icon="moon"></span><span class="pd-grow">深色模式</span><span class="pd-tog"><i></i></span></div>
+            <div class="pd-row"><span class="pd-ic" data-icon="bookmark"></span><span class="pd-grow">收藏</span><svg class="pd-chev" viewBox="0 0 7 12" fill="none" stroke="#c4beb7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 5 5-5 5"/></svg></div>
+            <div class="pd-row"><span class="pd-ic" data-icon="globe"></span><span class="pd-grow">语言</span><span class="pd-val">简体中文</span><svg class="pd-chev" viewBox="0 0 7 12" fill="none" stroke="#c4beb7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 5 5-5 5"/></svg></div>
+            <div class="pd-row"><span class="pd-ic" data-icon="shield"></span><span class="pd-grow">安全</span><svg class="pd-chev" viewBox="0 0 7 12" fill="none" stroke="#c4beb7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 5 5-5 5"/></svg></div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="pd-tabbar">
+        <div class="pd-tab" data-tab="home"><span class="pd-ic" data-icon="home"></span><span class="pd-lb">主页</span></div>
+        <div class="pd-tab" data-tab="search"><span class="pd-ic" data-icon="search"></span><span class="pd-lb">搜索</span></div>
+        <div class="pd-mid"><div class="pd-plus" id="pd-plus"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div></div>
+        <div class="pd-tab" data-tab="chat"><span class="pd-ic" data-icon="chat"></span><span class="pd-lb">消息</span></div>
+        <div class="pd-tab" data-tab="me"><span class="pd-ic" data-icon="me"></span><span class="pd-lb">我的</span></div>
+      </nav>
+      <i class="pd-homebar"></i>
+
+      <i class="pd-ripple"></i>
+      <i class="pd-finger"></i>
+    </div>
+  </div>
+</div>
+
+<script src="../../motion/clawd-motion.js"></script>
+<script>
+(async () => {
+  const BASE = '../../';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const get = async p => {
+    const r = await fetch(BASE + p);
+    if (!r.ok) throw new Error(p + ' ' + r.status);
+    return (await r.text()).replace(/<!--[\s\S]*?-->/g, '');
+  };
+
+  // 图标原样读进来，只拿掉注释
+  await Promise.all($$('[data-icon]').map(async el => { el.innerHTML = await get(`motion/svg/clawd-${el.dataset.icon}.svg`); }));
+  const fishBox = $('#pd-fish');
+  fishBox.innerHTML = await get('island/crabs/fish/fish.svg');
+  const fish = fishBox.querySelector('svg');
+  fish.setAttribute('viewBox', '-4 -2 25 19');   // 只框住螃蟹、钓竿和水（整圈动作的外框）
+  fish.removeAttribute('width'); fish.removeAttribute('height');
+  await document.fonts.ready;
+
+  // ---- 时间线（秒）----
+  const L = 10.8;
+  const T = { search: 0.7, chat: 2.3, me: 3.9, bell: 5.5, plus: 7.0, home: 8.5 };
+  const TAB_TAPS = [['search', T.search], ['chat', T.chat], ['me', T.me], ['home', T.home]];
+  const ISL = { open: T.plus + 0.08, openDur: 0.5, close: 9.7, closeDur: 0.35, fishFrom: 5.3 };
+
+  const screen = $('.pd-screen');
+  const sr = screen.getBoundingClientRect();
+  const center = el => { const r = el.getBoundingClientRect(); return [r.left - sr.left + r.width / 2, r.top - sr.top + r.height / 2]; };
+  const tabIcon = k => $(`.pd-tab[data-tab="${k}"] .pd-ic`);
+  const TAPS = [
+    { t: T.search, at: center(tabIcon('search')) },
+    { t: T.chat, at: center(tabIcon('chat')) },
+    { t: T.me, at: center(tabIcon('me')) },
+    { t: T.bell, at: center($('#pd-tog')), bend: [-160, 0] },
+    { t: T.plus, at: center($('#pd-plus')) },
+    { t: T.home, at: center(tabIcon('home')) },
+  ];
+
+  const MUTED = '#9a948e', ACCENT = '#ab674e';
+  // 每只小螃蟹什么时候做什么
+  const crabs = [];
+  const crab = (el, events, awake) => crabs.push({ svg: el.querySelector('svg.cr'), events, awake });
+  for (const [k, t] of TAB_TAPS) crab(tabIcon(k), [{ t, motion: 'trick' }], t2 => selected(t2) === k);
+  $$('.pd-set .pd-ic').forEach(el => crab(el, el.dataset.icon === 'bell' ? [{ t: T.bell, motion: 'happy' }] : [], () => true));
+  crabs.forEach(c => { c.dur = parseFloat(getComputedStyle(c.svg).getPropertyValue('--cr-duration')) || 1.65; });
+
+  // 放大泡：点到哪只，就在它头上冒一个泡，里面同一只放大 3 倍做同一个动作（24px 的动作只有一两像素，GIF 里看不清）
+  const ZOOM = { search: '探头找找', chat: '挥手聊聊', me: '向你招手', home: '抬头跳跳', bell: '开心一下' };
+  const zooms = [];
+  for (const c of crabs) for (const ev of c.events) {
+    const ic = c.svg.closest('.pd-ic'), k = ic.dataset.icon, inTab = !!ic.closest('.pd-tab');
+    const z = document.createElement('div'); z.className = 'pd-zoom';
+    z.innerHTML = `<div class="pd-zoom-crab"></div><span>${ZOOM[k]}</span><i class="pd-zoom-tail"></i>`;
+    const svg = c.svg.cloneNode(true);
+    z.querySelector('.pd-zoom-crab').append(svg);
+    z.style.color = inTab ? ACCENT : '#4a4e56';
+    screen.append(z);
+    const [cx] = center(ic), anchor = (inTab ? $('.pd-tabbar') : ic.closest('.pd-row')).getBoundingClientRect().top - sr.top;
+    const left = Math.round(Math.min(300 - 10 - 92, Math.max(10, cx - 46)));
+    z.style.left = left + 'px'; z.style.top = Math.round(anchor - 10 - 104) + 'px';
+    z.querySelector('.pd-zoom-tail').style.left = Math.round(cx - left - 6) + 'px';
+    z.style.transformOrigin = `${Math.round(cx - left)}px 110px`;
+    zooms.push({ el: z, svg, t: ev.t, motion: ev.motion, dur: c.dur });
+  }
+
+  // ---- 小工具 ----
+  const clamp = v => Math.max(0, Math.min(1, v));
+  const ease = v => v < .5 ? 4 * v * v * v : 1 - Math.pow(-2 * v + 2, 3) / 2;
+  const easeOut = v => 1 - Math.pow(1 - v, 3);
+  const back = v => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(v - 1, 3) + c1 * Math.pow(v - 1, 2); };
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const mix = (a, b, p) => { const A = hex(a), B = hex(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * p)).join(',')})`; };
+  const press = (t0, t) => t < t0 - .08 ? 0 : t < t0 ? ease((t - t0 + .08) / .08) : t < t0 + .18 ? 1 - ease((t - t0) / .18) : 0;
+
+  function selected(t) { let k = 'home'; for (const [tab, t0] of TAB_TAPS) if (t >= t0) k = tab; return k; }
+  function lastChange(t) { let prev = 'home', cur = 'home', at = -1; for (const [tab, t0] of TAB_TAPS) if (t >= t0) { prev = cur; cur = tab; at = t0; } return { prev, cur, at }; }
+
+  function fingerAt(t) {
+    const first = TAPS[0], last = TAPS[TAPS.length - 1];
+    const start = [first.at[0] + 34, first.at[1] + 48], end = [last.at[0] + 30, last.at[1] + 46];
+    const lerp = (a, b, p) => [a[0] + (b[0] - a[0]) * p, a[1] + (b[1] - a[1]) * p];
+    // 手指走一点弧线：横着走往上拱一点；从「我的」去开关那一步先往左绕，别从放大泡上划过去
+    const curve = (a, b, p, off) => {
+      const c1 = [a[0] + off[0], a[1] + off[1]], c2 = [b[0] + off[0], b[1] + off[1]], u = 1 - p;
+      return [0, 1].map(i => u * u * u * a[i] + 3 * u * u * p * c1[i] + 3 * u * p * p * c2[i] + p * p * p * b[i]);
+    };
+    const arc = (a, b, p, bend) => curve(a, b, p, bend || (Math.abs(b[1] - a[1]) > Math.abs(b[0] - a[0]) ? [0, 0] : [0, -32]));
+    let pos;
+    if (t < first.t - .12) pos = lerp(start, first.at, ease(clamp((t - .2) / (first.t - .12 - .2))));
+    else if (t >= last.t - .12) pos = lerp(last.at, end, ease(clamp((t - last.t - .2) / .45)));
+    else for (let i = 0; i < TAPS.length - 1; i++) {
+      const a = TAPS[i], b = TAPS[i + 1];
+      if (t >= a.t - .12 && t < b.t - .12) { pos = arc(a.at, b.at, ease(clamp((t - a.t - .18) / (b.t - .12 - a.t - .18))), b.bend); break; }
+    }
+    const op = Math.min(clamp((t - .15) / .25), 1 - clamp((t - last.t - .3) / .35));
+    const pr = Math.max(...TAPS.map(x => press(x.t, t)));
+    return { pos, op, pr };
+  }
+
+  const finger = $('.pd-finger'), ripple = $('.pd-ripple');
+  const pages = Object.fromEntries($$('.pd-page').map(p => [p.dataset.page, p]));
+  const tabs = Object.fromEntries($$('.pd-tab').map(p => [p.dataset.tab, p]));
+  const tog = $('#pd-tog'), knob = tog.querySelector('i'), rowBell = $('#pd-row-bell'), plus = $('#pd-plus');
+  const island = $('.pd-island'), islIn = $('.pd-isl-in');
+  const fishAnims = () => fish.getAnimations({ subtree: true });
+
+  function render(t) {
+    t = ((t % L) + L) % L;
+
+    // 页面：新页 0.22 秒淡入、上移 8px，旧页同时淡出
+    const ch = lastChange(t), q = ch.at < 0 ? 1 : clamp((t - ch.at) / .22);
+    for (const [k, p] of Object.entries(pages)) {
+      let op = 0, y = 0;
+      if (k === ch.cur) { op = easeOut(q); y = 8 * (1 - easeOut(q)); }
+      else if (k === ch.prev && q < 1) op = 1 - clamp(q * 3);
+      p.style.opacity = op; p.style.visibility = op > 0 ? 'visible' : 'hidden';
+      p.style.transform = y ? `translateY(${y.toFixed(2)}px)` : '';
+    }
+
+    // 底栏字色：选中的变强调色
+    const cq = ch.at < 0 ? 1 : clamp((t - ch.at) / .18);
+    for (const [k, el] of Object.entries(tabs)) {
+      const on = k === ch.cur ? cq : (k === ch.prev && ch.at >= 0 ? 1 - cq : 0);
+      el.style.color = mix(MUTED, ACCENT, on);
+    }
+
+    // 小螃蟹：轮到它就做动作，做完按选没选中醒着或睡着
+    for (const c of crabs) {
+      let ev = null; for (const e of c.events) if (t >= e.t) ev = e;
+      const s = c.svg;
+      if (ev && t - ev.t < c.dur) {
+        s.classList.remove('is-asleep', 'is-waking');
+        if (s.dataset.motion !== ev.motion) s.dataset.motion = ev.motion;
+        s.classList.add('is-playing');
+        for (const a of s.getAnimations({ subtree: true })) { a.pause(); a.currentTime = (t - ev.t) * 1000; }
+      } else {
+        s.classList.remove('is-playing');
+        s.classList.toggle('is-asleep', !c.awake(t));
+      }
+    }
+
+    // 「通知」开关
+    const tg = ease(clamp((t - T.bell) / .2));
+    tog.style.background = mix('#e3dfd9', ACCENT, tg);
+    knob.style.transform = `translateX(${(16 * tg).toFixed(2)}px)`;
+    rowBell.style.background = `rgba(52,56,64,${(.06 * press(T.bell, t)).toFixed(3)})`;
+
+    // 中间按钮按一下
+    plus.style.transform = `scale(${(1 - .1 * press(T.plus, t)).toFixed(3)})`;
+
+    // 灵动岛：展开，小螃蟹钓一会儿鱼，再收回去
+    let p = 0, cop = 0;
+    if (t >= ISL.open && t < ISL.close + ISL.closeDur) {
+      if (t < ISL.open + ISL.openDur) { const u = (t - ISL.open) / ISL.openDur; p = back(u); cop = clamp((u - .45) / .4); }
+      else if (t < ISL.close) { p = 1; cop = 1; }
+      else { const u = (t - ISL.close) / ISL.closeDur; p = 1 - ease(u); cop = 1 - clamp(u / .4); }
+    }
+    const w = 96 + 180 * p, left = Math.round((300 - w) / 2);
+    island.style.left = left + 'px'; island.style.width = (300 - 2 * left) + 'px';
+    island.style.height = Math.round(28 + 34 * p) + 'px';
+    island.style.borderRadius = (14 + 14 * Math.min(p, 1)).toFixed(1) + 'px';
+    islIn.style.left = (12 - left) + 'px';
+    islIn.style.opacity = cop.toFixed(3);
+    const ft = (t - ISL.open + ISL.fishFrom) * 1000;
+    for (const a of fishAnims()) { a.pause(); if (cop > 0) a.currentTime = ft; }
+
+    // 放大泡
+    for (const z of zooms) {
+      const a = t - z.t, s = z.svg;
+      if (a < 0 || a >= 1.65) { z.el.style.opacity = 0; z.el.style.visibility = 'hidden'; s.classList.remove('is-playing'); continue; }
+      const sc = a < .24 ? .5 + .5 * back(a / .24) : 1 - .08 * clamp((a - 1.5) / .15);
+      z.el.style.visibility = 'visible';
+      z.el.style.opacity = Math.min(clamp(a / .1), 1 - clamp((a - 1.5) / .15)).toFixed(3);
+      z.el.style.transform = sc === 1 ? '' : `scale(${sc.toFixed(3)})`;
+      if (a < z.dur) {
+        if (s.dataset.motion !== z.motion) s.dataset.motion = z.motion;
+        s.classList.add('is-playing');
+        for (const an of s.getAnimations({ subtree: true })) { an.pause(); an.currentTime = a * 1000; }
+      } else s.classList.remove('is-playing');
+    }
+
+    // 手指和涟漪
+    const f = fingerAt(t);
+    finger.style.opacity = f.op.toFixed(3);
+    finger.style.transform = `translate(${(f.pos[0] - 17).toFixed(2)}px,${(f.pos[1] - 17).toFixed(2)}px) scale(${(1 - .18 * f.pr).toFixed(3)})`;
+    finger.style.background = `rgba(52,56,64,${(.2 + .14 * f.pr).toFixed(3)})`;
+    let rp = null; for (const x of TAPS) if (t >= x.t && t < x.t + .5) rp = x;
+    if (rp) {
+      const u = (t - rp.t) / .5, d = 14 + 40 * easeOut(u);
+      ripple.style.opacity = (.9 * (1 - u)).toFixed(3);
+      ripple.style.transform = `translate(${(rp.at[0] - 30).toFixed(2)}px,${(rp.at[1] - 30).toFixed(2)}px) scale(${(d / 60).toFixed(3)})`;
+    } else ripple.style.opacity = 0;
+  }
+
+  const frame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  window.PD = { L, render, seek: async t => { render(t); await frame(); }, ready: true };
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('t')) render(+qs.get('t'));
+  else if (!qs.has('capture')) { const t0 = performance.now(); const loop = now => { render((now - t0) / 1000); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+})().catch(e => { document.body.insertAdjacentHTML('beforeend', `<p style="position:fixed;left:8px;bottom:8px;color:#a33;font:12px monospace">${e.message}（要走 http 打开）</p>`); window.PD = { error: e.message }; });
+</script>
+</body>
+</html>

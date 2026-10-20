@@ -1,10 +1,14 @@
 # Clawd Icons
 
-![Clawd Icons：方块小螃蟹与细线物件](preview/cover.gif)
+<p align="center"><img src="preview/phone-demo.gif" width="400" alt="假手机演示：手指依次点底栏，被点到的小螃蟹醒过来做自己的动作；再点设置里的开关，通知那只开心一下；最后点中间的按钮，灵动岛展开，像素小螃蟹在钓鱼"></p>
 
 111 个 Clawd 主题 SVG 图标：100 个功能、11 个备选画法。方块身体与手脚，流畅的细线物件；眼睛先看、手脚跟上，动作回应图标本身的意思。
 
+这是一套图标：放进底栏、设置列表、状态条，点一下就做自己的动作；上图冒出的泡是演示时放大来看的，不在图标包里。另附六只灵动岛像素小螃蟹动图，在 [`island/`](island/)。
+
 **[在线图标库](https://TangfanOVO.github.io/clawd-icons/) · [动态预览](https://TangfanOVO.github.io/clawd-icons/interaction.html) · [状态条示例](https://TangfanOVO.github.io/clawd-icons/examples.html) · [单个下载](https://TangfanOVO.github.io/clawd-icons/motion/) · [灵动岛小螃蟹](https://TangfanOVO.github.io/clawd-icons/island/) · [下载整包](https://github.com/TangfanOVO/clawd-icons/releases/latest)**
+
+![Clawd Icons：方块小螃蟹与细线物件](preview/cover.gif)
 
 24 × 24 画布 · 0.7 线宽 · 橙色方块角色 · 静态 SVG / 雪碧图 / CSS 动效 · 零运行时依赖。图标适配 by **唐幡 (TangfanOVO)**；Clawd 基础图形来源见 [署名说明](THIRD_PARTY.md)。
 
@@ -109,6 +113,7 @@ React / Vue 中可将 SVG 作为内联组件，在挂载后把对应的 DOM 元�
 - `motion/vivid/`：主页、消息、书、睡眠的生动版，有动态源、静态 SVG 和预览 GIF。
 - `island/`：灵动岛小螃蟹，带画廊页 `island/index.html`。
 - `preview/cover.png`、`preview/cover.gif`：静态与动态封面。
+- `preview/phone-demo.gif`：最上面的假手机演示；源页面是 `preview/src/phone-demo.html`，`node preview/src/render.mjs` 重新导出（要 Chromium 和 Python 的 Pillow）。
 
 [111 个静态图标总览](preview/all-icons.jpg) · 全套动图：[1](preview/all-1.gif) / [2](preview/all-2.gif) / [3](preview/all-3.gif) / [4](preview/all-4.gif)
 
@@ -123,6 +128,8 @@ Clawd 是参考角色，本项目是非官方适配。基础图形出自 [clawd-
 小伙伴：[fanfan 图标](https://github.com/TangfanOVO/fanfan-icons) · [豹宝图标](https://github.com/TangfanOVO/baobao-icons)（各自按各自的许可使用）。
 
 ## English
+
+The phone demo at the top shows what the set is for: icons in a tab bar and a settings list that play their own gesture when tapped (the pop-up bubble is only a magnified view for the demo). The Dynamic Island crabs in `island/` come as an extra.
 
 111 functional SVG icons (100 concepts plus 11 alternatives) pair a coral pixel Clawd with thin, smooth objects. Every icon has a purpose-specific gesture, plus blink, happy, idle, and sleep states. Use SVG files or the sprite for static UI; inline the SVG and load the dependency-free CSS / JS for motion. Reduced-motion preferences are respected by the runtime. GIFs are preview media, not native iOS Dynamic Island components.
 
