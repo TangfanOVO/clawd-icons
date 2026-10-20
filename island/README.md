@@ -1,6 +1,6 @@
 # 灵动岛小螃蟹
 
-![在钓鱼 · 灵动岛展开态](crabs/fish/island-expanded.gif)
+<p align="center"><img src="preview.gif" width="640" alt="六只像素小螃蟹一起动：在钓鱼、惦记你身体、在给你写信、在看外面、出门走走、在挑吃的；每只下面是它在灵动岛紧凑态里的样子"></p>
 
 iPhone 灵动岛里一直在动的像素小螃蟹，六只，每只 10 秒一圈；外加一套工具，把带 CSS 动画的 SVG 变成「计时器字体」。by **唐幡 (TangfanOVO)**
 
@@ -35,6 +35,7 @@ iPhone 灵动岛里一直在动的像素小螃蟹，六只，每只 10 秒一圈
 | 让画廊用上新的灵动岛 GIF | `cp out/fish/island-compact.gif out/fish/island-expanded.gif crabs/fish/` |
 | 造字体和 Swift 表 | `python3 tools/fonts.py fonts out/CrabStates2.swift 在钓鱼=fish`（多只就接着写 `名字=key`，每只要先跑过上一行的 from_svg） |
 | 离线叠一遍字体看看 | `node tools/verify_fonts.mjs fonts out/CrabStates2.swift 在钓鱼 out/verify.png` |
+| 重出上面那张六只一起动的预览 | `python3 tools/preview_grid.py`（读各只的 `smooth.gif` 和 `island-compact.gif`，写 `preview.gif`） |
 | 接进 App | 照 [`swift/CrabFrames.swift`](swift/CrabFrames.swift)；`fonts/` 里的字体拖进 widget extension，`UIAppFonts` 里登记，`out/CrabStates2.swift` 一起加进去 |
 
 需要 Python 3（Pillow、fontTools）、Node 18+、一个 Chromium。Chromium 先找 Playwright 装的那份，再找系统里的 Chrome，`CHROME=路径` 可以指定。样机上的中文字体用 `CRAB_FONT=路径` 指定。
