@@ -1,0 +1,87 @@
+/* Clawd Icons · 生动版：主页 / 消息 / 书 / 睡眠
+ * 跟 ../clawd-motion.css、../clawd-motion.js 一起用：那两份管眨眼、开心、待机、睡着和播放；
+ * 这份只管这四个图标自己的点按动作（ClawdMotion.play(el) → data-motion=trick）。
+ * 身子只用 marciogranzotto/clawd-tank 的 static base（MIT，见 THIRD_PARTY.md）；姿势、笑眼、腮红、物件由 Clawd Icons 绘制。
+ * 坐标：身子里是 clawd 本地格（translate(4.5 11) 之内），物件是 24 格画布。 */
+
+.cr.crv{--cr-duration:1.2s}
+.cr.crv-book,.cr.crv-sleep{--cr-duration:1.4s}
+.cr.crv.is-playing [class]{animation-timing-function:cubic-bezier(.45,0,.3,1)}
+.crv .crv-upper,.crv .crv-hold{transform-origin:7.5px 9px}
+.crv .crv-bubble{transform-origin:12.5px 10.4px}
+.crv :is(.crv-dot-1,.crv-dot-2,.crv-dot-3){transform-box:fill-box;transform-origin:center}
+.crv .crv-page{transform-origin:12px 18.7px}
+.crv :is(.crv-blanket-fill,.crv-blanket-side){transform-origin:12px 20.8px}
+
+/* 换脸（睁眼 ↔ 笑眼 / 眯眼 / 闭眼）都用相邻两格 1% 的开关，看起来是一下子换，不是淡入 */
+
+/* ── 主页：看一眼屋顶 → 两只钳子举过头伸个懒腰（眯眼）→ 一屁股坐下，笑眼、腮红，晃两下，烟囱冒一缕烟 → 站起来 ── */
+.crv-home.is-playing[data-motion=trick] .cr-body{animation-name:crv-home-body}
+.crv-home.is-playing[data-motion=trick] .crv-upper{animation-name:crv-home-upper}
+.crv-home.is-playing[data-motion=trick] .cr-hand-left{animation-name:crv-home-hand-l}
+.crv-home.is-playing[data-motion=trick] .cr-hand-right{animation-name:crv-home-hand-r}
+.crv-home.is-playing[data-motion=trick] .cr-gaze{animation-name:crv-home-gaze}
+.crv-home.is-playing[data-motion=trick] .cr-eye-open{animation-name:crv-home-open}
+.crv-home.is-playing[data-motion=trick] .cr-eye-sleep{animation-name:crv-home-squeeze}
+.crv-home.is-playing[data-motion=trick] .crv-eye-joy{animation-name:crv-home-joy}
+.crv-home.is-playing[data-motion=trick] .crv-blush{animation-name:crv-home-blush}
+.crv-home.is-playing[data-motion=trick] .crv-smoke{animation-name:crv-home-smoke}
+@keyframes crv-home-body{0%,44%{transform:rotate(0)}56%{transform:rotate(-2.5deg)}70%{transform:rotate(2.5deg)}82%,100%{transform:rotate(0)}}
+@keyframes crv-home-upper{0%,30%{transform:translateY(0)}36%{transform:translateY(1.4px)}42%,84%{transform:translateY(1px)}96%,100%{transform:translateY(0)}}
+@keyframes crv-home-hand-l{0%,8%{transform:translateY(0)}20%,30%{transform:translateY(-4px)}37%{transform:translateY(.5px)}44%,100%{transform:translateY(0)}}
+@keyframes crv-home-hand-r{0%,10%{transform:translateY(0)}22%,30%{transform:translateY(-4px)}37%{transform:translateY(.5px)}44%,100%{transform:translateY(0)}}
+@keyframes crv-home-gaze{0%{transform:translateY(0)}6%,11%{transform:translateY(-1px)}12%,100%{transform:translateY(0)}}
+@keyframes crv-home-open{0%,11%{opacity:1}12%,87%{opacity:0}88%,100%{opacity:1}}
+@keyframes crv-home-squeeze{0%,11%{opacity:0}12%,33%{opacity:1}34%,100%{opacity:0}}
+@keyframes crv-home-joy{0%,33%{opacity:0}34%,87%{opacity:1}88%,100%{opacity:0}}
+@keyframes crv-home-blush{0%,38%{opacity:0}46%,80%{opacity:1}90%,100%{opacity:0}}
+@keyframes crv-home-smoke{0%,42%{opacity:0;transform:translate(0,.8px)}52%{opacity:1;transform:translate(0,0)}70%{opacity:1;transform:translate(.3px,-.5px)}88%,100%{opacity:0;transform:translate(.5px,-1.2px)}}
+
+/* ── 消息：气泡清空 → 身子跟着音节点头，三个点一个一个冒出来 → 举钳「发出去」，气泡一弹，笑眼 ── */
+.crv-chat.is-playing[data-motion=trick] .crv-bubble{animation-name:crv-chat-bubble}
+.crv-chat.is-playing[data-motion=trick] .crv-dot-1{animation-name:crv-chat-dot-1}
+.crv-chat.is-playing[data-motion=trick] .crv-dot-2{animation-name:crv-chat-dot-2}
+.crv-chat.is-playing[data-motion=trick] .crv-dot-3{animation-name:crv-chat-dot-3}
+.crv-chat.is-playing[data-motion=trick] .cr-body{animation-name:crv-chat-body}
+.crv-chat.is-playing[data-motion=trick] .cr-hand-right{animation-name:crv-chat-hand}
+.crv-chat.is-playing[data-motion=trick] .cr-eye-open{animation-name:crv-chat-open}
+.crv-chat.is-playing[data-motion=trick] .crv-eye-joy{animation-name:crv-chat-joy}
+@keyframes crv-chat-bubble{0%{transform:scale(1)}8%{transform:scale(.92)}16%,50%{transform:scale(1)}57%{transform:scale(1.1)}66%,100%{transform:scale(1)}}
+@keyframes crv-chat-dot-1{0%{opacity:1;transform:scale(1)}6%,16%{opacity:0;transform:scale(.3)}22%{opacity:1;transform:scale(1.4)}28%,100%{opacity:1;transform:scale(1)}}
+@keyframes crv-chat-dot-2{0%{opacity:1;transform:scale(1)}6%,28%{opacity:0;transform:scale(.3)}34%{opacity:1;transform:scale(1.4)}40%,100%{opacity:1;transform:scale(1)}}
+@keyframes crv-chat-dot-3{0%{opacity:1;transform:scale(1)}6%,40%{opacity:0;transform:scale(.3)}46%{opacity:1;transform:scale(1.4)}52%,100%{opacity:1;transform:scale(1)}}
+@keyframes crv-chat-body{0%,16%{transform:translateY(0)}20%{transform:translateY(-.6px)}25%{transform:translateY(0)}32%{transform:translateY(-.6px)}37%{transform:translateY(0)}44%{transform:translateY(-.6px)}49%,52%{transform:translateY(0)}57%{transform:translateY(-1px)}64%,100%{transform:translateY(0)}}
+@keyframes crv-chat-hand{0%,50%{transform:translateY(0)}57%{transform:translateY(-1.5px)}66%,100%{transform:translateY(0)}}
+@keyframes crv-chat-open{0%,53%{opacity:1}54%,86%{opacity:0}87%,100%{opacity:1}}
+@keyframes crv-chat-joy{0%,53%{opacity:0}54%,86%{opacity:1}87%,100%{opacity:0}}
+
+/* ── 书：两只钳子捧着书，眼睛从左页读到右页 → 右钳把这页翻过去 → 眼睛跳回左页 → 笑眼，身子一颠 ── */
+.crv-book.is-playing[data-motion=trick] .cr-gaze{animation-name:crv-book-gaze}
+.crv-book.is-playing[data-motion=trick] .crv-page{animation-name:crv-book-page}
+.crv-book.is-playing[data-motion=trick] .cr-hand-right{animation-name:crv-book-hand}
+.crv-book.is-playing[data-motion=trick] .cr-body{animation-name:crv-book-body}
+.crv-book.is-playing[data-motion=trick] .cr-eye-open{animation-name:crv-book-open}
+.crv-book.is-playing[data-motion=trick] .crv-eye-joy{animation-name:crv-book-joy}
+@keyframes crv-book-gaze{0%{transform:translateX(0)}8%,14%{transform:translateX(-1px)}22%{transform:translateX(0)}30%,38%{transform:translateX(1px)}48%{transform:translateX(0)}56%,62%{transform:translateX(-1px)}72%,100%{transform:translateX(0)}}
+@keyframes crv-book-page{0%,36%{opacity:0;transform:translateY(0) scaleX(1)}37%{opacity:1;transform:translateY(0) scaleX(1)}47%{opacity:1;transform:translateY(-.6px) scaleX(.06)}56%{opacity:1;transform:translateY(0) scaleX(-1)}58%,100%{opacity:0;transform:translateY(0) scaleX(-1)}}
+@keyframes crv-book-hand{0%,32%{transform:translate(0,0)}39%{transform:translate(-1px,2.5px)}50%{transform:translate(-3.5px,2.5px)}58%{transform:translate(-1px,1px)}64%,100%{transform:translate(0,0)}}
+@keyframes crv-book-body{0%,62%{transform:translateY(0)}68%{transform:translateY(-.7px)}75%,100%{transform:translateY(0)}}
+@keyframes crv-book-open{0%,63%{opacity:1}64%,86%{opacity:0}87%,100%{opacity:1}}
+@keyframes crv-book-joy{0%,63%{opacity:0}64%,86%{opacity:1}87%,100%{opacity:0}}
+
+/* ── 睡眠：被点了一下，眯开一只眼看你 → 又闭上，把被子往上一拉 → 蹭两下，z 飘走又冒回来 ── */
+.crv-sleep.is-playing[data-motion=trick] .cr-body{animation-name:crv-sleep-body}
+.crv-sleep.is-playing[data-motion=trick] .crv-eye-rest-r{animation-name:crv-sleep-rest-r}
+.crv-sleep.is-playing[data-motion=trick] .crv-eye-peek{animation-name:crv-sleep-peek}
+.crv-sleep.is-playing[data-motion=trick] .crv-hold{animation-name:crv-sleep-hold}
+.crv-sleep.is-playing[data-motion=trick] :is(.crv-blanket-fill,.crv-blanket-side){animation-name:crv-sleep-stretch}
+.crv-sleep.is-playing[data-motion=trick] .crv-z-1{animation-name:crv-sleep-z-1}
+.crv-sleep.is-playing[data-motion=trick] .crv-z-2{animation-name:crv-sleep-z-2}
+@keyframes crv-sleep-body{0%{transform:translateY(0) rotate(0)}6%{transform:translateY(-.5px) rotate(0)}14%,50%{transform:translateY(0) rotate(0)}56%{transform:translateY(0) rotate(-3deg)}64%{transform:translateY(0) rotate(3deg)}72%{transform:translateY(0) rotate(-1.5deg)}80%,100%{transform:translateY(0) rotate(0)}}
+@keyframes crv-sleep-rest-r{0%,10%{opacity:1}11%,33%{opacity:0}34%,100%{opacity:1}}
+@keyframes crv-sleep-peek{0%,10%{opacity:0}11%,33%{opacity:1}34%,100%{opacity:0}}
+@keyframes crv-sleep-hold{0%,34%{transform:translateY(0)}46%,82%{transform:translateY(-1px)}96%,100%{transform:translateY(0)}}
+/* 被子往上拉 1 格：被边平移，被面和两条侧边从床沿往上伸（4.3 → 5.3 格），竖线伸长不会变粗 */
+@keyframes crv-sleep-stretch{0%,34%{transform:scaleY(1)}46%,82%{transform:scaleY(1.2326)}96%,100%{transform:scaleY(1)}}
+@keyframes crv-sleep-z-1{0%,38%{opacity:1;transform:translate(0,0)}62%{opacity:0;transform:translate(.8px,-1.6px)}63%{opacity:0;transform:translate(-.6px,1.2px)}88%,100%{opacity:1;transform:translate(0,0)}}
+@keyframes crv-sleep-z-2{0%,30%{opacity:1;transform:translate(0,0)}55%{opacity:0;transform:translate(.8px,-1.6px)}56%{opacity:0;transform:translate(-.6px,1.2px)}80%,100%{opacity:1;transform:translate(0,0)}}

@@ -1,0 +1,799 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500" shape-rendering="crispEdges">
+  <!-- 在挑吃的 · 掷骰子选晚饭（food）。10 秒一圈，一秒一个姿势：
+       0 抱着骰子想吃什么 → 1 举起来往左摇 → 2 往右摇 → 3 扔出去 → 4 翻着往下掉 → 5 落地，吓一蹦「!」
+       → 6 凑过去看是几 → 7 冒出一碗面，^^ 拍手 → 8 搓手 → 9 搓手；然后面收回去、骰子捡回怀里。
+       身子是 clawd-tank 的静态底；骰子、面碗、表情（&gt;&lt; 和 ^^ 是整数格像素字）、手在身子前面时的浅色都是自己画的。
+       飘浮物（摇骰子的咔啦 fx-tick、落地星星 fx-star、热气 fx-steam）0.25 秒一格，只在身子旁边的空地里。 -->
+  <defs>
+    <style>
+.breathe { transform-origin: 7.5px 13px; animation: breathe 2.5s infinite ease-in-out; }
+@keyframes breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.02, 0.98) translate(0, 0.25px); } }
+.shadow { transform-origin: 7.5px 15.5px; animation: shadow-breathe 2.5s infinite ease-in-out; }
+@keyframes shadow-breathe { 0%, 100% { transform: scaleX(1); opacity: 0.5; } 50% { transform: scaleX(1.03); opacity: 0.45; } }
+.bd { animation: bd 10s infinite ease-in-out; }
+@keyframes bd {
+  0% { transform: translate(0px, 0px); }
+  3% { transform: translate(0px, 0px); }
+  5.5% { transform: translate(0px, 0px); }
+  8% { transform: translate(1px, 0px); }
+  10% { transform: translate(-1px, 0px); }
+  12% { transform: translate(1px, 0px); }
+  14% { transform: translate(-1px, 0px); }
+  16% { transform: translate(1px, 0px); }
+  18% { transform: translate(-1px, 0px); }
+  20% { transform: translate(1px, 0px); }
+  22% { transform: translate(-1px, 0px); }
+  24% { transform: translate(1px, 0px); }
+  25.2% { transform: translate(0px, 0px); }
+  30% { transform: translate(0px, 0px); }
+  37% { transform: translate(0px, 0px); }
+  44.5% { transform: translate(0px, 0px); }
+  46% { transform: translate(0px, -1px); }
+  50% { transform: translate(0px, -1px); }
+  53% { transform: translate(0px, -1px); }
+  57% { transform: translate(1px, 0px); }
+  60% { transform: translate(1px, 0px); }
+  63% { transform: translate(1px, 0px); }
+  67% { transform: translate(0px, -1px); }
+  70% { transform: translate(0px, -1px); }
+  72.5% { transform: translate(0px, -1px); }
+  74.5% { transform: translate(0px, 0px); }
+  90% { transform: translate(0px, 0px); }
+  95% { transform: translate(0px, 0px); }
+  97.5% { transform: translate(0px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+.legs { animation: legs 10s infinite ease-in-out; }
+@keyframes legs {
+  0% { transform: translate(0px, 0px); }
+  3% { transform: translate(0px, 0px); }
+  5.5% { transform: translate(0px, 0px); }
+  8% { transform: translate(1px, 0px); }
+  10% { transform: translate(-1px, 0px); }
+  12% { transform: translate(1px, 0px); }
+  14% { transform: translate(-1px, 0px); }
+  16% { transform: translate(1px, 0px); }
+  18% { transform: translate(-1px, 0px); }
+  20% { transform: translate(1px, 0px); }
+  22% { transform: translate(-1px, 0px); }
+  24% { transform: translate(1px, 0px); }
+  25.2% { transform: translate(0px, 0px); }
+  30% { transform: translate(0px, 0px); }
+  37% { transform: translate(0px, 0px); }
+  44.5% { transform: translate(0px, 0px); }
+  46% { transform: translate(0px, -1px); }
+  50% { transform: translate(0px, -1px); }
+  53% { transform: translate(0px, -1px); }
+  57% { transform: translate(1px, 0px); }
+  60% { transform: translate(1px, 0px); }
+  63% { transform: translate(1px, 0px); }
+  67% { transform: translate(0px, -1px); }
+  70% { transform: translate(0px, -1px); }
+  72.5% { transform: translate(0px, -1px); }
+  74.5% { transform: translate(0px, 0px); }
+  90% { transform: translate(0px, 0px); }
+  95% { transform: translate(0px, 0px); }
+  97.5% { transform: translate(0px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+.lh { animation: lh 10s infinite ease-in-out; }
+@keyframes lh {
+  0% { transform: translate(0px, -2px); }
+  3% { transform: translate(0px, -2px); }
+  5.5% { transform: translate(1px, -6px); }
+  8% { transform: translate(6px, -6px); }
+  10% { transform: translate(2px, -6px); }
+  12% { transform: translate(6px, -6px); }
+  14% { transform: translate(2px, -6px); }
+  16% { transform: translate(6px, -6px); }
+  18% { transform: translate(2px, -6px); }
+  20% { transform: translate(6px, -6px); }
+  22% { transform: translate(2px, -6px); }
+  24% { transform: translate(6px, -6px); }
+  25.2% { transform: translate(4px, -5px); }
+  26.6% { transform: translate(2px, -3px); }
+  30% { transform: translate(0px, -2px); }
+  37% { transform: translate(0px, 0px); }
+  44.5% { transform: translate(0px, 0px); }
+  46% { transform: translate(0px, -6px); }
+  50% { transform: translate(0px, -6px); }
+  53% { transform: translate(0px, -6px); }
+  57% { transform: translate(1px, 0px); }
+  60% { transform: translate(1px, 0px); }
+  63% { transform: translate(1px, 0px); }
+  65% { transform: translate(3px, 2px); }
+  67% { transform: translate(5px, 0px); }
+  70% { transform: translate(5px, 0px); }
+  72.5% { transform: translate(5px, 0px); }
+  74.5% { transform: translate(5px, 2px); }
+  76% { transform: translate(5px, 1px); }
+  78% { transform: translate(5px, 2px); }
+  80% { transform: translate(5px, 1px); }
+  82% { transform: translate(5px, 2px); }
+  84% { transform: translate(5px, 1px); }
+  86% { transform: translate(5px, 2px); }
+  88% { transform: translate(5px, 1px); }
+  90% { transform: translate(5px, 2px); }
+  92% { transform: translate(5px, 1px); }
+  94% { transform: translate(5px, 2px); }
+  96% { transform: translate(5px, 1px); }
+  98.2% { transform: translate(0px, -1px); }
+  100% { transform: translate(0px, -2px); }
+}
+.rh { animation: rh 10s infinite ease-in-out; }
+@keyframes rh {
+  0% { transform: translate(0px, 0px); }
+  3% { transform: translate(0px, 0px); }
+  5.5% { transform: translate(-7px, -6px); }
+  8% { transform: translate(-2px, -6px); }
+  10% { transform: translate(-6px, -6px); }
+  12% { transform: translate(-2px, -6px); }
+  14% { transform: translate(-6px, -6px); }
+  16% { transform: translate(-2px, -6px); }
+  18% { transform: translate(-6px, -6px); }
+  20% { transform: translate(-2px, -6px); }
+  22% { transform: translate(-6px, -6px); }
+  24% { transform: translate(-2px, -6px); }
+  25.2% { transform: translate(-4px, -5px); }
+  26.6% { transform: translate(-1px, -4px); }
+  30% { transform: translate(1px, -4px); }
+  37% { transform: translate(0px, 0px); }
+  44.5% { transform: translate(0px, 0px); }
+  46% { transform: translate(0px, -6px); }
+  50% { transform: translate(0px, -6px); }
+  53% { transform: translate(0px, -6px); }
+  57% { transform: translate(1px, 0px); }
+  60% { transform: translate(1px, 0px); }
+  63% { transform: translate(1px, 0px); }
+  65% { transform: translate(-2px, 2px); }
+  67% { transform: translate(-5px, 0px); }
+  70% { transform: translate(-5px, 0px); }
+  72.5% { transform: translate(-5px, 0px); }
+  74.5% { transform: translate(-5px, 1px); }
+  76% { transform: translate(-5px, 2px); }
+  78% { transform: translate(-5px, 1px); }
+  80% { transform: translate(-5px, 2px); }
+  82% { transform: translate(-5px, 1px); }
+  84% { transform: translate(-5px, 2px); }
+  86% { transform: translate(-5px, 1px); }
+  88% { transform: translate(-5px, 2px); }
+  90% { transform: translate(-5px, 1px); }
+  92% { transform: translate(-5px, 2px); }
+  94% { transform: translate(-5px, 1px); }
+  96% { transform: translate(-5px, 1px); }
+  98.2% { transform: translate(0px, 0px); }
+  100% { transform: translate(0px, 0px); }
+}
+.hdk { animation: hdk 10s infinite step-end; }
+@keyframes hdk {
+  0% { opacity: 0; }
+  66.5% { opacity: 1; }
+  96% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.gaze { animation: gaze 10s infinite ease-in-out; }
+@keyframes gaze {
+  0% { transform: translate(-1px, -1px); }
+  4.5% { transform: translate(-1px, -1px); }
+  6% { transform: translate(0px, 0px); }
+  25% { transform: translate(0px, 0px); }
+  27% { transform: translate(1px, -1px); }
+  30% { transform: translate(1px, -1px); }
+  36% { transform: translate(1px, -1px); }
+  39% { transform: translate(1px, 0px); }
+  40% { transform: translate(1px, 0px); }
+  50% { transform: translate(1px, 0px); }
+  53% { transform: translate(1px, 0px); }
+  57% { transform: translate(1px, 1px); }
+  60% { transform: translate(1px, 1px); }
+  65% { transform: translate(1px, 1px); }
+  67% { transform: translate(0px, 0px); }
+  96% { transform: translate(0px, 0px); }
+  98% { transform: translate(-1px, -1px); }
+  100% { transform: translate(-1px, -1px); }
+}
+.dmv { animation: dmv 10s infinite ease-in-out; }
+@keyframes dmv {
+  0% { transform: translate(-3px, 2px); }
+  3% { transform: translate(-3px, 2px); }
+  5.5% { transform: translate(2px, 0px); }
+  8% { transform: translate(7px, 0px); }
+  9% { transform: translate(5px, -0.6px); }
+  10% { transform: translate(3px, 0px); }
+  11% { transform: translate(5px, -0.6px); }
+  12% { transform: translate(7px, 0px); }
+  13% { transform: translate(5px, -0.6px); }
+  14% { transform: translate(3px, 0px); }
+  15% { transform: translate(5px, -0.6px); }
+  16% { transform: translate(7px, 0px); }
+  17% { transform: translate(5px, -0.6px); }
+  18% { transform: translate(3px, 0px); }
+  19% { transform: translate(5px, -0.6px); }
+  20% { transform: translate(7px, 0px); }
+  21% { transform: translate(5px, -0.6px); }
+  22% { transform: translate(3px, 0px); }
+  23% { transform: translate(5px, -0.6px); }
+  24% { transform: translate(7px, 0px); }
+  25.2% { transform: translate(6px, 1px); }
+  26.6% { transform: translate(9px, -1.5px); animation-timing-function: linear; }
+  28.3% { transform: translate(12px, -2.2px); }
+  30% { transform: translate(14px, 0px); }
+  33.5% { transform: translate(14px, 0.8px); }
+  40% { transform: translate(14px, 4px); animation-timing-function: ease-in; }
+  44.5% { transform: translate(14px, 10px); }
+  45.8% { transform: translate(14px, 8.8px); }
+  47.2% { transform: translate(14px, 10px); }
+  60% { transform: translate(14px, 10px); }
+  95% { transform: translate(14px, 10px); }
+  96.2% { transform: translate(13px, 4px); }
+  97.6% { transform: translate(7px, -2.5px); }
+  99% { transform: translate(-1px, 0px); }
+  100% { transform: translate(-3px, 2px); }
+}
+.drot { animation: drot 10s infinite ease-in-out; transform-origin: 2.5px 2.5px; }
+@keyframes drot {
+  0% { transform: rotate(0deg); }
+  3% { transform: rotate(0deg); }
+  5.5% { transform: rotate(0deg); }
+  8% { transform: rotate(0deg); }
+  9% { transform: rotate(10deg); }
+  10% { transform: rotate(0deg); }
+  11% { transform: rotate(-10deg); }
+  12% { transform: rotate(0deg); }
+  13% { transform: rotate(10deg); }
+  14% { transform: rotate(0deg); }
+  15% { transform: rotate(-10deg); }
+  16% { transform: rotate(0deg); }
+  17% { transform: rotate(10deg); }
+  18% { transform: rotate(0deg); }
+  19% { transform: rotate(-10deg); }
+  20% { transform: rotate(0deg); }
+  21% { transform: rotate(10deg); }
+  22% { transform: rotate(0deg); }
+  23% { transform: rotate(-10deg); }
+  24% { transform: rotate(0deg); }
+  25.2% { transform: rotate(-12deg); }
+  26.6% { transform: rotate(30deg); animation-timing-function: linear; }
+  28.3% { transform: rotate(110deg); }
+  30% { transform: rotate(180deg); animation-timing-function: linear; }
+  33.5% { transform: rotate(240deg); animation-timing-function: linear; }
+  40% { transform: rotate(360deg); animation-timing-function: linear; }
+  44.5% { transform: rotate(450deg); }
+  45.8% { transform: rotate(462deg); }
+  47.2% { transform: rotate(450deg); }
+  95% { transform: rotate(450deg); }
+  96.2% { transform: rotate(480deg); }
+  97.6% { transform: rotate(580deg); }
+  99% { transform: rotate(680deg); }
+  100% { transform: rotate(720deg); }
+}
+.dsq { animation: dsq 10s infinite ease-in-out; transform-origin: 2.5px 5px; }
+@keyframes dsq {
+  0% { transform: scale(1, 1); }
+  43.8% { transform: scale(1, 1); }
+  44.5% { transform: scale(1.2, 0.8); }
+  45.2% { transform: scale(0.92, 1.08); }
+  46.6% { transform: scale(1, 1); }
+  47.2% { transform: scale(1.12, 0.88); }
+  48% { transform: scale(1, 1); }
+  100% { transform: scale(1, 1); }
+}
+.e-rect { animation: e-rect 10s infinite step-end; }
+@keyframes e-rect {
+  0% { opacity: 1; }
+  6.2% { opacity: 0; }
+  25.2% { opacity: 1; }
+  66.8% { opacity: 0; }
+  96.2% { opacity: 1; }
+  100% { opacity: 1; }
+}
+.e-x { animation: e-x 10s infinite step-end; }
+@keyframes e-x {
+  0% { opacity: 0; }
+  6.2% { opacity: 1; }
+  25.2% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.e-hap { animation: e-hap 10s infinite step-end; }
+@keyframes e-hap {
+  0% { opacity: 0; }
+  66.8% { opacity: 1; }
+  96.2% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.blink { animation: blink 10s infinite linear; transform-origin: 7.5px 9px; }
+@keyframes blink {
+  0% { transform: scaleY(1); }
+  3.8% { transform: scaleY(1); }
+  4.5% { transform: scaleY(0.1); }
+  5.2% { transform: scaleY(1); }
+  54.8% { transform: scaleY(1); }
+  55.5% { transform: scaleY(0.1); }
+  56.2% { transform: scaleY(1); }
+  100% { transform: scaleY(1); }
+}
+.blush { animation: blush 10s infinite step-end; }
+@keyframes blush {
+  0% { opacity: 0; }
+  76% { opacity: 1; }
+  96% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.f5 { animation: f5 10s infinite step-end; }
+@keyframes f5 {
+  0% { opacity: 1; }
+  27.2% { opacity: 0; }
+  98.6% { opacity: 1; }
+  100% { opacity: 1; }
+}
+.f3 { animation: f3 10s infinite step-end; }
+@keyframes f3 {
+  0% { opacity: 0; }
+  27.2% { opacity: 1; }
+  34% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.f6 { animation: f6 10s infinite step-end; }
+@keyframes f6 {
+  0% { opacity: 0; }
+  34% { opacity: 1; }
+  37.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.f2 { animation: f2 10s infinite step-end; }
+@keyframes f2 {
+  0% { opacity: 0; }
+  37.5% { opacity: 1; }
+  43% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.f4 { animation: f4 10s infinite step-end; }
+@keyframes f4 {
+  0% { opacity: 0; }
+  43% { opacity: 1; }
+  98.6% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.dsh { animation: dsh 10s infinite step-end; }
+@keyframes dsh {
+  0% { opacity: 0; }
+  44.5% { opacity: 1; }
+  95.8% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.bwv { animation: bwv 10s infinite step-end; }
+@keyframes bwv {
+  0% { opacity: 0; }
+  66.2% { opacity: 1; }
+  97.2% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.bwsc { animation: bwsc 10s infinite ease-in-out; transform-origin: 16px 9px; }
+@keyframes bwsc {
+  0% { transform: scale(0.3); }
+  66.2% { transform: scale(0.3); }
+  68% { transform: scale(1.2); }
+  69.5% { transform: scale(1); }
+  94.5% { transform: scale(1); }
+  95.8% { transform: scale(1.15); }
+  97.2% { transform: scale(0.3); }
+  100% { transform: scale(0.3); }
+}
+.bang { animation: bang 10s infinite step-end; }
+@keyframes bang {
+  0% { opacity: 0; }
+  45.5% { opacity: 1; }
+  56.2% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p0 { animation: p0m 10s infinite linear; }
+@keyframes p0m {
+  0% { transform: translate(1px, 0px); }
+  10% { transform: translate(2px, 1px); animation-timing-function: linear; }
+  12.5% { transform: translate(1px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(1px, 0px); }
+}
+.p0o { animation: p0o 10s infinite step-end; }
+@keyframes p0o {
+  0% { opacity: 0; }
+  9% { opacity: 1; }
+  14% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p1 { animation: p1m 10s infinite linear; }
+@keyframes p1m {
+  0% { transform: translate(-1px, 1px); }
+  12.5% { transform: translate(1px, 3px); animation-timing-function: linear; }
+  15% { transform: translate(0px, 2px); animation-timing-function: linear; }
+  17.5% { transform: translate(-1px, 1px); animation-timing-function: linear; }
+  100% { transform: translate(-1px, 1px); }
+}
+.p1o { animation: p1o 10s infinite step-end; }
+@keyframes p1o {
+  0% { opacity: 0; }
+  11.5% { opacity: 1; }
+  19% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p2 { animation: p2m 10s infinite linear; }
+@keyframes p2m {
+  0% { transform: translate(1px, 1px); }
+  15% { transform: translate(2px, 0px); animation-timing-function: linear; }
+  17.5% { transform: translate(1px, 1px); animation-timing-function: linear; }
+  100% { transform: translate(1px, 1px); }
+}
+.p2o { animation: p2o 10s infinite step-end; }
+@keyframes p2o {
+  0% { opacity: 0; }
+  14% { opacity: 1; }
+  19% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p3 { animation: p3m 10s infinite linear; }
+@keyframes p3m {
+  0% { transform: translate(13px, 0px); }
+  20% { transform: translate(12px, 1px); animation-timing-function: linear; }
+  22.5% { transform: translate(13px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 0px); }
+}
+.p3o { animation: p3o 10s infinite step-end; }
+@keyframes p3o {
+  0% { opacity: 0; }
+  19% { opacity: 1; }
+  24% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p4 { animation: p4m 10s infinite linear; }
+@keyframes p4m {
+  0% { transform: translate(13px, 1px); }
+  22.5% { transform: translate(12px, 2px); animation-timing-function: linear; }
+  25% { transform: translate(13px, 1px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 1px); }
+}
+.p4o { animation: p4o 10s infinite step-end; }
+@keyframes p4o {
+  0% { opacity: 0; }
+  21.5% { opacity: 1; }
+  26.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p5 { animation: p5m 10s infinite linear; }
+@keyframes p5m {
+  0% { transform: translate(13px, 2px); }
+  25% { transform: translate(12px, 0px); animation-timing-function: linear; }
+  27.5% { transform: translate(13px, 2px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 2px); }
+}
+.p5o { animation: p5o 10s infinite step-end; }
+@keyframes p5o {
+  0% { opacity: 0; }
+  24% { opacity: 1; }
+  29% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p6 { animation: p6m 10s infinite linear; }
+@keyframes p6m {
+  0% { transform: translate(5px, 0px); }
+  20% { transform: translate(5px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(5px, 0px); }
+}
+.p6o { animation: p6o 10s infinite step-end; }
+@keyframes p6o {
+  0% { opacity: 0; }
+  19% { opacity: 1; }
+  21.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p7 { animation: p7m 10s infinite linear; }
+@keyframes p7m {
+  0% { transform: translate(5px, 2px); }
+  25% { transform: translate(6px, 1px); animation-timing-function: linear; }
+  27.5% { transform: translate(5px, 2px); animation-timing-function: linear; }
+  100% { transform: translate(5px, 2px); }
+}
+.p7o { animation: p7o 10s infinite step-end; }
+@keyframes p7o {
+  0% { opacity: 0; }
+  24% { opacity: 1; }
+  29% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p8 { animation: p8m 10s infinite linear; }
+@keyframes p8m {
+  0% { transform: translate(16px, 8px); }
+  50% { transform: translate(16px, 8px); animation-timing-function: linear; }
+  100% { transform: translate(16px, 8px); }
+}
+.p8o { animation: p8o 10s infinite step-end; }
+@keyframes p8o {
+  0% { opacity: 0; }
+  49% { opacity: 1; }
+  51.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p9 { animation: p9m 10s infinite linear; }
+@keyframes p9m {
+  0% { transform: translate(13px, 13px); }
+  50% { transform: translate(13px, 13px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 13px); }
+}
+.p9o { animation: p9o 10s infinite step-end; }
+@keyframes p9o {
+  0% { opacity: 0; }
+  49% { opacity: 1; }
+  51.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p10 { animation: p10m 10s infinite linear; }
+@keyframes p10m {
+  0% { transform: translate(13px, 14px); }
+  52.5% { transform: translate(13px, 14px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 14px); }
+}
+.p10o { animation: p10o 10s infinite step-end; }
+@keyframes p10o {
+  0% { opacity: 0; }
+  51.5% { opacity: 1; }
+  54% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p11 { animation: p11m 10s infinite linear; }
+@keyframes p11m {
+  0% { transform: translate(17px, 4px); }
+  52.5% { transform: translate(17px, 4px); animation-timing-function: linear; }
+  100% { transform: translate(17px, 4px); }
+}
+.p11o { animation: p11o 10s infinite step-end; }
+@keyframes p11o {
+  0% { opacity: 0; }
+  51.5% { opacity: 1; }
+  54% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p12 { animation: p12m 10s infinite linear; }
+@keyframes p12m {
+  0% { transform: translate(15px, 2px); }
+  55% { transform: translate(15px, 2px); animation-timing-function: linear; }
+  100% { transform: translate(15px, 2px); }
+}
+.p12o { animation: p12o 10s infinite step-end; }
+@keyframes p12o {
+  0% { opacity: 0; }
+  54% { opacity: 1; }
+  56.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p13 { animation: p13m 10s infinite linear; }
+@keyframes p13m {
+  0% { transform: translate(18px, 2px); }
+  57.5% { transform: translate(18px, 2px); animation-timing-function: linear; }
+  100% { transform: translate(18px, 2px); }
+}
+.p13o { animation: p13o 10s infinite step-end; }
+@keyframes p13o {
+  0% { opacity: 0; }
+  56.5% { opacity: 1; }
+  59% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p14 { animation: p14m 10s infinite linear; }
+@keyframes p14m {
+  0% { transform: translate(18px, 9px); }
+  60% { transform: translate(18px, 9px); animation-timing-function: linear; }
+  100% { transform: translate(18px, 9px); }
+}
+.p14o { animation: p14o 10s infinite step-end; }
+@keyframes p14o {
+  0% { opacity: 0; }
+  59% { opacity: 1; }
+  61.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p15 { animation: p15m 10s infinite linear; }
+@keyframes p15m {
+  0% { transform: translate(13px, 13px); }
+  62.5% { transform: translate(13px, 13px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 13px); }
+}
+.p15o { animation: p15o 10s infinite step-end; }
+@keyframes p15o {
+  0% { opacity: 0; }
+  61.5% { opacity: 1; }
+  64% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p16 { animation: p16m 10s infinite linear; }
+@keyframes p16m {
+  0% { transform: translate(16px, 9px); }
+  65% { transform: translate(16px, 9px); animation-timing-function: linear; }
+  100% { transform: translate(16px, 9px); }
+}
+.p16o { animation: p16o 10s infinite step-end; }
+@keyframes p16o {
+  0% { opacity: 0; }
+  64% { opacity: 1; }
+  66.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p17 { animation: p17m 10s infinite linear; }
+@keyframes p17m {
+  0% { transform: translate(13px, 14px); }
+  67.5% { transform: translate(13px, 14px); animation-timing-function: linear; }
+  100% { transform: translate(13px, 14px); }
+}
+.p17o { animation: p17o 10s infinite step-end; }
+@keyframes p17o {
+  0% { opacity: 0; }
+  66.5% { opacity: 1; }
+  69% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p18 { animation: p18m 10s infinite linear; }
+@keyframes p18m {
+  0% { transform: translate(15px, 0px); }
+  70% { transform: translate(14px, 3px); animation-timing-function: linear; }
+  72.5% { transform: translate(15px, 2px); animation-timing-function: linear; }
+  75% { transform: translate(14px, 1px); animation-timing-function: linear; }
+  77.5% { transform: translate(15px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(15px, 0px); }
+}
+.p18o { animation: p18o 10s infinite step-end; }
+@keyframes p18o {
+  0% { opacity: 0; }
+  69% { opacity: 1; }
+  79% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p19 { animation: p19m 10s infinite linear; }
+@keyframes p19m {
+  0% { transform: translate(16px, 0px); }
+  75% { transform: translate(17px, 3px); animation-timing-function: linear; }
+  77.5% { transform: translate(16px, 2px); animation-timing-function: linear; }
+  80% { transform: translate(17px, 1px); animation-timing-function: linear; }
+  82.5% { transform: translate(16px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(16px, 0px); }
+}
+.p19o { animation: p19o 10s infinite step-end; }
+@keyframes p19o {
+  0% { opacity: 0; }
+  74% { opacity: 1; }
+  84% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p20 { animation: p20m 10s infinite linear; }
+@keyframes p20m {
+  0% { transform: translate(15px, 0px); }
+  82.5% { transform: translate(14px, 3px); animation-timing-function: linear; }
+  85% { transform: translate(15px, 2px); animation-timing-function: linear; }
+  87.5% { transform: translate(14px, 1px); animation-timing-function: linear; }
+  90% { transform: translate(15px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(15px, 0px); }
+}
+.p20o { animation: p20o 10s infinite step-end; }
+@keyframes p20o {
+  0% { opacity: 0; }
+  81.5% { opacity: 1; }
+  91.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p21 { animation: p21m 10s infinite linear; }
+@keyframes p21m {
+  0% { transform: translate(16px, 0px); }
+  87.5% { transform: translate(17px, 3px); animation-timing-function: linear; }
+  90% { transform: translate(16px, 2px); animation-timing-function: linear; }
+  92.5% { transform: translate(17px, 1px); animation-timing-function: linear; }
+  95% { transform: translate(16px, 0px); animation-timing-function: linear; }
+  100% { transform: translate(16px, 0px); }
+}
+.p21o { animation: p21o 10s infinite step-end; }
+@keyframes p21o {
+  0% { opacity: 0; }
+  86.5% { opacity: 1; }
+  96.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.p22 { animation: p22m 10s infinite linear; }
+@keyframes p22m {
+  0% { transform: translate(14px, 3px); }
+  95% { transform: translate(14px, 3px); animation-timing-function: linear; }
+  100% { transform: translate(14px, 3px); }
+}
+.p22o { animation: p22o 10s infinite step-end; }
+@keyframes p22o {
+  0% { opacity: 0; }
+  94% { opacity: 1; }
+  96.5% { opacity: 0; }
+  100% { opacity: 0; }
+}
+    </style>
+  </defs>
+
+  <rect class="shadow" x="3" y="15" width="9" height="1" fill="#000000" opacity="0.5"/>
+  <g class="dsh"><rect class="shadow-d" x="14" y="15" width="5" height="1" fill="#000000" opacity="0.5"/></g>
+
+  <!-- 腿：clawd-tank 原版的长短（第 13 行起、高 2），跟着身子挪 -->
+  <g class="legs" fill="#DE886D">
+    <rect x="3" y="13" width="1" height="2"/>
+    <rect x="5" y="13" width="1" height="2"/>
+    <rect x="9" y="13" width="1" height="2"/>
+    <rect x="11" y="13" width="1" height="2"/>
+  </g>
+
+  <g class="bd"><g class="breathe">
+    <rect x="2" y="6" width="11" height="7" fill="#DE886D"/>
+    <g class="gaze">
+      <g class="e-rect"><g class="blink" fill="#000000">
+        <rect x="4" y="8" width="1" height="2"/>
+        <rect x="10" y="8" width="1" height="2"/>
+      </g></g>
+      <g class="e-x" fill="#000000">
+        <rect x="4" y="8" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/>
+        <rect x="10" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/>
+      </g>
+      <g class="e-hap" fill="#000000">
+        <rect x="4" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/>
+        <rect x="10" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="11" y="9" width="1" height="1"/>
+      </g>
+    </g>
+    <g class="blush" fill="#FF5365">
+      <rect x="3" y="10" width="2" height="1"/>
+      <rect x="10" y="10" width="2" height="1"/>
+    </g>
+  </g></g>
+
+  <g class="bang" fill="#FFFFFF">
+    <rect x="7" y="0" width="1" height="3"/>
+    <rect x="7" y="4" width="1" height="1"/>
+  </g>
+
+  <g class="dmv"><g class="dsq"><g class="drot">
+    <rect x="0" y="0" width="5" height="5" fill="#FFFFFF"/>
+    <g class="f5" fill="#000000"><rect x="1" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/></g>
+    <g class="f3" fill="#000000"><rect x="3" y="1" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/></g>
+    <g class="f6" fill="#000000"><rect x="1" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/></g>
+    <g class="f2" fill="#000000"><rect x="1" y="1" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/></g>
+    <g class="f4" fill="#FF5365"><rect x="1" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="1" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/></g>
+  </g></g></g>
+
+  <g class="bwv"><g class="bwsc">
+    <rect x="14" y="5" width="3" height="1" fill="#FFE066"/>
+    <rect x="17" y="5" width="1" height="1" fill="#A85A3A"/>
+    <rect x="18" y="4" width="1" height="1" fill="#A85A3A"/>
+    <rect x="13" y="6" width="6" height="1" fill="#5C9CE6"/>
+    <rect x="14" y="7" width="4" height="1" fill="#5C9CE6"/>
+    <rect x="15" y="8" width="2" height="1" fill="#5C9CE6"/>
+  </g></g>
+
+  <g fill="#DE886D">
+    <g class="lh"><rect x="0" y="9" width="2" height="2"/></g>
+    <g class="rh"><rect x="13" y="9" width="2" height="2"/></g>
+  </g>
+  <g class="hdk" fill="#F4B39B">
+    <g class="lh"><rect x="0" y="9" width="2" height="2"/></g>
+    <g class="rh"><rect x="13" y="9" width="2" height="2"/></g>
+  </g>
+
+    <g class="fx-tick"><g class="p0o"><g class="p0" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p1o"><g class="p1" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p2o"><g class="p2" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p3o"><g class="p3" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p4o"><g class="p4" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p5o"><g class="p5" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p6o"><g class="p6" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-tick"><g class="p7o"><g class="p7" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p8o"><g class="p8" fill="#FFE066"><rect x="-1" y="0" width="3" height="1"/><rect x="0" y="-1" width="1" height="3"/></g></g></g>
+  <g class="fx-star"><g class="p9o"><g class="p9" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p10o"><g class="p10" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p11o"><g class="p11" fill="#FFE066"><rect x="-1" y="0" width="3" height="1"/><rect x="0" y="-1" width="1" height="3"/></g></g></g>
+  <g class="fx-star"><g class="p12o"><g class="p12" fill="#FFE066"><rect x="-1" y="0" width="3" height="1"/><rect x="0" y="-1" width="1" height="3"/></g></g></g>
+  <g class="fx-star"><g class="p13o"><g class="p13" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p14o"><g class="p14" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p15o"><g class="p15" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p16o"><g class="p16" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-star"><g class="p17o"><g class="p17" fill="#FFE066"><rect x="0" y="0" width="1" height="1"/></g></g></g>
+  <g class="fx-steam"><g class="p18o"><g class="p18" fill="#FFFFFF"><rect x="0" y="0" width="1" height="2"/></g></g></g>
+  <g class="fx-steam"><g class="p19o"><g class="p19" fill="#FFFFFF"><rect x="0" y="0" width="1" height="2"/></g></g></g>
+  <g class="fx-steam"><g class="p20o"><g class="p20" fill="#FFFFFF"><rect x="0" y="0" width="1" height="2"/></g></g></g>
+  <g class="fx-steam"><g class="p21o"><g class="p21" fill="#FFFFFF"><rect x="0" y="0" width="1" height="2"/></g></g></g>
+  <g class="fx-steam"><g class="p22o"><g class="p22" fill="#FFFFFF"><rect x="0" y="0" width="1" height="2"/></g></g></g>
+</svg>

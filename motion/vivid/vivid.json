@@ -1,0 +1,49 @@
+{
+  "name": "Clawd Icons · 生动版",
+  "description": "主页、消息、书、睡眠的另一种画法：动作更大，带笑眼、腮红等表情。原来那版不变，两版并存。",
+  "paths": "相对于 motion/vivid/",
+  "css": "clawd-vivid.css",
+  "requires": ["../clawd-motion.css", "../clawd-motion.js"],
+  "icons": [
+    {
+      "name": "clawd-home",
+      "label": "主页",
+      "motion": "伸个懒腰",
+      "description": "看一眼屋顶，举钳伸个懒腰，坐下晃两下，烟囱冒一缕烟。",
+      "duration": 1.2,
+      "svg": "svg/clawd-home.svg",
+      "static": "static/clawd-home.svg",
+      "gif": "gif/clawd-home.gif"
+    },
+    {
+      "name": "clawd-chat",
+      "label": "消息",
+      "motion": "说完发出",
+      "description": "气泡清空，跟着点头冒出三个点，举钳把这句发出去，气泡一弹。",
+      "duration": 1.2,
+      "svg": "svg/clawd-chat.svg",
+      "static": "static/clawd-chat.svg",
+      "gif": "gif/clawd-chat.gif"
+    },
+    {
+      "name": "clawd-book",
+      "label": "书",
+      "motion": "捧书翻页",
+      "description": "捧着书从左读到右，右钳翻过一页，读完笑一下。",
+      "duration": 1.4,
+      "svg": "svg/clawd-book.svg",
+      "static": "static/clawd-book.svg",
+      "gif": "gif/clawd-book.gif"
+    },
+    {
+      "name": "clawd-sleep",
+      "label": "睡眠",
+      "motion": "偷看一眼",
+      "description": "眯开一只眼看你，又闭上，拉好被子，z 飘走又回来。",
+      "duration": 1.4,
+      "svg": "svg/clawd-sleep.svg",
+      "static": "static/clawd-sleep.svg",
+      "gif": "gif/clawd-sleep.gif"
+    }
+  ]
+}

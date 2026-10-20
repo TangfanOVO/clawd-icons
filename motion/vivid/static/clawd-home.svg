@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g>
+<!-- Clawd body: marciogranzotto/clawd-tank (MIT), static base only; see THIRD_PARTY.md. House, pose, joy eyes and blush: Clawd Icons. -->
+<g><path d="M2 11.2 12 3l10 8.2"/><path d="M3.5 10v10.35h17V10"/><path d="M16 6.28V4.3h2v3.62"/></g>
+<g stroke="none"><g transform="translate(4.5 11)">
+<g fill="#DE886D"><path d="M3 7h1v2H3Z"/><path d="M5 7h1v2H5Z"/><path d="M9 7h1v2H9Z"/><path d="M11 7h1v2h-1Z"/></g>
+<g>
+<g fill="#DE886D"><path d="M0 3h2v2H0Z"/><path d="M13 3h2v2h-2Z"/><path d="M2 0h11v7H2Z"/></g>
+<g fill="#141414"><g><path d="M4 2h1v2H4Zm6 0h1v2h-1Z"/></g>
+</g>
+</g></g></g>
+</g></svg>

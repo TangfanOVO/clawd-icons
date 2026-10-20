@@ -1,0 +1,29 @@
+/* 单个下载面板 */
+.dl{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;scroll-margin-top:16px}
+.dl-layout{display:grid;grid-template-columns:136px minmax(0,1fr);gap:24px;margin-top:18px}
+.dl-main{min-width:0}
+.dl-preview{display:grid;place-items:center;align-self:start;width:100%;aspect-ratio:1;padding:0;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink)}
+.dl-preview svg{width:84px;height:84px}
+.dl-preview.is-clear,.dl-result img.is-clear{background:#fdfbf8 conic-gradient(#ebe5dd 25%,transparent 0 50%,#ebe5dd 0 75%,transparent 0) 0 0/14px 14px}
+.dl-preview.light-ink,.dl-result img.light-ink{background-color:#2d2f35;background-image:conic-gradient(#3c3e45 25%,transparent 0 50%,#3c3e45 0 75%,transparent 0)}
+.dl-fields{display:flex;flex-wrap:wrap;gap:12px 16px}
+.dl-fields label{display:grid;gap:4px;font-size:12px;color:var(--muted);min-width:0;max-width:100%}
+.dl-fields select,.dl-fields input{font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:7px;min-height:44px;padding:6px 10px;max-width:100%}
+.dl-fields input[type=color]{width:64px;padding:4px}
+.dl-fields select:disabled{opacity:.6}
+.dl-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dl-actions .control{min-height:44px;font-size:13px;padding:9px 14px}
+.dl-actions button:disabled{opacity:.55;cursor:wait}
+.dl-status{min-height:1.6em;margin:10px 0 0;font-size:13px;color:var(--muted)}
+.dl-result{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:12px}
+.dl-result img{width:96px;height:96px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.dl-result>div{min-width:0;flex:1}
+.dl-result a{display:inline-block;padding:10px 0;color:var(--accent);font-size:13px;overflow-wrap:anywhere}
+.dl-result .sub{margin:0}
+.export-stage{position:fixed;left:-10000px;top:0;width:24px;height:24px;overflow:hidden;pointer-events:none}
+@media(max-width:560px){
+  .dl-layout{grid-template-columns:1fr;gap:16px}
+  .dl-preview{width:120px}
+  .dl-fields{gap:12px}
+  .dl-fields label.wide,.dl-fields label.wide select{width:100%}
+}

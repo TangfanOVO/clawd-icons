@@ -4,9 +4,9 @@
 
 111 个 Clawd 主题 SVG 图标：100 个功能、11 个备选画法。方块身体与手脚，流畅的细线物件；眼睛先看、手脚跟上，动作回应图标本身的意思。
 
-**[在线图标库](https://TangfanOVO.github.io/clawd-icons/) · [动态预览](https://TangfanOVO.github.io/clawd-icons/interaction.html) · [状态条示例](https://TangfanOVO.github.io/clawd-icons/examples.html) · [下载整包](https://github.com/TangfanOVO/clawd-icons/releases/latest)**
+**[在线图标库](https://TangfanOVO.github.io/clawd-icons/) · [动态预览](https://TangfanOVO.github.io/clawd-icons/interaction.html) · [状态条示例](https://TangfanOVO.github.io/clawd-icons/examples.html) · [单个下载](https://TangfanOVO.github.io/clawd-icons/motion/) · [灵动岛小螃蟹](https://TangfanOVO.github.io/clawd-icons/island/) · [下载整包](https://github.com/TangfanOVO/clawd-icons/releases/latest)**
 
-24 × 24 画布 · 0.7 线宽 · 橙色方块角色 · 静态 SVG / 雪碧图 / CSS 动效 · 零运行时依赖。图标适配 by **@唐幡**；Clawd 基础图形来源见 [署名说明](THIRD_PARTY.md)。
+24 × 24 画布 · 0.7 线宽 · 橙色方块角色 · 静态 SVG / 雪碧图 / CSS 动效 · 零运行时依赖。图标适配 by **唐幡 (TangfanOVO)**；Clawd 基础图形来源见 [署名说明](THIRD_PARTY.md)。
 
 ## 可以怎么用
 
@@ -74,6 +74,28 @@ ClawdMotion.stop(element);          // 停止当前手势，保留待机设置
 
 React / Vue 中可将 SVG 作为内联组件，在挂载后把对应的 DOM 元素交给 `ClawdMotion`。仅使用 `img` 导入 SVG 不会激活动效。Android / iOS 原生界面可使用转换后的静态资源，动态部分需要按各平台重新实现。
 
+## 生动版
+
+主页、消息、书、睡眠多一种画法：动作更大，带笑眼、腮红这些表情。原来那版不变，两版都能用。
+
+| 预览 | 图标 | 生动版动作 |
+| --- | --- | --- |
+| <img src="motion/vivid/gif/clawd-home.gif" width="72" alt="主页生动版：伸个懒腰"> | 主页 `clawd-home` | 伸个懒腰 |
+| <img src="motion/vivid/gif/clawd-chat.gif" width="72" alt="消息生动版：说完发出"> | 消息 `clawd-chat` | 说完发出 |
+| <img src="motion/vivid/gif/clawd-book.gif" width="72" alt="书生动版：捧书翻页"> | 书 `clawd-book` | 捧书翻页 |
+| <img src="motion/vivid/gif/clawd-sleep.gif" width="72" alt="睡眠生动版：偷看一眼"> | 睡眠 `clawd-sleep` | 偷看一眼 |
+
+文件在 `motion/vivid/`，用法见 [motion/README.md](motion/README.md#生动版)。[单个下载](https://TangfanOVO.github.io/clawd-icons/motion/) 页面里选“生动版”，可以存静态 SVG、动态 SVG 或 GIF。
+
+## 灵动岛小螃蟹
+
+`island/` 里是六只放进 iPhone 灵动岛的像素小螃蟹：在钓鱼、惦记你身体、在给你写信、在看外面、出门走走、在挑吃的，每只 10 秒一圈。实时活动里放不了 GIF，它们靠计时器字体动起来，需要原生 App 接入。
+
+| 想做什么 | 去哪儿 |
+| --- | --- |
+| 一只只保存 | [在线画廊](https://TangfanOVO.github.io/clawd-icons/island/)：每只都能存 SVG、GIF、灵动岛紧凑态和展开态 |
+| 改动作、自己画一只、接进 App | [island/README.md](island/README.md)：原理、命令和 Swift 示例 |
+
 ## 预览与文件
 
 - `svg/`：111 个独立静态 SVG；`motion/svg/` 提供相同的 111 个文件，便于单独拷贝动态包。
@@ -83,6 +105,9 @@ React / Vue 中可将 SVG 作为内联组件，在挂载后把对应的 DOM 元�
 - `index.html`：搜索、复制、下载、尺寸与明暗背景预览。
 - `interaction.html`：全套分组、慢放、动作进度定格。
 - `examples.html`：应用内状态条与聊天反应的交互示例。
+- `motion/index.html`：单个下载，选图标、版本、动作、颜色、背景和尺寸，存 SVG 或 GIF。
+- `motion/vivid/`：主页、消息、书、睡眠的生动版，有动态源、静态 SVG 和预览 GIF。
+- `island/`：灵动岛小螃蟹，带画廊页 `island/index.html`。
 - `preview/cover.png`、`preview/cover.gif`：静态与动态封面。
 
 [111 个静态图标总览](preview/all-icons.jpg) · 全套动图：[1](preview/all-1.gif) / [2](preview/all-2.gif) / [3](preview/all-3.gif) / [4](preview/all-4.gif)
@@ -101,4 +126,6 @@ Clawd 是参考角色，本项目是非官方适配。基础图形出自 [clawd-
 
 111 functional SVG icons (100 concepts plus 11 alternatives) pair a coral pixel Clawd with thin, smooth objects. Every icon has a purpose-specific gesture, plus blink, happy, idle, and sleep states. Use SVG files or the sprite for static UI; inline the SVG and load the dependency-free CSS / JS for motion. Reduced-motion preferences are respected by the runtime. GIFs are preview media, not native iOS Dynamic Island components.
 
-Adaptations by @唐幡. Unofficial community project; upstream artwork attribution and MIT license are preserved.
+Any icon can be downloaded on its own as static SVG, animated SVG or GIF from the [download gallery](https://TangfanOVO.github.io/clawd-icons/motion/); home, chat, book and sleep also have a livelier vivid variant in `motion/vivid/`. `island/` holds six pixel crabs for the iPhone Dynamic Island, animated with timer fonts inside a Live Activity; see the [island gallery](https://TangfanOVO.github.io/clawd-icons/island/) and [island/README.md](island/README.md).
+
+Adaptations by 唐幡 (TangfanOVO). Unofficial community project; upstream artwork attribution and MIT license are preserved.

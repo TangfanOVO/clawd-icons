@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clawd Icons · 单个下载</title>
+<meta name="description" content="111 个 Clawd 图标逐个播放、单个下载：专属动作、眨眼、开心、待机、睡着，可存成静态 SVG、动态 SVG 或 GIF。">
+<link rel="icon" href="../svg/clawd-face.svg" type="image/svg+xml">
+<link rel="stylesheet" href="clawd-motion.css">
+<link rel="stylesheet" href="vivid/clawd-vivid.css">
+<link rel="stylesheet" href="download.css">
+<style>
+:root{color-scheme:light;--ink:#343840;--muted:#827c76;--paper:#faf8f4;--line:#e7e0d7;--accent:#ab674e;--card:#ffffffa8}
+.dark{color-scheme:dark;--ink:#e8e4dd;--muted:#aba49b;--paper:#25272c;--line:#45464b;--accent:#e3a087;--card:#2d2f35}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+button,input,select{font:inherit;color:inherit}
+button,a{touch-action:manipulation}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+main{max-width:1224px;margin:auto;padding:40px 28px;display:grid;gap:40px}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--accent);margin:0 0 12px}
+h1{font-size:34px;letter-spacing:-.04em;margin:0 0 12px;font-weight:650}
+.lede{font-size:13px;color:var(--muted);line-height:1.8;margin:0;max-width:66ch}
+.links{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:13px;margin-top:18px;color:var(--accent)}
+h2{font-size:17px;margin:0;font-weight:650}
+.sub{font-size:12px;color:var(--muted);line-height:1.7;margin:6px 0 0;max-width:72ch}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:14px 0;margin-top:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+input[type=search]{flex:1;min-width:160px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+select,button.control{background:transparent;border:1px solid var(--line);border-radius:7px;font-size:12px;padding:9px 11px;max-width:100%}
+.control.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.control[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
+.secondary{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0 20px}
+.secondary>div{display:flex;flex-wrap:wrap;gap:8px}
+.secondary p{white-space:nowrap;font-size:12px;color:var(--muted);margin:0}
+
+/* the two drawings side by side */
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:16px}
+.pair-card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 12px 6px;min-width:0}
+.pair-card h3{font-size:14px;font-weight:600;margin:0 0 4px;display:flex;gap:8px;align-items:baseline;justify-content:center}
+.pair-card h3 code{font-size:10px;font-weight:400;color:var(--muted)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair figure{margin:0;display:flex;flex-direction:column;align-items:center;min-width:0}
+.pair figcaption{font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+.pair figcaption b{color:var(--ink);font-weight:600}
+
+/* the grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.tile{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 10px 4px;background:var(--card);border:1px solid var(--line);border-radius:11px;min-width:0}
+.stage{border:0;background:none;color:inherit;width:100%;display:grid;place-items:center;min-height:96px;padding:8px;border-radius:8px}
+.stage svg{width:72px;height:72px}
+.caption{display:flex;flex-wrap:wrap;gap:2px 7px;align-items:baseline;justify-content:center;margin-top:2px}
+.caption h3{font-size:14px;font-weight:600;margin:0}
+.caption span{font-size:11px;color:var(--accent)}
+.name{font-family:ui-monospace,monospace;font-size:10px;color:var(--muted);margin:4px 0 6px;overflow-wrap:anywhere}
+.ver{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin:2px 0 2px}
+.ver button{border:0;background:none;font-size:12px;padding:6px 10px;min-height:34px;color:var(--muted)}
+.ver button+button{border-left:1px solid var(--line)}
+.ver button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.dl-link{margin-top:auto;border:0;background:none;color:var(--accent);font-size:12px;padding:8px 12px;min-height:40px}
+.empty{grid-column:1/-1;text-align:center;padding:48px 0;color:var(--muted);font-size:13px}
+footer{font-size:11px;color:var(--muted);line-height:1.8}
+footer p{margin:0}
+footer a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(hover:hover) and (pointer:fine){.stage:hover{background:#bd765a09}a:hover{color:var(--accent)}.dl-link:hover{color:var(--ink)}}
+@media(max-width:680px){
+  main{padding:25px 16px;gap:32px}
+  h1{font-size:27px}
+  input[type=search]{width:100%;flex-basis:100%;font-size:16px}
+  .bar select{font-size:16px;padding:7px 9px}
+  .secondary{align-items:flex-start}
+  .grid{gap:10px}
+  .stage svg{width:64px;height:64px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">CLAWD / MOTION</p>
+    <h1>动态图标，单个下载</h1>
+    <p class="lede">111 个图标都有自己的小动作，也会眨眼、开心、待机和睡着；主页、消息、书、睡眠还多一种生动版。点图标播放，点“下载”存成静态 SVG、动态 SVG 或 GIF。</p>
+    <nav class="links" aria-label="资源链接"><a href="../">图标库</a><a href="../interaction.html">动态预览</a><a href="#download">单个下载</a><a href="https://github.com/TangfanOVO/clawd-icons/tree/main/motion#readme">使用说明</a><a href="motion.json">motion.json</a><a href="vivid/vivid.json">vivid.json</a><a href="https://github.com/TangfanOVO/clawd-icons/blob/main/LICENSE">MIT 授权</a></nav>
+  </header>
+
+  <section aria-labelledby="vivid-h">
+    <h2 id="vivid-h">4 个图标有两种画法</h2>
+    <p class="sub">“现在”是原来那版，“生动版”动作更大、带表情。两版并存，都能播放和下载。</p>
+    <div class="pairs" id="pairs"></div>
+  </section>
+
+  <section class="dl" id="download" aria-labelledby="download-h">
+    <h2 id="download-h">单个下载</h2>
+    <p class="sub">选图标、版本和动作，存成文件就能用。也可以点每个图标下面的“下载”。</p>
+    <div class="dl-layout">
+      <button type="button" class="dl-preview" id="dl-preview" aria-label="重播预览"></button>
+      <div class="dl-main">
+        <div class="dl-fields">
+          <label class="wide">图标<select id="dl-icon"></select></label>
+          <label>版本<select id="dl-version"></select></label>
+          <label>动作<select id="dl-motion"></select></label>
+          <label>线条颜色<input type="color" id="dl-color" value="#343840"></label>
+          <label>背景<select id="dl-bg"><option value="transparent">透明</option><option value="#ffffff">白色</option><option value="#25272c">深色</option></select></label>
+          <label>尺寸<select id="dl-size"><option value="128">128 px</option><option value="256" selected>256 px</option><option value="512">512 px</option></select></label>
+          <label>速度<select id="dl-speed"><option value="1">正常</option><option value="2.5">慢放 ×0.4</option></select></label>
+        </div>
+        <p class="sub" id="dl-note"></p>
+        <div class="dl-actions">
+          <button type="button" class="control" data-format="static">下载静态 SVG</button>
+          <button type="button" class="control primary" data-format="svg">下载动态 SVG</button>
+          <button type="button" class="control" data-format="gif">下载 GIF</button>
+          <button type="button" class="control" id="dl-cancel" hidden>取消生成</button>
+        </div>
+        <p class="sub">静态 SVG 停在静止的样子，不带样式。动态 SVG 自带样式、没有脚本，放进 &lt;img&gt; 也会动：动作播一次，待机一直循环。GIF 循环播放，在浏览器里生成，不上传。动态 SVG 和 GIF 四周留了一圈动作空间。透明 GIF 的半透明边缘按白底处理，放在深色上请选深色背景或用 SVG。</p>
+        <p class="dl-status" id="dl-status" role="status" aria-live="polite"></p>
+        <div class="dl-result" id="dl-result" hidden>
+          <img id="dl-image" alt="刚生成的文件">
+          <div><a id="dl-save">保存文件</a><p class="sub">手机上可以长按这张图保存。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="all-h">
+    <h2 id="all-h">全部图标</h2>
+    <div class="bar">
+      <input id="search" type="search" placeholder="搜索名字或动作" aria-label="搜索图标">
+      <select id="category" aria-label="分类"><option value="">全部分类</option></select>
+      <select id="mode" aria-label="点按播放的动作"><option value="trick">专属动作</option><option value="blink">眨眼</option><option value="happy">开心</option></select>
+      <select id="speed" aria-label="速度"><option value="1">正常速度</option><option value="2.5">慢放 ×0.4</option></select>
+    </div>
+    <div class="secondary">
+      <div><button type="button" class="control primary" id="play-all">播放当前页</button><button type="button" class="control" id="idle" aria-pressed="false">待机</button><button type="button" class="control" id="sleep" aria-pressed="false">睡着</button><button type="button" class="control" id="theme" aria-pressed="false">深色</button></div>
+      <p id="count" role="status"></p>
+    </div>
+    <div class="grid" id="grid"><p class="empty">正在载入图标…</p></div>
+  </section>
+
+  <footer>
+    <p>图标与代码按 <a href="https://github.com/TangfanOVO/clawd-icons/blob/main/LICENSE">MIT</a> 提供。Clawd 基础图形来自 clawd-tank（MIT），见<a href="https://github.com/TangfanOVO/clawd-icons/blob/main/THIRD_PARTY.md">署名说明</a>；这是非官方社区适配。GIF 编码用 <a href="https://github.com/TangfanOVO/clawd-icons/tree/main/motion/vendor">gifenc</a>（MIT）。</p>
+  </footer>
+</main>
+
+<script src="clawd-motion.js"></script>
+<script>
+/* Gallery: reads motion.json, vivid/vivid.json and the source SVGs, so it always shows what the repo ships. */
+(() => {
+  const CATS = ['常用', '文件消息', '购物财务', '创作影音', '工具', '出行天气', '心情成就', '生活', '伙伴'];
+  const VERSIONS = { default: '现在', vivid: '生动版' };
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const M = window.ClawdMotion;
+  const G = window.ClawdGallery = {
+    loaded: false, icons: [], byName: {}, ver: {}, VERSIONS,
+    state: { mode: 'trick', speed: '1', idle: false, asleep: false },
+    info(ic, v) { return v === 'vivid' && ic.vivid ? ic.vivid : ic; },
+    setSpeed(v) {
+      G.state.speed = v;
+      document.documentElement.style.setProperty('--cr-speed', v);
+      $('#speed').value = v;
+      document.dispatchEvent(new Event('clawd:settings'));
+    }
+  };
+  const grid = $('#grid'), pairs = $('#pairs');
+
+  async function load() {
+    const get = (url, type) => fetch(url).then(r => { if (!r.ok) throw new Error(`${url} ${r.status}`); return r[type](); });
+    const [meta, vivid] = await Promise.all([get('motion.json', 'json'), get('vivid/vivid.json', 'json')]);
+    const vmap = Object.fromEntries(vivid.icons.map((v, i) => [v.name, { ...v, order: i }]));
+    const rank = c => { const i = CATS.indexOf(c); return i < 0 ? CATS.length : i; };
+    const icons = meta.icons.map((ic, i) => ({ ...ic, i, vivid: vmap[ic.name] || null }))
+      .sort((a, b) => rank(a.category) - rank(b.category) || a.i - b.i);
+    await Promise.all(icons.map(async ic => {
+      ic.src = { default: (await get(`svg/${ic.name}.svg`, 'text')).trim() };
+      if (ic.vivid) ic.src.vivid = (await get(`vivid/${ic.vivid.svg}`, 'text')).trim();
+    }));
+    return icons;
+  }
+
+  function applyState(svg) {
+    if (!svg) return;
+    if (G.state.idle) svg.classList.add('is-idle');
+    if (G.state.asleep) svg.classList.add('is-asleep');
+  }
+  const svgs = root => [...root.querySelectorAll('svg.cr')];
+
+  function tileHTML(ic) {
+    const v = G.ver[ic.name], info = G.info(ic, v);
+    const seg = ic.vivid ? `<div class="ver" role="group" aria-label="${esc(ic.label)}的版本">${Object.entries(VERSIONS).map(([k, t]) =>
+      `<button type="button" data-ver="${k}" aria-pressed="${k === v}">${t}</button>`).join('')}</div>` : '';
+    return `<article class="tile" data-name="${ic.name}">
+      <button class="stage" type="button" aria-label="播放${esc(ic.label)}：${esc(info.motion)}">${ic.src[v]}</button>
+      <div class="caption"><h3>${esc(ic.label)}</h3><span>${esc(info.motion)}</span></div>
+      <p class="name">${ic.name}</p>${seg}
+      <button class="dl-link" type="button" data-download="${ic.name}" aria-label="下载${esc(ic.label)}">下载</button>
+    </article>`;
+  }
+
+  function pairHTML(ic) {
+    return `<article class="pair-card"><h3>${esc(ic.label)}<code>${ic.name}</code></h3><div class="pair">${Object.entries(VERSIONS).map(([v, t]) => `
+      <figure><button class="stage" type="button" data-pair="${v}" aria-label="播放${esc(ic.label)} · ${t}：${esc(G.info(ic, v).motion)}">${ic.src[v]}</button>
+      <figcaption><b>${t}</b> · ${esc(G.info(ic, v).motion)}</figcaption>
+      <button class="dl-link" type="button" data-download="${ic.name}" data-version="${v}" aria-label="下载${esc(ic.label)} · ${t}">下载</button></figure>`).join('')}</div></article>`;
+  }
+
+  function render() {
+    G.icons.forEach(ic => { G.ver[ic.name] = G.ver[ic.name] || 'default'; });
+    grid.innerHTML = G.icons.map(tileHTML).join('') + '<p class="empty" hidden>没有找到这个图标。</p>';
+    pairs.innerHTML = G.icons.filter(ic => ic.vivid).sort((a, b) => a.vivid.order - b.vivid.order).map(pairHTML).join('');
+    $('#all-h').textContent = `全部 ${G.icons.length} 个`;
+    const cats = [...new Set(G.icons.map(ic => ic.category))];
+    $('#category').insertAdjacentHTML('beforeend', cats.map(c => `<option>${esc(c)}</option>`).join(''));
+    filter();
+  }
+
+  function setVersion(tile, v) {
+    const ic = G.byName[tile.dataset.name], info = G.info(ic, v);
+    G.ver[ic.name] = v;
+    const stage = tile.querySelector('.stage');
+    stage.innerHTML = ic.src[v];
+    stage.setAttribute('aria-label', `播放${ic.label}：${info.motion}`);
+    tile.querySelector('.caption span').textContent = info.motion;
+    tile.querySelectorAll('[data-ver]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ver === v)));
+    const svg = stage.querySelector('svg.cr');
+    applyState(svg);
+    if (M && !G.state.asleep) M.play(svg, 'trick');
+  }
+
+  function visibleTiles() { return [...grid.querySelectorAll('.tile')].filter(t => !t.hidden); }
+  function filter() {
+    const q = $('#search').value.trim().toLowerCase(), cat = $('#category').value;
+    let n = 0;
+    grid.querySelectorAll('.tile').forEach(t => {
+      const ic = G.byName[t.dataset.name];
+      const hay = [ic.name, ic.label, ic.motion, ic.description, ic.category, ic.vivid && VERSIONS.vivid, ic.vivid?.motion, ic.vivid?.description].join(' ').toLowerCase();
+      t.hidden = !!((cat && ic.category !== cat) || (q && !hay.includes(q)));
+      if (t.hidden) svgs(t).forEach(s => M?.stop(s)); else n++;
+    });
+    $('#count').textContent = `${n} / ${G.icons.length}`;
+    grid.querySelector('.empty').hidden = n > 0;
+  }
+
+  document.addEventListener('click', e => {
+    const ver = e.target.closest('[data-ver]');
+    if (ver) return setVersion(ver.closest('.tile'), ver.dataset.ver);
+    const stage = e.target.closest('.stage');
+    if (stage && M) M.play(stage.querySelector('svg.cr'), stage.dataset.pair ? 'trick' : G.state.mode);
+  });
+  $('#search').addEventListener('input', filter);
+  $('#category').addEventListener('change', filter);
+  $('#mode').addEventListener('change', e => { G.state.mode = e.target.value; });
+  $('#speed').addEventListener('change', e => G.setSpeed(e.target.value));
+  $('#play-all').addEventListener('click', () => { if (M) visibleTiles().forEach(t => svgs(t).forEach(s => M.play(s, G.state.mode))); });
+  ['idle', 'sleep'].forEach(id => $('#' + id).addEventListener('click', e => {
+    const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+    G.state[id === 'sleep' ? 'asleep' : 'idle'] = on;
+    if (M) svgs(document.querySelector('main')).filter(s => !s.closest('#dl-preview')).forEach(s => M[id === 'sleep' ? 'asleep' : 'idle'](s, on));
+  }));
+  $('#theme').addEventListener('click', e => {
+    const on = document.body.classList.toggle('dark');
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+    e.currentTarget.textContent = on ? '浅色' : '深色';
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && M) svgs(grid).concat(svgs(pairs)).forEach(s => M.stop(s)); });
+
+  load().then(icons => {
+    G.icons = icons;
+    G.byName = Object.fromEntries(icons.map(ic => [ic.name, ic]));
+    render();
+    G.loaded = true;
+    document.dispatchEvent(new Event('clawd:ready'));
+  }).catch(error => {
+    const msg = `图标没有载入：${esc(error.message)}。请用网页地址打开这一页；直接打开本地文件时，浏览器不让页面读取图标文件。`;
+    grid.innerHTML = `<p class="empty">${msg}</p>`;
+    pairs.innerHTML = '';
+    $('#dl-status').textContent = '图标还没有载入，暂时不能下载。';
+  });
+})();
+</script>
+<script src="download.js"></script>
+</body>
+</html>

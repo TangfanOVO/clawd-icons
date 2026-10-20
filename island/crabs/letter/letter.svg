@@ -1,0 +1,484 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500" shape-rendering="crispEdges">
+  <!-- 小螃蟹 · 在给你写信（letter）· 10 秒一圈，整秒一个姿势：
+       落笔 / 写第一行 / 换行 / 抬头想你 / 想到了刷刷写完 / 对折 / 装信封 / 封口贴心 / 举高给你看 / 看你，然后信飞走换下一页 -->
+  <defs>
+    <style>
+      .bd { animation: bd 10s infinite ease-in-out; }
+      @keyframes bd {
+        0% { transform: translate(0px, 1px); }
+        22% { transform: translate(0px, 1px); }
+        27.5% { transform: translate(0px, 0px); }
+        72% { transform: translate(0px, 0px); }
+        78% { transform: translate(0px, -1px); }
+        83% { transform: translate(0px, -1px); }
+        87% { transform: translate(0px, 0px); }
+        96.2% { transform: translate(0px, 0px); }
+        99% { transform: translate(0px, 1px); }
+        100% { transform: translate(0px, 1px); }
+      }
+      .legs { animation: legs 10s infinite ease-in-out; }
+      @keyframes legs {
+        0% { transform: translate(0px, 0px); }
+        22% { transform: translate(0px, 0px); }
+        27.5% { transform: translate(0px, 0px); }
+        72% { transform: translate(0px, 0px); }
+        78% { transform: translate(0px, -1px); }
+        83% { transform: translate(0px, -1px); }
+        87% { transform: translate(0px, 0px); }
+        96.2% { transform: translate(0px, 0px); }
+        99% { transform: translate(0px, 0px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .breathe { transform-origin: 7.5px 13px; animation: breathe 2.5s infinite ease-in-out; }
+      @keyframes breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.02, 0.98); } }
+      .arm-l { animation: al 10s infinite ease-in-out; }
+      @keyframes al {
+        0% { transform: translate(0px, 0px); }
+        42% { transform: translate(0px, 0px); }
+        44.5% { transform: translate(2px, 3px); }
+        47.5% { transform: translate(2px, 3px); }
+        49.5% { transform: translate(1px, 2px); }
+        50.5% { transform: translate(1px, 2px); }
+        52% { transform: translate(1px, -1px); }
+        53% { transform: translate(1px, -1px); }
+        55% { transform: translate(1px, 2px); }
+        72% { transform: translate(1px, 2px); }
+        78% { transform: translate(1px, -5px); }
+        93% { transform: translate(1px, -5px); }
+        94% { transform: translate(1px, -6px); }
+        96% { transform: translate(0px, 0px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .arm-r { animation: ar 10s infinite ease-in-out; }
+      @keyframes ar {
+        0% { transform: translate(-8px, 2px); }
+        1% { transform: translate(-7.5px, 2px); }
+        2% { transform: translate(-7px, 2px); }
+        3% { transform: translate(-6.5px, 2px); }
+        3.8% { transform: translate(-6px, 2px); }
+        4.6% { transform: translate(-5.5px, 1.5px); }
+        5.5% { transform: translate(-5px, 2px); }
+        7% { transform: translate(-4.5px, 2px); }
+        8.5% { transform: translate(-4px, 2px); }
+        10.5% { transform: translate(-4px, 2px); }
+        11.5% { transform: translate(-3px, 2px); }
+        12.2% { transform: translate(-2.5px, 1.5px); }
+        13% { transform: translate(-2px, 2px); }
+        14.2% { transform: translate(-1px, 2px); }
+        15% { transform: translate(-0.5px, 1.4px); }
+        16% { transform: translate(-1px, 2px); }
+        18.5% { transform: translate(-8px, 3px); }
+        20% { transform: translate(-7px, 3px); }
+        22% { transform: translate(-7px, 3px); }
+        27.5% { transform: translate(0px, -3px); }
+        29% { transform: translate(0px, -3.5px); }
+        30.5% { transform: translate(0px, -3px); }
+        33% { transform: translate(0px, -3px); }
+        34.5% { transform: translate(-7px, 4px); }
+        35.2% { transform: translate(-6px, 4px); }
+        36% { transform: translate(-5px, 4px); }
+        36.8% { transform: translate(-4px, 4px); }
+        37.6% { transform: translate(-3.5px, 3.5px); }
+        38.5% { transform: translate(-2px, 4px); }
+        39.5% { transform: translate(-1px, 4px); }
+        42% { transform: translate(-1px, 4px); }
+        44.5% { transform: translate(-2px, 3px); }
+        47.5% { transform: translate(-2px, 3px); }
+        49.5% { transform: translate(-1px, 2px); }
+        50.5% { transform: translate(-1px, 2px); }
+        52% { transform: translate(-1px, -1px); }
+        53% { transform: translate(-1px, -1px); }
+        55% { transform: translate(-1px, 2px); }
+        62% { transform: translate(-1px, 2px); }
+        63.5% { transform: translate(-7px, 3px); }
+        64.5% { transform: translate(-7px, 3.5px); }
+        65.5% { transform: translate(-7px, 3.5px); }
+        66% { transform: translate(-7px, 3px); }
+        68% { transform: translate(-1px, 2px); }
+        72% { transform: translate(-1px, 2px); }
+        78% { transform: translate(-1px, -5px); }
+        93% { transform: translate(-1px, -5px); }
+        94% { transform: translate(-1px, -6px); }
+        96% { transform: translate(0px, 0px); }
+        96.6% { transform: translate(0px, 0px); }
+        99% { transform: translate(-8px, 2px); }
+        100% { transform: translate(-8px, 2px); }
+      }
+      .pen { animation: pen 10s infinite ease-in-out; }
+      @keyframes pen {
+        0% { opacity: 1; }
+        42.2% { opacity: 1; }
+        43.2% { opacity: 0; }
+        97.2% { opacity: 0; }
+        98% { opacity: 1; }
+        100% { opacity: 1; }
+      }
+      .penpos { animation: penpos 10s infinite ease-in-out; }
+      @keyframes penpos {
+        0% { transform: translate(0px, 0px); }
+        16.2% { transform: translate(0px, 0px); }
+        17% { transform: translate(0px, 1px); }
+        97.4% { transform: translate(0px, 1px); }
+        97.6% { transform: translate(0px, 0px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .eo { animation: eo 10s infinite ease-in-out; }
+      @keyframes eo {
+        0% { transform: translate(0px, 0px); }
+        16% { transform: translate(0px, 0px); }
+        18.5% { transform: translate(-1px, 0px); }
+        22% { transform: translate(-1px, 0px); }
+        27.5% { transform: translate(-1px, -1px); }
+        33% { transform: translate(-1px, -1px); }
+        34% { transform: translate(0px, 1px); }
+        50.5% { transform: translate(0px, 1px); }
+        51.5% { transform: translate(0px, -1px); }
+        53.5% { transform: translate(0px, -1px); }
+        54.5% { transform: translate(0px, 0px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .eo-vis { animation: eo-vis 10s infinite ease-in-out; }
+      @keyframes eo-vis {
+        0% { opacity: 1; }
+        33.3% { opacity: 1; }
+        33.5% { opacity: 0; }
+        42.8% { opacity: 0; }
+        43% { opacity: 1; }
+        65.8% { opacity: 1; }
+        66% { opacity: 0; }
+        85.8% { opacity: 0; }
+        86% { opacity: 1; }
+        92.8% { opacity: 1; }
+        93% { opacity: 0; }
+        97.3% { opacity: 0; }
+        97.5% { opacity: 1; }
+        100% { opacity: 1; }
+      }
+      .es { animation: es-vis 10s infinite ease-in-out; }
+      @keyframes es-vis {
+        0% { opacity: 0; }
+        33.3% { opacity: 0; }
+        33.5% { opacity: 1; }
+        42.8% { opacity: 1; }
+        43% { opacity: 0; }
+        65.8% { opacity: 0; }
+        66% { opacity: 1; }
+        85.8% { opacity: 1; }
+        86% { opacity: 0; }
+        92.8% { opacity: 0; }
+        93% { opacity: 1; }
+        97.3% { opacity: 1; }
+        97.5% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .eb { transform-origin: 7.5px 9px; }
+      .eb { animation: eb 10s infinite linear; }
+      @keyframes eb {
+        0% { transform: scaleY(1); }
+        5% { transform: scaleY(1); }
+        5.5% { transform: scaleY(0.1); }
+        6.2% { transform: scaleY(1); }
+        57% { transform: scaleY(1); }
+        57.5% { transform: scaleY(0.1); }
+        58.2% { transform: scaleY(1); }
+        91% { transform: scaleY(1); }
+        91.5% { transform: scaleY(0.1); }
+        92.2% { transform: scaleY(1); }
+        100% { transform: scaleY(1); }
+      }
+      .bl { animation: bl 10s infinite ease-in-out; }
+      @keyframes bl {
+        0% { opacity: 0; }
+        25.8% { opacity: 0; }
+        26% { opacity: 1; }
+        42.8% { opacity: 1; }
+        43% { opacity: 0; }
+        65.8% { opacity: 0; }
+        66% { opacity: 1; }
+        97.3% { opacity: 1; }
+        97.5% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .paper { animation: paper 10s infinite ease-in-out; }
+      @keyframes paper {
+        0% { transform: translate(0px, 0px); opacity: 1; }
+        47.5% { transform: translate(0px, 0px); opacity: 1; }
+        49.5% { transform: translate(0px, -2px); opacity: 1; }
+        50.5% { transform: translate(0px, -2px); opacity: 1; }
+        52% { transform: translate(0px, -5px); opacity: 1; }
+        53% { transform: translate(0px, -5px); opacity: 1; }
+        55% { transform: translate(0px, -2px); opacity: 1; }
+        55.2% { transform: translate(0px, -2px); opacity: 0; }
+        96% { transform: translate(0px, 2px); opacity: 0; }
+        98.5% { transform: translate(0px, 0px); opacity: 1; }
+        100% { transform: translate(0px, 0px); opacity: 1; }
+      }
+      .ptop, .pflap { transform-box: view-box; transform-origin: 7.5px 13px; }
+      .ptop { animation: ptop 10s infinite ease-in-out; }
+      @keyframes ptop {
+        0% { transform: scaleY(1); }
+        44.5% { transform: scaleY(1); }
+        46% { transform: scaleY(0); }
+        90% { transform: scaleY(0); }
+        90.5% { transform: scaleY(1); }
+        100% { transform: scaleY(1); }
+      }
+      .pflap { animation: pflap 10s infinite ease-in-out; }
+      @keyframes pflap {
+        0% { transform: scaleY(0); }
+        46% { transform: scaleY(0); }
+        47.5% { transform: scaleY(1); }
+        90% { transform: scaleY(1); }
+        90.5% { transform: scaleY(0); }
+        100% { transform: scaleY(0); }
+      }
+      .w0 { animation: w0 10s infinite linear; }
+      @keyframes w0 {
+        0% { opacity: 0; }
+        0.8% { opacity: 0; }
+        1% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w1 { animation: w1 10s infinite linear; }
+      @keyframes w1 {
+        0% { opacity: 0; }
+        2.8% { opacity: 0; }
+        3% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w2 { animation: w2 10s infinite linear; }
+      @keyframes w2 {
+        0% { opacity: 0; }
+        6.3% { opacity: 0; }
+        6.5% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w3 { animation: w3 10s infinite linear; }
+      @keyframes w3 {
+        0% { opacity: 0; }
+        10.8% { opacity: 0; }
+        11% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w4 { animation: w4 10s infinite linear; }
+      @keyframes w4 {
+        0% { opacity: 0; }
+        13.3% { opacity: 0; }
+        13.5% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w5 { animation: w5 10s infinite linear; }
+      @keyframes w5 {
+        0% { opacity: 0; }
+        18.8% { opacity: 0; }
+        19% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w6 { animation: w6 10s infinite linear; }
+      @keyframes w6 {
+        0% { opacity: 0; }
+        35% { opacity: 0; }
+        35.2% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w7 { animation: w7 10s infinite linear; }
+      @keyframes w7 {
+        0% { opacity: 0; }
+        35.8% { opacity: 0; }
+        36% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w8 { animation: w8 10s infinite linear; }
+      @keyframes w8 {
+        0% { opacity: 0; }
+        36.6% { opacity: 0; }
+        36.8% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .w9 { animation: w9 10s infinite linear; }
+      @keyframes w9 {
+        0% { opacity: 0; }
+        38.4% { opacity: 0; }
+        38.6% { opacity: 1; }
+        89.8% { opacity: 1; }
+        90% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .env { animation: env 10s infinite ease-in-out; }
+      @keyframes env {
+        0% { transform: translate(0px, 0px); opacity: 0; }
+        51% { transform: translate(0px, 0px); opacity: 0; }
+        52% { transform: translate(0px, 0px); opacity: 1; }
+        72% { transform: translate(0px, 0px); opacity: 1; }
+        78% { transform: translate(0px, -10px); opacity: 1; }
+        83% { transform: translate(0px, -10px); opacity: 1; }
+        87% { transform: translate(0px, -9px); opacity: 1; }
+        93% { transform: translate(0px, -9px); opacity: 1; }
+        96% { transform: translate(0px, -13px); opacity: 0; }
+        96.6% { transform: translate(0px, -13px); opacity: 0; }
+        97% { transform: translate(0px, 0px); opacity: 0; }
+        100% { transform: translate(0px, 0px); opacity: 0; }
+      }
+      .eopen { animation: eopen 10s infinite linear; }
+      @keyframes eopen {
+        0% { opacity: 0; }
+        50.8% { opacity: 0; }
+        51% { opacity: 1; }
+        56.3% { opacity: 1; }
+        56.5% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .vee { animation: vee 10s infinite linear; }
+      @keyframes vee {
+        0% { opacity: 0; }
+        56.3% { opacity: 0; }
+        56.5% { opacity: 1; }
+        96.8% { opacity: 1; }
+        97% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .seal { animation: seal 10s infinite linear; }
+      @keyframes seal {
+        0% { opacity: 0; }
+        64.8% { opacity: 0; }
+        65% { opacity: 1; }
+        96.8% { opacity: 1; }
+        97% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .h1 { animation: h1 10s infinite linear; }
+      @keyframes h1 {
+        0% { transform: translate(3px, 2px); opacity: 0; }
+        29.2% { transform: translate(3px, 2px); opacity: 0; }
+        30% { transform: translate(3px, 2px); opacity: 1; }
+        32.5% { transform: translate(3px, 1px); opacity: 1; }
+        35% { transform: translate(3px, 0px); opacity: 1; }
+        35.8% { transform: translate(3px, -0.4px); opacity: 0; }
+        36.3% { transform: translate(3px, 2px); opacity: 0; }
+        100% { transform: translate(3px, 2px); opacity: 0; }
+      }
+      .h2 { animation: h2 10s infinite linear; }
+      @keyframes h2 {
+        0% { transform: translate(-4px, 9px); opacity: 0; }
+        79.2% { transform: translate(-4px, 9px); opacity: 0; }
+        80% { transform: translate(-4px, 9px); opacity: 1; }
+        82.5% { transform: translate(-4px, 8px); opacity: 1; }
+        85% { transform: translate(-4px, 7px); opacity: 1; }
+        87.5% { transform: translate(-4px, 6px); opacity: 1; }
+        90% { transform: translate(-4px, 5px); opacity: 1; }
+        92.5% { transform: translate(-4px, 4px); opacity: 1; }
+        95% { transform: translate(-4px, 3px); opacity: 1; }
+        95.8% { transform: translate(-4px, 2.6px); opacity: 0; }
+        96.3% { transform: translate(-4px, 9px); opacity: 0; }
+        100% { transform: translate(-4px, 9px); opacity: 0; }
+      }
+      .h3 { animation: h3 10s infinite linear; }
+      @keyframes h3 {
+        0% { transform: translate(14px, 10px); opacity: 0; }
+        84.2% { transform: translate(14px, 10px); opacity: 0; }
+        85% { transform: translate(14px, 10px); opacity: 1; }
+        87.5% { transform: translate(14px, 9px); opacity: 1; }
+        90% { transform: translate(14px, 8px); opacity: 1; }
+        92.5% { transform: translate(14px, 7px); opacity: 1; }
+        95% { transform: translate(14px, 6px); opacity: 1; }
+        97.5% { transform: translate(14px, 5px); opacity: 1; }
+        98.3% { transform: translate(14px, 4.6px); opacity: 0; }
+        98.8% { transform: translate(14px, 10px); opacity: 0; }
+        100% { transform: translate(14px, 10px); opacity: 0; }
+      }
+      .k1 { animation: k1 10s infinite linear; }
+      @keyframes k1 {
+        0% { transform: translate(14px, 10px); opacity: 0; }
+        11.7% { transform: translate(14px, 10px); opacity: 0; }
+        12.5% { transform: translate(14px, 10px); opacity: 1; }
+        15% { transform: translate(15px, 9px); opacity: 1; }
+        17.5% { transform: translate(16px, 8px); opacity: 1; }
+        18.3% { transform: translate(16px, 7.6px); opacity: 0; }
+        18.8% { transform: translate(14px, 10px); opacity: 0; }
+        100% { transform: translate(14px, 10px); opacity: 0; }
+      }
+      .k2 { animation: k2 10s infinite linear; }
+      @keyframes k2 {
+        0% { transform: translate(14px, 12px); opacity: 0; }
+        11.7% { transform: translate(14px, 12px); opacity: 0; }
+        12.5% { transform: translate(14px, 12px); opacity: 1; }
+        15% { transform: translate(15px, 12px); opacity: 1; }
+        17.5% { transform: translate(16px, 13px); opacity: 1; }
+        18.3% { transform: translate(16px, 12.6px); opacity: 0; }
+        18.8% { transform: translate(14px, 12px); opacity: 0; }
+        100% { transform: translate(14px, 12px); opacity: 0; }
+      }
+      .k3 { animation: k3 10s infinite linear; }
+      @keyframes k3 {
+        0% { transform: translate(16px, 11px); opacity: 0; }
+        39.2% { transform: translate(16px, 11px); opacity: 0; }
+        40% { transform: translate(16px, 11px); opacity: 1; }
+        42.5% { transform: translate(17px, 10px); opacity: 1; }
+        45% { transform: translate(18px, 9px); opacity: 1; }
+        45.8% { transform: translate(18px, 8.6px); opacity: 0; }
+        46.3% { transform: translate(16px, 11px); opacity: 0; }
+        100% { transform: translate(16px, 11px); opacity: 0; }
+      }
+      .k4 { animation: k4 10s infinite linear; }
+      @keyframes k4 {
+        0% { transform: translate(16px, 13px); opacity: 0; }
+        39.2% { transform: translate(16px, 13px); opacity: 0; }
+        40% { transform: translate(16px, 13px); opacity: 1; }
+        42.5% { transform: translate(17px, 12px); opacity: 1; }
+        45% { transform: translate(18px, 12px); opacity: 1; }
+        45.8% { transform: translate(18px, 11.6px); opacity: 0; }
+        46.3% { transform: translate(16px, 13px); opacity: 0; }
+        100% { transform: translate(16px, 13px); opacity: 0; }
+      }
+    </style>
+  </defs>
+  <rect class="shadow" x="3" y="15" width="9" height="1" fill="#000000" opacity="0.5"/>
+  <g class="legs" fill="#DE886D"><rect x="3" y="13" width="1" height="2"/><rect x="5" y="13" width="1" height="2"/><rect x="9" y="13" width="1" height="2"/><rect x="11" y="13" width="1" height="2"/></g>
+  <g class="bd"><g class="breathe">
+  <rect x="2" y="6" width="11" height="7" fill="#DE886D"/>
+  <g class="eo"><g class="eo-vis"><g class="eb" fill="#000000"><rect x="4" y="8" width="1" height="2"/><rect x="10" y="8" width="1" height="2"/></g></g></g>
+  <g class="es" fill="#000000"><rect x="4" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="11" y="9" width="1" height="1"/></g>
+  <g class="bl" fill="#FF97A2"><rect x="3" y="10" width="2" height="1"/><rect x="10" y="10" width="2" height="1"/></g>
+  </g></g>
+  <g class="paper">
+  <rect x="3" y="13" width="9" height="2" fill="#E9DCC4"/>
+  <g fill="#3D7AC7"><rect class="w5" x="4" y="14" width="1" height="1"/><rect class="w6" x="6" y="14" width="1" height="1"/><rect class="w7" x="7" y="14" width="1" height="1"/><rect class="w8" x="8" y="14" width="1" height="1"/><rect class="w9" x="10" y="14" width="1" height="1"/></g>
+  <g class="ptop"><rect x="3" y="11" width="9" height="2" fill="#E9DCC4"/><g fill="#3D7AC7"><rect class="w0" x="4" y="12" width="1" height="1"/><rect class="w1" x="5" y="12" width="1" height="1"/><rect class="w2" x="7" y="12" width="1" height="1"/><rect class="w3" x="8" y="12" width="1" height="1"/><rect class="w4" x="10" y="12" width="1" height="1"/></g></g>
+  <g class="pflap"><rect x="3" y="13" width="9" height="2" fill="#E9DCC4"/></g>
+  </g>
+  <g class="env">
+  <rect x="2" y="10" width="11" height="5" fill="#E9DCC4"/>
+  <g class="eopen"><rect x="2" y="10" width="11" height="1" fill="#3D7AC7"/></g>
+  <g class="vee" fill="#3D7AC7"><rect x="2" y="10" width="2" height="1"/><rect x="11" y="10" width="2" height="1"/><rect x="4" y="11" width="2" height="1"/><rect x="9" y="11" width="2" height="1"/><rect x="6" y="12" width="3" height="1"/></g>
+  <g class="seal" fill="#FF2D3D"><rect x="5" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="8" y="11" width="1" height="1"/><rect x="9" y="11" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="8" y="12" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/><rect x="6" y="13" width="1" height="1"/><rect x="7" y="13" width="1" height="1"/><rect x="8" y="13" width="1" height="1"/><rect x="7" y="14" width="1" height="1"/></g>
+  </g>
+  <g class="bd"><g class="breathe">
+  <g class="arm-l"><rect x="0" y="9" width="2" height="2" fill="#DE886D"/></g>
+  <g class="arm-r"><g class="pen"><g class="penpos"><rect x="12" y="9" width="1" height="1" fill="#3D7AC7"/><rect x="15" y="8" width="1" height="1" fill="#FF2D3D"/></g></g><rect x="13" y="9" width="2" height="2" fill="#DE886D"/></g>
+  </g></g>
+  <g class="heart h1" fill="#FF2D3D"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/></g>
+  <g class="heart h2" fill="#FF2D3D"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/></g>
+  <g class="heart h3" fill="#FF2D3D"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="3" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/></g>
+  <g class="ink k1" fill="#3D7AC7"><rect x="0" y="0" width="1" height="1"/></g>
+  <g class="ink k2" fill="#3D7AC7"><rect x="0" y="0" width="1" height="1"/></g>
+  <g class="ink k3" fill="#3D7AC7"><rect x="0" y="0" width="1" height="1"/></g>
+  <g class="ink k4" fill="#3D7AC7"><rect x="0" y="0" width="1" height="1"/></g>
+</svg>

@@ -1,0 +1,544 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500" shape-rendering="crispEdges">
+  <!-- 出门走走 · travel（身子是 clawd-tank 的静态底；登山包、地图、鸟、叶子、尘土、表情都是自己画的）
+       10 秒一圈，一秒一个姿势（灵动岛每秒取一张）：
+         0 走·左脚抬      1 走·右脚抬      2 走·左脚抬，右上飞来一只鸟
+         3 走·右脚抬，抬眼看鸟             4 蹦一下 ^^ 招手，鸟在头顶
+         5 挥手拜拜，眼睛跟着鸟去左上       6 东张西望，往左看
+         7 掏出地图，低头看                 8 找到了 ^^ 把地图举高
+         9 收起地图接着走·右脚抬
+       快层（每秒四下）：dust 脚边尘土、bird 小鸟、leaf 叶子，都在身子旁边的空地里走，不从身子上过。
+       由同目录的 gen.py 生成，改这里不如改那边。 -->
+  <defs>
+    <style>
+      .shadow { transform-origin: 7.5px 15.5px; animation: shadow 10s infinite ease-in-out; }
+      @keyframes shadow {
+        0% { transform: scaleX(1.000); }
+        5% { transform: scaleX(1.020); }
+        10% { transform: scaleX(1.000); }
+        15% { transform: scaleX(1.020); }
+        20% { transform: scaleX(1.000); }
+        25% { transform: scaleX(1.020); }
+        30% { transform: scaleX(1.000); }
+        34.5% { transform: scaleX(0.984); }
+        38% { transform: scaleX(1.040); }
+        43% { transform: scaleX(1.040); }
+        46% { transform: scaleX(1.000); }
+        55% { transform: scaleX(1.000); }
+        58% { transform: scaleX(1.000); }
+        63.5% { transform: scaleX(1.000); }
+        67% { transform: scaleX(1.000); }
+        90% { transform: scaleX(1.000); }
+        95% { transform: scaleX(1.020); }
+        100% { transform: scaleX(1.000); }
+      }
+      .leg-a { animation: leg-a 10s infinite ease-in-out; }
+      @keyframes leg-a {
+        0% { transform: translateY(-1px); }
+        2% { transform: translateY(-1px); }
+        5.5% { transform: translateY(0px); }
+        14.5% { transform: translateY(0px); }
+        18% { transform: translateY(-1px); }
+        22% { transform: translateY(-1px); }
+        25.5% { transform: translateY(0px); }
+        94.5% { transform: translateY(0px); }
+        98% { transform: translateY(-1px); }
+        100% { transform: translateY(-1px); }
+      }
+      .leg-b { animation: leg-b 10s infinite ease-in-out; }
+      @keyframes leg-b {
+        0% { transform: translateY(0px); }
+        4.5% { transform: translateY(0px); }
+        8% { transform: translateY(-1px); }
+        12% { transform: translateY(-1px); }
+        15.5% { transform: translateY(0px); }
+        24.5% { transform: translateY(0px); }
+        28% { transform: translateY(-1px); }
+        32% { transform: translateY(-1px); }
+        35.5% { transform: translateY(0px); }
+        84.5% { transform: translateY(0px); }
+        88% { transform: translateY(-1px); }
+        92% { transform: translateY(-1px); }
+        95.5% { transform: translateY(0px); }
+        100% { transform: translateY(0px); }
+      }
+      .bob { animation: bob 10s infinite ease-in-out; }
+      @keyframes bob {
+        0% { transform: translate(0px, 0px); }
+        5% { transform: translate(0px, -0.5px); }
+        10% { transform: translate(0px, 0px); }
+        15% { transform: translate(0px, -0.5px); }
+        20% { transform: translate(0px, 0px); }
+        25% { transform: translate(0px, -0.5px); }
+        30% { transform: translate(0px, 0px); }
+        34.5% { transform: translate(0px, 0.4px); }
+        38% { transform: translate(0px, -1px); }
+        43% { transform: translate(0px, -1px); }
+        46% { transform: translate(0px, 0px); }
+        55% { transform: translate(0px, 0px); }
+        58% { transform: translate(-1px, 0px); }
+        63.5% { transform: translate(-1px, 0px); }
+        67% { transform: translate(0px, 0px); }
+        90% { transform: translate(0px, 0px); }
+        95% { transform: translate(0px, -0.5px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .legs { animation: legs 10s infinite ease-in-out; }
+      @keyframes legs {
+        0% { transform: translate(0px, 0px); }
+        5% { transform: translate(0px, -0.5px); }
+        10% { transform: translate(0px, 0px); }
+        15% { transform: translate(0px, -0.5px); }
+        20% { transform: translate(0px, 0px); }
+        25% { transform: translate(0px, -0.5px); }
+        30% { transform: translate(0px, 0px); }
+        34.5% { transform: translate(0px, 0px); }
+        38% { transform: translate(0px, -1px); }
+        43% { transform: translate(0px, -1px); }
+        46% { transform: translate(0px, 0px); }
+        55% { transform: translate(0px, 0px); }
+        58% { transform: translate(-1px, 0px); }
+        63.5% { transform: translate(-1px, 0px); }
+        67% { transform: translate(0px, 0px); }
+        90% { transform: translate(0px, 0px); }
+        95% { transform: translate(0px, -0.5px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .tilt { transform-origin: 7.5px 13px; animation: tilt 10s infinite ease-in-out; }
+      @keyframes tilt {
+        0% { transform: rotate(5deg); }
+        2% { transform: rotate(5deg); }
+        5% { transform: rotate(0deg); }
+        8% { transform: rotate(-5deg); }
+        12% { transform: rotate(-5deg); }
+        15% { transform: rotate(0deg); }
+        18% { transform: rotate(5deg); }
+        22% { transform: rotate(5deg); }
+        25% { transform: rotate(0deg); }
+        28% { transform: rotate(-5deg); }
+        32% { transform: rotate(-5deg); }
+        36% { transform: rotate(0deg); }
+        87.5% { transform: rotate(0deg); }
+        89.5% { transform: rotate(-5deg); }
+        92% { transform: rotate(-5deg); }
+        95% { transform: rotate(0deg); }
+        98% { transform: rotate(5deg); }
+        100% { transform: rotate(5deg); }
+      }
+      .gaze { animation: gaze 10s infinite ease-in-out; }
+      @keyframes gaze {
+        0% { transform: translate(1px, 0px); }
+        24% { transform: translate(1px, 0px); }
+        27.5% { transform: translate(1px, -1px); }
+        33.5% { transform: translate(1px, -1px); }
+        37% { transform: translate(0px, -1px); }
+        44% { transform: translate(0px, -1px); }
+        47% { transform: translate(-1px, -1px); }
+        53.5% { transform: translate(-1px, -1px); }
+        57% { transform: translate(-1px, 0px); }
+        63.5% { transform: translate(-1px, 0px); }
+        67.5% { transform: translate(-1px, 1px); }
+        72.5% { transform: translate(-1px, 1px); }
+        75.5% { transform: translate(1px, 1px); }
+        77% { transform: translate(1px, 1px); }
+        78.5% { transform: translate(0px, 0px); }
+        85% { transform: translate(0px, 0px); }
+        88% { transform: translate(1px, 0px); }
+        100% { transform: translate(1px, 0px); }
+      }
+      .eyes-rect { transform-origin: 7.5px 9px; animation: eyes-rect 10s infinite step-end, blink 10s infinite ease-in-out; }
+      @keyframes eyes-rect {
+        0% { opacity: 1; }
+        35% { opacity: 0; }
+        45% { opacity: 1; }
+        78% { opacity: 0; }
+        86% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @keyframes blink {
+        0% { transform: scaleY(1); }
+        14.2% { transform: scaleY(1); }
+        15% { transform: scaleY(0.1); }
+        15.8% { transform: scaleY(1); }
+        64.7% { transform: scaleY(1); }
+        65.5% { transform: scaleY(0.1); }
+        66.3% { transform: scaleY(1); }
+        94.2% { transform: scaleY(1); }
+        95% { transform: scaleY(0.1); }
+        95.8% { transform: scaleY(1); }
+        100% { transform: scaleY(1); }
+      }
+      .eyes-smile { opacity: 0; animation: eyes-smile 10s infinite step-end; }
+      @keyframes eyes-smile {
+        0% { opacity: 0; }
+        35% { opacity: 1; }
+        45% { opacity: 0; }
+        78% { opacity: 1; }
+        86% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .arm-l { animation: arm-l 10s infinite ease-in-out; }
+      @keyframes arm-l {
+        0% { transform: translate(0px, 0px); }
+        2% { transform: translate(0px, 0px); }
+        8% { transform: translate(0px, -1px); }
+        12% { transform: translate(0px, -1px); }
+        18% { transform: translate(0px, 0px); }
+        22% { transform: translate(0px, 0px); }
+        28% { transform: translate(0px, -1px); }
+        32% { transform: translate(0px, -1px); }
+        37% { transform: translate(0px, 0px); }
+        64% { transform: translate(0px, 0px); }
+        67.5% { transform: translate(2px, 2px); }
+        76% { transform: translate(2px, 2px); }
+        78.5% { transform: translate(2px, 1px); }
+        84.5% { transform: translate(2px, 1px); }
+        88% { transform: translate(0px, -1px); }
+        92% { transform: translate(0px, -1px); }
+        98% { transform: translate(0px, 0px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      .arm-r { transform-origin: 13px 10px; animation: arm-r 10s infinite ease-in-out; }
+      @keyframes arm-r {
+        0% { transform: translate(0px, -1px) rotate(0deg); }
+        2% { transform: translate(0px, -1px) rotate(0deg); }
+        8% { transform: translate(0px, 0px) rotate(0deg); }
+        12% { transform: translate(0px, 0px) rotate(0deg); }
+        18% { transform: translate(0px, -1px) rotate(0deg); }
+        22% { transform: translate(0px, -1px) rotate(0deg); }
+        28% { transform: translate(0px, 0px) rotate(0deg); }
+        32% { transform: translate(0px, 0px) rotate(0deg); }
+        37% { transform: translate(1px, -5px) rotate(0deg); }
+        40% { transform: translate(1px, -5px) rotate(0deg); }
+        42% { transform: translate(2px, -4px) rotate(0deg); }
+        44% { transform: translate(1px, -5px) rotate(0deg); }
+        46% { transform: translate(2px, -4px) rotate(0deg); }
+        48% { transform: translate(1px, -5px) rotate(0deg); }
+        50% { transform: translate(2px, -4px) rotate(0deg); }
+        52% { transform: translate(1px, -5px) rotate(0deg); }
+        54% { transform: translate(2px, -4px) rotate(0deg); }
+        57.5% { transform: translate(0px, 0px) rotate(0deg); }
+        64% { transform: translate(0px, 0px) rotate(0deg); }
+        67.5% { transform: translate(-2px, 2px) rotate(0deg); }
+        76% { transform: translate(-2px, 2px) rotate(0deg); }
+        78.5% { transform: translate(-2px, 1px) rotate(0deg); }
+        84.5% { transform: translate(-2px, 1px) rotate(0deg); }
+        88% { transform: translate(0px, 0px) rotate(0deg); }
+        92% { transform: translate(0px, 0px) rotate(0deg); }
+        98% { transform: translate(0px, -1px) rotate(0deg); }
+        100% { transform: translate(0px, -1px) rotate(0deg); }
+      }
+      .map { opacity: 0; transform-origin: 7.5px 13px; animation: map-mv 10s infinite ease-in-out, map-op 10s infinite step-end; }
+      @keyframes map-mv {
+        0% { transform: translateY(1px) scaleX(0.34); }
+        64% { transform: translateY(1px) scaleX(0.34); }
+        68% { transform: translateY(0px) scaleX(1); }
+        76% { transform: translateY(0px) scaleX(1); }
+        78.5% { transform: translateY(-1px) scaleX(1); }
+        84.5% { transform: translateY(-1px) scaleX(1); }
+        87.5% { transform: translateY(0px) scaleX(0.34); }
+        100% { transform: translateY(0px) scaleX(0.34); }
+      }
+      @keyframes map-op {
+        0% { opacity: 0; }
+        64% { opacity: 1; }
+        88% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .bird { opacity: 0; animation: bird-vis 10s infinite step-end; }
+      @keyframes bird-vis {
+        0% { opacity: 0; }
+        26.25% { opacity: 1; }
+        51.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .bird-fly { animation: bird-fly 10s infinite linear; }
+      @keyframes bird-fly {
+        0% { transform: translate(15px, 2px); }
+        27.5% { transform: translate(15px, 2px); }
+        30% { transform: translate(13px, 1px); }
+        32.5% { transform: translate(11px, 1px); }
+        35% { transform: translate(9px, 1px); }
+        37.5% { transform: translate(7px, 1px); }
+        40% { transform: translate(5px, 1px); }
+        42.5% { transform: translate(3px, 1px); }
+        45% { transform: translate(1px, 0px); }
+        47.5% { transform: translate(-1px, 0px); }
+        50% { transform: translate(-3px, 0px); }
+        100% { transform: translate(-3px, 0px); }
+      }
+      .wing-up { opacity: 0; animation: wing-up 10s infinite step-end; }
+      @keyframes wing-up {
+        0% { opacity: 0; }
+        26.25% { opacity: 1; }
+        28.75% { opacity: 0; }
+        31.25% { opacity: 1; }
+        33.75% { opacity: 0; }
+        36.25% { opacity: 1; }
+        38.75% { opacity: 0; }
+        41.25% { opacity: 1; }
+        43.75% { opacity: 0; }
+        46.25% { opacity: 1; }
+        48.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .wing-dn { opacity: 0; animation: wing-dn 10s infinite step-end; }
+      @keyframes wing-dn {
+        0% { opacity: 0; }
+        28.75% { opacity: 1; }
+        31.25% { opacity: 0; }
+        33.75% { opacity: 1; }
+        36.25% { opacity: 0; }
+        38.75% { opacity: 1; }
+        41.25% { opacity: 0; }
+        43.75% { opacity: 1; }
+        46.25% { opacity: 0; }
+        48.75% { opacity: 1; }
+        51.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .leaf { opacity: 0; animation: leaf-vis 10s infinite step-end; }
+      @keyframes leaf-vis {
+        0% { opacity: 0; }
+        58.75% { opacity: 1; }
+        96.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .leaf-fall { animation: leaf-fall 10s infinite linear; }
+      @keyframes leaf-fall {
+        0% { transform: translate(17px, 0px); }
+        60% { transform: translate(17px, 0px); }
+        62.5% { transform: translate(18px, 1px); }
+        65% { transform: translate(17px, 2px); }
+        67.5% { transform: translate(18px, 3px); }
+        70% { transform: translate(17px, 4px); }
+        72.5% { transform: translate(18px, 5px); }
+        75% { transform: translate(17px, 6px); }
+        77.5% { transform: translate(18px, 7px); }
+        80% { transform: translate(17px, 8px); }
+        82.5% { transform: translate(18px, 9px); }
+        85% { transform: translate(17px, 10px); }
+        87.5% { transform: translate(18px, 11px); }
+        90% { transform: translate(17px, 12px); }
+        92.5% { transform: translate(18px, 13px); }
+        95% { transform: translate(17px, 14px); }
+        100% { transform: translate(17px, 14px); }
+      }
+      .leaf-h { opacity: 0; animation: leaf-h 10s infinite step-end; }
+      @keyframes leaf-h {
+        0% { opacity: 0; }
+        58.75% { opacity: 1; }
+        61.25% { opacity: 0; }
+        63.75% { opacity: 1; }
+        66.25% { opacity: 0; }
+        68.75% { opacity: 1; }
+        71.25% { opacity: 0; }
+        73.75% { opacity: 1; }
+        76.25% { opacity: 0; }
+        78.75% { opacity: 1; }
+        81.25% { opacity: 0; }
+        83.75% { opacity: 1; }
+        86.25% { opacity: 0; }
+        88.75% { opacity: 1; }
+        91.25% { opacity: 0; }
+        93.75% { opacity: 1; }
+        96.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .leaf-d { opacity: 0; animation: leaf-d 10s infinite step-end; }
+      @keyframes leaf-d {
+        0% { opacity: 0; }
+        61.25% { opacity: 1; }
+        63.75% { opacity: 0; }
+        66.25% { opacity: 1; }
+        68.75% { opacity: 0; }
+        71.25% { opacity: 1; }
+        73.75% { opacity: 0; }
+        76.25% { opacity: 1; }
+        78.75% { opacity: 0; }
+        81.25% { opacity: 1; }
+        83.75% { opacity: 0; }
+        86.25% { opacity: 1; }
+        88.75% { opacity: 0; }
+        91.25% { opacity: 1; }
+        93.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f0 { opacity: 0; animation: dust-f0 10s infinite step-end; }
+      @keyframes dust-f0 {
+        0% { opacity: 1; }
+        1.25% { opacity: 0; }
+        98.75% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      .dust-f1 { opacity: 0; animation: dust-f1 10s infinite step-end; }
+      @keyframes dust-f1 {
+        0% { opacity: 0; }
+        1.25% { opacity: 1; }
+        3.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f2 { opacity: 0; animation: dust-f2 10s infinite step-end; }
+      @keyframes dust-f2 {
+        0% { opacity: 0; }
+        3.75% { opacity: 1; }
+        6.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f3 { opacity: 0; animation: dust-f3 10s infinite step-end; }
+      @keyframes dust-f3 {
+        0% { opacity: 0; }
+        8.75% { opacity: 1; }
+        11.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f4 { opacity: 0; animation: dust-f4 10s infinite step-end; }
+      @keyframes dust-f4 {
+        0% { opacity: 0; }
+        11.25% { opacity: 1; }
+        13.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f5 { opacity: 0; animation: dust-f5 10s infinite step-end; }
+      @keyframes dust-f5 {
+        0% { opacity: 0; }
+        13.75% { opacity: 1; }
+        16.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f6 { opacity: 0; animation: dust-f6 10s infinite step-end; }
+      @keyframes dust-f6 {
+        0% { opacity: 0; }
+        18.75% { opacity: 1; }
+        21.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f7 { opacity: 0; animation: dust-f7 10s infinite step-end; }
+      @keyframes dust-f7 {
+        0% { opacity: 0; }
+        21.25% { opacity: 1; }
+        23.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f8 { opacity: 0; animation: dust-f8 10s infinite step-end; }
+      @keyframes dust-f8 {
+        0% { opacity: 0; }
+        23.75% { opacity: 1; }
+        26.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f9 { opacity: 0; animation: dust-f9 10s infinite step-end; }
+      @keyframes dust-f9 {
+        0% { opacity: 0; }
+        28.75% { opacity: 1; }
+        31.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f10 { opacity: 0; animation: dust-f10 10s infinite step-end; }
+      @keyframes dust-f10 {
+        0% { opacity: 0; }
+        31.25% { opacity: 1; }
+        33.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f11 { opacity: 0; animation: dust-f11 10s infinite step-end; }
+      @keyframes dust-f11 {
+        0% { opacity: 0; }
+        33.75% { opacity: 1; }
+        36.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f12 { opacity: 0; animation: dust-f12 10s infinite step-end; }
+      @keyframes dust-f12 {
+        0% { opacity: 0; }
+        88.75% { opacity: 1; }
+        91.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f13 { opacity: 0; animation: dust-f13 10s infinite step-end; }
+      @keyframes dust-f13 {
+        0% { opacity: 0; }
+        91.25% { opacity: 1; }
+        93.75% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      .dust-f14 { opacity: 0; animation: dust-f14 10s infinite step-end; }
+      @keyframes dust-f14 {
+        0% { opacity: 0; }
+        93.75% { opacity: 1; }
+        96.25% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+    </style>
+  </defs>
+
+  <rect class="shadow" x="3" y="15" width="9" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- 腿：clawd-tank 原版的长短（第 13 行起、高 2），A 组（外左、内右）和 B 组（内左、外右）轮流抬；
+       身子往上蹦时整只一起离地，往下蹲时腿留在地上；走路左右晃时腿跟身子一起晃，不然翘起来那边会跟身子断开一条缝 -->
+  <g class="legs"><g class="tilt" fill="#DE886D">
+    <rect class="leg-a" x="3" y="13" width="1" height="2"/>
+    <rect class="leg-b" x="5" y="13" width="1" height="2"/>
+    <rect class="leg-a" x="9" y="13" width="1" height="2"/>
+    <rect class="leg-b" x="11" y="13" width="1" height="2"/>
+  </g></g>
+
+  <g class="bob"><g class="tilt">
+    <!-- 登山包：背在身后，从左肩上和左边探出来；顶上横捆一卷奶白睡垫（两道深绿绑带），左边挂个深绿侧袋。
+         顶边不高过第 4 行：4 秒那只鸟从头顶飞过，身子再往上蹦一格也碰不到 -->
+    <g>
+      <rect x="-1" y="5" width="4" height="7" fill="#9BD77A"/>
+      <rect x="-2" y="7" width="1" height="3" fill="#4E8F3E"/>
+      <rect x="-2" y="4" width="6" height="1" fill="#FFFDE7"/>
+      <rect x="-1" y="4" width="1" height="1" fill="#4E8F3E"/>
+      <rect x="2" y="4" width="1" height="1" fill="#4E8F3E"/>
+    </g>
+
+    <rect x="2" y="6" width="11" height="7" fill="#DE886D"/>
+
+    <g class="gaze">
+      <g class="eyes-rect" fill="#000000">
+        <rect x="4" y="8" width="1" height="2"/>
+        <rect x="10" y="8" width="1" height="2"/>
+      </g>
+      <g class="eyes-smile" fill="#000000">
+        <rect x="4" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/>
+        <rect x="10" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="11" y="9" width="1" height="1"/>
+      </g>
+    </g>
+
+    <!-- 地图：奶白纸、绿色的地、虚线小路、红点是要去的地方 -->
+    <g class="map">
+      <rect x="3" y="11" width="9" height="4" fill="#FFFDE7"/>
+      <rect x="4" y="12" width="2" height="2" fill="#9BD77A"/>
+      <rect x="6" y="13" width="1" height="1" fill="#4E8F3E"/>
+      <rect x="8" y="13" width="1" height="1" fill="#4E8F3E"/>
+      <rect x="9" y="12" width="1" height="1" fill="#4E8F3E"/>
+      <rect x="10" y="12" width="1" height="1" fill="#FF5365"/>
+    </g>
+
+    <g fill="#DE886D">
+      <g class="arm-l"><rect x="0" y="9" width="2" height="2"/></g>
+      <g class="arm-r"><rect x="13" y="9" width="2" height="2"/></g>
+    </g>
+  </g></g>
+
+  <g class="bird" fill="#FFFDE7"><g class="bird-fly"><g class="wing-up"><rect x="1" y="0" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="4" y="1" width="1" height="1"/></g><g class="wing-dn"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="2" y="1" width="1" height="1"/></g></g></g>
+  <g class="leaf" fill="#9BD77A"><g class="leaf-fall"><g class="leaf-h"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/></g><g class="leaf-d"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/></g></g></g>
+  <g class="dust" fill="#FFFDE7">
+    <g class="dust-f0"><rect x="2" y="14" width="1" height="1"/></g>
+    <g class="dust-f1"><rect x="1" y="13" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/></g>
+    <g class="dust-f2"><rect x="-1" y="13" width="1" height="1"/><rect x="-2" y="14" width="1" height="1"/></g>
+    <g class="dust-f3"><rect x="12" y="14" width="1" height="1"/></g>
+    <g class="dust-f4"><rect x="13" y="13" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/></g>
+    <g class="dust-f5"><rect x="15" y="13" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/></g>
+    <g class="dust-f6"><rect x="2" y="14" width="1" height="1"/></g>
+    <g class="dust-f7"><rect x="1" y="13" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/></g>
+    <g class="dust-f8"><rect x="-1" y="13" width="1" height="1"/><rect x="-2" y="14" width="1" height="1"/></g>
+    <g class="dust-f9"><rect x="12" y="14" width="1" height="1"/></g>
+    <g class="dust-f10"><rect x="13" y="13" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/></g>
+    <g class="dust-f11"><rect x="15" y="13" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/></g>
+    <g class="dust-f12"><rect x="12" y="14" width="1" height="1"/></g>
+    <g class="dust-f13"><rect x="13" y="13" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/></g>
+    <g class="dust-f14"><rect x="15" y="13" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/></g>
+  </g>
+</svg>

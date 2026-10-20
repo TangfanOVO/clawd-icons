@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="cr crv crv-home" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="cr-scene">
+<!-- Clawd body: marciogranzotto/clawd-tank (MIT), static base only; see THIRD_PARTY.md. House, pose, joy eyes and blush: Clawd Icons. -->
+<g class="crv-house"><path d="M2 11.2 12 3l10 8.2"/><path d="M3.5 10v10.35h17V10"/><path d="M16 6.28V4.3h2v3.62"/></g>
+<g class="crv-smoke" opacity="0"><path d="M17 3.1c-.6-.5-.1-1 .3-1.4"/></g>
+<g class="cr-body" stroke="none"><g class="cr-original" transform="translate(4.5 11)">
+<g class="cr-feet" fill="#DE886D"><path class="cr-foot-1" d="M3 7h1v2H3Z"/><path class="cr-foot-2" d="M5 7h1v2H5Z"/><path class="cr-foot-3" d="M9 7h1v2H9Z"/><path class="cr-foot-4" d="M11 7h1v2h-1Z"/></g>
+<g class="crv-upper">
+<g fill="#DE886D"><path class="cr-hand-left" d="M0 3h2v2H0Z"/><path class="cr-hand-right" d="M13 3h2v2h-2Z"/><path class="cr-torso" d="M2 0h11v7H2Z"/></g>
+<g class="crv-blush" fill="#F7A1A6" opacity="0"><path d="M2 4h2v1H2Zm9 0h2v1h-2Z"/></g>
+<g class="cr-gaze" fill="#141414"><g class="cr-eye-open"><path d="M4 2h1v2H4Zm6 0h1v2h-1Z"/></g>
+<g class="cr-eye-sleep" opacity="0"><path d="M3.5 3h2v1h-2Zm6 0h2v1h-2Z"/></g>
+<g class="crv-eye-joy" opacity="0"><path d="M3 3h1v1H3Zm1-1h1v1H4Zm1 1h1v1H5Zm4 0h1v1H9Zm1-1h1v1h-1Zm1 1h1v1h-1Z"/></g></g>
+</g></g></g>
+</g></svg>
