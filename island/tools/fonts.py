@@ -45,13 +45,19 @@ def rects(pts):
             runs.setdefault(y, []).append((s, prev + 1))
             if x is not None: s = prev = x
     out, open_ = [], {}
+    prev = None
     for y in sorted(runs):
+        # 1021：中间隔着空行就先把开着的块收口，不然上下两块同宽同位的会被连成一根竖条（出门走走的鸟和尘土连成白条）
+        if prev is not None and y != prev + 1:
+            for r, y0 in open_.items(): out.append((r[0], y0, r[1] - r[0], prev + 1 - y0))
+            open_ = {}
         cur = {}
         for r in runs[y]:
             if r in open_: cur[r] = open_.pop(r)
             else: cur[r] = y
         for r, y0 in open_.items(): out.append((r[0], y0, r[1] - r[0], y - y0))
         open_ = cur
+        prev = y
     for r, y0 in open_.items(): out.append((r[0], y0, r[1] - r[0], max(runs) + 1 - y0))
     return out
 
